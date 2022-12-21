@@ -1,12 +1,5 @@
 /* Google Font CDN Link */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;family=Ubuntu:wght@400;500;700&amp;display=swap");
-/* * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  text-decoration: none;
-  scroll-behavior: smooth;
-} */
 
 /* Custom Scroll Bar CSS */
 ::-webkit-scrollbar {
@@ -171,7 +164,8 @@ a:focus {
 .article-title {
   font-size: 1.5rem;
 }
-.article-body {
+.article-body,
+.article-body-2 {
   font-family: "Times New Roman", serif;
 }
 .article-read-more,

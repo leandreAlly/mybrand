@@ -1,268 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:Lora,wght@0,300;0,400;1,300;1,400&display=swap"
-     rel="stylesheet">
-     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-     <link rel="stylesheet" href="./styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:Lora,wght@0,300;0,400;1,300;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
     <title>Blog Page</title>
-</head>
-<body>
-    <!-- navigation menu -->
+  </head>
+  <body>
+    <!-- navgaition menu -->
     <nav>
       <div class="navbar">
         <div class="logo"><a href="#">Portfolio.</a></div>
         <ul class="menu">
-          <li><a href="#home">Home</a></li>
+          <li><a href="/index.html">Home</a></li>
           <li><a href="#about">About</a></li>
-          <li><a href="#skills">Skills</a></li>
           <li><a href="#services">Services</a></li>
+          <li><a href="#skills">Portfolio</a></li>
           <li><a href="#contact">Contact</a></li>
-          <li><a href="../blog/index.html">Blog</a></li>
-          <div class="cancel-btn">
-            <i class="fas fa-times"></i>
-          </div>
+          <li><a href="#">Blog</a></li>
+          <li><a href="../login/index.html">Login</a></li>
         </ul>
-        <div class="media-icons">
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-        </div>
-      </div>
-      <div class="menu-btn">
-        <i class="fas fa-bars"></i>
       </div>
     </nav>
     <div class="container container-flex">
-        <main role="main">
-            <article class="article-featured">
-                <h2 class="article-title">Finding Simplicity in life</h2>
-                <img src="images/asset2.jpg" alt="" class="article-image">
-                <p class="article-info">July 32, 2021| 3 comments </i></p>
-                
-                <p class="article-body">Life is full of moments of joy, pleasure, success and
-                    comfort punctuated by misery, defeat, failures and problems. There is no
-                    human being on Earth, strong, powerful, wise or rich, who has not experienced,
-                    struggle, suffering or failure. You have to work hard to reach to the highest
-                    position<span id="dots">...</span><span id="more">My life wasn’t playful and neither was I.
-                    Everything was so serious. My decisions were made based on how I could achieve more 
-                    and I was unhappy. I kept setting new goals for myself but when I achieved the goal,
-                    the happiness derived from it quickly faded. I longed for contentment but my thirst
-                    for more overruled time after time. I didn’t understand others who weren’t 
-                    as driven as me but instead were silly and playful. Appreciating simplicity
-                    and the small things was a challenge because the big constantly outweighed the
-                    simple.At some point, I took a long hard look at myself, the person I was and the
-                    person I was becoming. I didn't like what I saw. I had become shallow and pretentious, 
-                    convincing myself that I could find contentment in what a dollar could buy me rather
-                    than finding wealth in living a life of authenticity and simple happiness.
-                    It was then that I started to realize how happy others were who understood
-                    and appreciated the small things in life. My mother and grandmother 
-                    lived this every day but I never understood it. They had what I was missing.
-                    They were content. I realized that finding joy and appreciation in simple
-                    things didn’t mean I was simple-minded. Actually, it meant quite the
-                    opposite. I began uncovering and understanding how to be wise and
-                    appreciate the beauty in simplicity.</span></p>
-                    <div class="comment-section">
-                        <form id="form" action="#">
-                           <div class="input-name">
-                                <label for="user-name">Your Name</label>
-                                <input type="text" id="user-name"  placeholder="Your name..">
-                                <div class="error"></div>
-                           </div>
-                           <div class="input-message">
-                                <label for="subject">Comment</label>
-                                <textarea id="comment-field"  placeholder="Write Your Comment.." style="height:200px"></textarea>
-                                <div class="error"></div>
-                          </div>
-                          <input type="submit" id="myBtn" value="Submit">
-                        </form>
-                      </div>
-                    <div class="btn-container">
-                        <button onclick="showhide()" id="toggle">Read more</button>
-                    </div>
-  
-                <!-- <a onclick="myFunction()" href="#"id="myBtn" class="article-read-more">CONTINUE READING</a> -->
-
-                <div class="article-button"> 
-                    <div class="like-button">
-                        <i class='bx bxs-like'></i>1<span> Like</span>
-                    </div>  
-                    <div class="comment-button">
-                   <i class='bx bxs-comment'></i>2<span> Comment</span> 
-                    </div>
-                </div>
-            </article>
-
-            <article class="article-recent">
-                <div class="article-recent-main">
-                    <h2 class="article-title">Coding Is My Passion</h2>
-                    <p class="article-body">When I manage to build something that saves people time 
-                        and prevents them from doing tedious tasks, I know that I am making a difference 
-                        in that person's life. They now have more time to be with their kids, more time to
-                        think up ideas something computers cannot and more time to connect to people.<span id="dotsRecent">...</span><span id="moreRecent">My life wasn’t playful and neither was I.
-                        Everything was so serious. My decisions were made based on how I could achieve more 
-                        and I was unhappy. I kept setting new goals for myself but when I achieved the goal,
-                        the happiness derived from it quickly faded. I longed for contentment but my thirst
-                        for more overruled time after time. I didn’t understand others who weren’t 
-                        as driven as me but instead were silly and playful. Appreciating simplicity
-                        and the small things was a challenge because the big constantly outweighed the
-                        simple.At some point, I took a long hard look at myself, the person I was and the
-                        person I was becoming. I didn't like what I saw. I had become shallow and pretentious, 
-                        convincing myself that I could find contentment in what a dollar could buy me rather
-                        than finding wealth in living a life of authenticity and simple happiness.
-                        It was then that I started to realize how happy others were who understood
-                        and appreciated the small things in life. My mother and grandmother 
-                        lived this every day but I never understood it. They had what I was missing.
-                        They were content. I realized that finding joy and appreciation in simple
-                        things didn’t mean I was simple-minded. Actually, it meant quite the
-                        opposite. I began uncovering and understanding how to be wise and
-                        appreciate the beauty in simplicity.</span></p>
-                        <div class="btn-container">
-                            <button onclick="showhideRecent()" id="recent">Read more</button>
-                        </div>
-
-                    <div class="article-button"> 
-                        <div class="like-button">
-                            <i class='bx bxs-like'></i>1<span> Like</span>
-                        </div>  
-                        <div class="comment-button">
-                       <i class='bx bxs-comment'></i>2<span> Comment</span> 
-                        </div>
-                    </div>
-                </div>
-
-                <div class="article-recent-secondary">
-                    <img src="images/asset5.jpg" alt="" class="article-image">
-                    <p class="article-info">July 32, 2021| 3 comments</p>
-                </div>
-            </article>
-
-            <article class="article-recent">
-                <div class="article-recent-main">
-                    <h2 class="article-title">All About Node.js</h2>
-                    <p class="article-body">Node. js is primarily used for non-blocking, event-driven servers, 
-                        due to its single-threaded nature. It's used for traditional web sites and back-end API
-                         services, but was designed with real-time, push-based architectures in mind<span id="dots">...</span><span id="more">My life wasn’t playful and neither was I.
-                        Everything was so serious. My decisions were made based on how I could achieve more 
-                        and I was unhappy. I kept setting new goals for myself but when I achieved the goal,
-                        the happiness derived from it quickly faded. I longed for contentment but my thirst
-                        for more overruled time after time. I didn’t understand others who weren’t 
-                        as driven as me but instead were silly and playful. Appreciating simplicity
-                        and the small things was a challenge because the big constantly outweighed the
-                        simple.At some point, I took a long hard look at myself, the person I was and the
-                        person I was becoming. I didn't like what I saw. I had become shallow and pretentious, 
-                        convincing myself that I could find contentment in what a dollar could buy me rather
-                        than finding wealth in living a life of authenticity and simple happiness.
-                        It was then that I started to realize how happy others were who understood
-                        and appreciated the small things in life. My mother and grandmother 
-                        lived this every day but I never understood it. They had what I was missing.
-                        They were content. I realized that finding joy and appreciation in simple
-                        things didn’t mean I was simple-minded. Actually, it meant quite the
-                        opposite. I began uncovering and understanding how to be wise and
-                        appreciate the beauty in simplicity.</span></p>
-                        <div class="btn-container">
-                            <button onclick="showhide()" id="toggle">Read more</button>
-                        </div>
-                    <div class="article-button"> 
-                        <div class="like-button">
-                            <i class='bx bxs-like'></i>1<span> Like</span>
-                        </div>  
-                        <div class="comment-button">
-                       <i class='bx bxs-comment'></i>2<span> Comment</span> 
-                        </div>
-                    </div> 
-                </div>
-
-                    <div class="article-recent-secondary">
-                        <img src="images/asset7.jpg" alt="" class="article-image">
-                        <p class="article-info">July 32, 2021| 3 comments</p>
-                    </div>
-
-            </article>
-
-            <article class="article-recent">
-                <div class="article-recent-main">
-                    <h2 class="article-title">CSS make a lot of fun!</h2>
-                    <p class="article-body">What is the main use of CSS?
-                        CSS is the language for describing the presentation of Web pages,
-                        including colors, layout, and fonts. It allows one to adapt the 
-                        presentation to different types of devices, such as large screens,
-                        small screens, or printers. CSS is independent of HTML and can 
-                        be used with any XML-based markup language<span id="dots">...</span><span id="more">My life wasn’t playful and neither was I.
-                        Everything was so serious. My decisions were made based on how I could achieve more 
-                        and I was unhappy. I kept setting new goals for myself but when I achieved the goal,
-                        the happiness derived from it quickly faded. I longed for contentment but my thirst
-                        for more overruled time after time. I didn’t understand others who weren’t 
-                        as driven as me but instead were silly and playful. Appreciating simplicity
-                        and the small things was a challenge because the big constantly outweighed the
-                        simple.At some point, I took a long hard look at myself, the person I was and the
-                        person I was becoming. I didn't like what I saw. I had become shallow and pretentious, 
-                        convincing myself that I could find contentment in what a dollar could buy me rather
-                        than finding wealth in living a life of authenticity and simple happiness.
-                        It was then that I started to realize how happy others were who understood
-                        and appreciated the small things in life. My mother and grandmother 
-                        lived this every day but I never understood it. They had what I was missing.
-                        They were content. I realized that finding joy and appreciation in simple
-                        things didn’t mean I was simple-minded. Actually, it meant quite the
-                        opposite. I began uncovering and understanding how to be wise and
-                        appreciate the beauty in simplicity.</span></p>
-                        <div class="btn-container">
-                            <button onclick="showhide()" id="toggle">Read more</button>
-                        </div>
-                    <div class="article-button"> 
-                        <div class="like-button">
-                            <i class='bx bxs-like'></i>1<span> Like</span>
-                        </div>  
-                        <div class="comment-button">
-                       <i class='bx bxs-comment'></i>2<span> Comment</span> 
-                        </div>
-                    </div>
-                </div>
-
-                <div class="article-recent-secondary">
-                    <img src="images/asset8.jpg" alt="" class="article-image">
-                    <p class="article-info">July 32, 2021| 3 comments</p>
-                </div>
-
-            </article>
-        </main>
-        <aside class="sidebar">
-            <div class="sidebar-widget">
-                <h2 class="widget-title">ABOUT ME</h2>
-                <img src="images/asset10.jpg" alt=""  class="widget-image">
-                <p class="widget-body">Learning programming helps to develop a range of soft skills. 
-                    These include creativity, critical thinking, teamwork, logic, and reasoning</p>
-
+      <main role="main">
+        <article class="article-recent">
+          <div class="article-recent-main">
+            <h2 class="article-title">Problem solving through coding</h2>
+            <p class="article-body">
+              When I manage to build something that saves people time and
+              prevents them from doing tedious tasks, I know that I am making a
+              difference in that person's life. They now have more time to be
+              with their kids, more time to think up ideas something computers
+              cannot and more time to connect to people.<span id="dotsRecent"
+                >...</span
+              ><span id="moreRecent"
+                >My life wasn’t playful and neither was I. Everything was so
+                serious. My decisions were made based on how I could achieve
+                more and I was unhappy. I kept setting new goals for myself but
+                when I achieved the goal, the happiness derived from it quickly
+                faded. I longed for contentment but my thirst for more overruled
+                time after time. I didn’t understand others who weren’t as
+                driven as me but instead were silly and playful. Appreciating
+                simplicity and the small things was a challenge because the big
+                constantly outweighed the simple.At some point, I took a long
+                hard look at myself, the person I was and the person I was
+                becoming. I didn't like what I saw. I had become shallow and
+                pretentious, convincing myself that I could find contentment in
+                what a dollar could buy me rather than finding wealth in living
+                a life of authenticity and simple happiness. It was then that I
+                started to realize how happy others were who understood and
+                appreciated the small things in life. My mother and grandmother
+                lived this every day but I never understood it. They had what I
+                was missing. They were content. I realized that finding joy and
+                appreciation in simple things didn’t mean I was simple-minded.
+                Actually, it meant quite the opposite. I began uncovering and
+                understanding how to be wise and appreciate the beauty in
+                simplicity.</span
+              >
+            </p>
+            <div class="btn-container">
+              <a href="./single-blog-view.html"
+                ><button onclick="showhideRecent()" id="recent">
+                  Read more
+                </button></a
+              >
             </div>
-            <div class="sidebar-widget">
-                <h2 class="widget-title">RECENT POST</h2>
-                <div class="widget-recent-post">
-                <h3 class="widget-recent-post-title">Coding Is My Passion</h3>
-                <img src="images/asset5.jpg" alt="" class="widget-image">
 
+            <div class="article-button">
+              <div class="like-button">
+                <i class="bx bxs-like"></i>1<span> Like</span>
+              </div>
+              <div class="comment-button">
+                <i class="bx bxs-comment"></i>2<span> Comment</span>
+              </div>
             </div>
-           
-            <div class="widget-recent-post">
-                <h3 class="widget-recent-post-title">All About Node.js</h3>
-                <img src="images/asset7.jpg" alt="" class="widget-image">
+          </div>
 
-            </div>
-                <div class="widget-recent-post">
-                <h3 class="widget-recent-post-title">CSS make a lot of fun</h3>
-                <img src="images/asset8.jpg" alt="" class="widget-image">
-            </div>
-            </div>
-        </aside>
+          <div class="article-recent-secondary">
+            <img src="images/asset5.jpg" alt="" class="article-image" />
+            <p class="article-info">July 32, 2021| 3 comments</p>
+          </div>
+        </article>
 
+        <article class="article-recent">
+          <div class="article-recent-main">
+            <h2 class="article-title">All About Node.js</h2>
+            <p class="article-body">
+              Node. js is primarily used for non-blocking, event-driven servers,
+              due to its single-threaded nature. It's used for traditional web
+              sites and back-end API services, but was designed with real-time,
+              push-based architectures in mind<span id="dots">...</span
+              ><span id="more"
+                >My life wasn’t playful and neither was I. Everything was so
+                serious. My decisions were made based on how I could achieve
+                more and I was unhappy. I kept setting new goals for myself but
+                when I achieved the goal, the happiness derived from it quickly
+                faded. I longed for contentment but my thirst for more overruled
+                time after time. I didn’t understand others who weren’t as
+                driven as me but instead were silly and playful. Appreciating
+                simplicity and the small things was a challenge because the big
+                constantly outweighed the simple.At some point, I took a long
+                hard look at myself, the person I was and the person I was
+                becoming. I didn't like what I saw. I had become shallow and
+                pretentious, convincing myself that I could find contentment in
+                what a dollar could buy me rather than finding wealth in living
+                a life of authenticity and simple happiness. It was then that I
+                started to realize how happy others were who understood and
+                appreciated the small things in life. My mother and grandmother
+                lived this every day but I never understood it. They had what I
+                was missing. They were content. I realized that finding joy and
+                appreciation in simple things didn’t mean I was simple-minded.
+                Actually, it meant quite the opposite. I began uncovering and
+                understanding how to be wise and appreciate the beauty in
+                simplicity.</span
+              >
+            </p>
+            <div class="btn-container">
+              <button onclick="showhide()" id="toggle">Read more</button>
+            </div>
+            <div class="article-button">
+              <div class="like-button">
+                <i class="bx bxs-like"></i>1<span> Like</span>
+              </div>
+              <div class="comment-button">
+                <i class="bx bxs-comment"></i>2<span> Comment</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="article-recent-secondary">
+            <img src="images/asset7.jpg" alt="" class="article-image" />
+            <p class="article-info">July 32, 2021| 3 comments</p>
+          </div>
+        </article>
+
+        <article class="article-recent">
+          <div class="article-recent-main">
+            <h2 class="article-title">CSS make a lot of fun!</h2>
+            <p class="article-body">
+              What is the main use of CSS? CSS is the language for describing
+              the presentation of Web pages, including colors, layout, and
+              fonts. It allows one to adapt the presentation to different types
+              of devices, such as large screens, small screens, or printers. CSS
+              is independent of HTML and can be used with any XML-based markup
+              language<span id="dots">...</span
+              ><span id="more"
+                >My life wasn’t playful and neither was I. Everything was so
+                serious. My decisions were made based on how I could achieve
+                more and I was unhappy. I kept setting new goals for myself but
+                when I achieved the goal, the happiness derived from it quickly
+                faded. I longed for contentment but my thirst for more overruled
+                time after time. I didn’t understand others who weren’t as
+                driven as me but instead were silly and playful. Appreciating
+                simplicity and the small things was a challenge because the big
+                constantly outweighed the simple.At some point, I took a long
+                hard look at myself, the person I was and the person I was
+                becoming. I didn't like what I saw. I had become shallow and
+                pretentious, convincing myself that I could find contentment in
+                what a dollar could buy me rather than finding wealth in living
+                a life of authenticity and simple happiness. It was then that I
+                started to realize how happy others were who understood and
+                appreciated the small things in life. My mother and grandmother
+                lived this every day but I never understood it. They had what I
+                was missing. They were content. I realized that finding joy and
+                appreciation in simple things didn’t mean I was simple-minded.
+                Actually, it meant quite the opposite. I began uncovering and
+                understanding how to be wise and appreciate the beauty in
+                simplicity.</span
+              >
+            </p>
+            <div class="btn-container">
+              <button onclick="showhide()" id="toggle">Read more</button>
+            </div>
+            <div class="article-button">
+              <div class="like-button">
+                <i class="bx bxs-like"></i>1<span> Like</span>
+              </div>
+              <div class="comment-button">
+                <i class="bx bxs-comment"></i>2<span> Comment</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="article-recent-secondary">
+            <img src="images/asset8.jpg" alt="" class="article-image" />
+            <p class="article-info">July 32, 2021| 3 comments</p>
+          </div>
+        </article>
+      </main>
+      <aside class="sidebar">
+        <!-- <div class="sidebar-widget">
+          <h2 class="widget-title">ABOUT ME</h2>
+          <img src="images/asset10.jpg" alt="" class="widget-image" />
+          <p class="widget-body">
+            Learning programming helps to develop a range of soft skills. These
+            include creativity, critical thinking, teamwork, logic, and
+            reasoning
+          </p>
+        </div> -->
+        <div class="sidebar-widget">
+          <h2 class="widget-title">RECENT POST</h2>
+          <div class="widget-recent-post">
+            <h3 class="widget-recent-post-title">Coding Is My Passion</h3>
+            <img src="images/asset5.jpg" alt="" class="widget-image" />
+          </div>
+
+          <div class="widget-recent-post">
+            <h3 class="widget-recent-post-title">All About Node.js</h3>
+            <img src="images/asset7.jpg" alt="" class="widget-image" />
+          </div>
+          <div class="widget-recent-post">
+            <h3 class="widget-recent-post-title">CSS make a lot of fun</h3>
+            <img src="images/asset8.jpg" alt="" class="widget-image" />
+          </div>
+        </div>
+      </aside>
     </div>
     <footer>
-        <div class="text">
-            <span>Copyright | &#169; 2022 All Rights Reserved by <a href="#">Ally Leandre</a></span>
-        </div>
-      </footer>
-    <script src="../js/blog.js"></script>
-</body>
+      <div class="text">
+        <span
+          >Copyright | &#169; 2022 All Rights Reserved by
+          <a href="#">Ally Leandre</a></span
+        >
+      </div>
+    </footer>
+  </body>
 </html>

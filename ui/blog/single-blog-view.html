@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:Lora,wght@0,300;0,400;1,300;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Blog Page</title>
+  </head>
+  <body>
+    <!-- navgaition menu -->
+    <nav>
+      <div class="navbar">
+        <div class="logo"><a href="#">Portfolio.</a></div>
+        <ul class="menu">
+          <li><a href="/index.html">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#skills">Portfolio</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="../blog/index.html">Blog</a></li>
+          <li><a href="../login/index.html">Login</a></li>
+          <div class="cancel-btn">
+            <i class="fas fa-times"></i>
+          </div>
+        </ul>
+      </div>
+    </nav>
+    <div class="container container-flex">
+      <main role="main">
+        <article class="article-featured">
+                <h2 class="article-title">Problem solving through coding</h2>
+                <img src="images/asset5.jpg" alt="" class="article-image">
+                <p class="article-info">July 32, 2021| 3 comments </i></p>
+                
+                <p class="article-body">Programming is a powerful tool that can be
+                     used to solve a wide range of problems. It allows us to take 
+                     complex tasks and break them down into smaller, more manageable
+                      pieces that can be easily automated and executed by a computer. 
+                      With programming, we can create algorithms and scripts that can
+                       analyze data, make decisions, and perform actions based on 
+                       set of rules and parameters. This makes it an es
+                       sential tool for solving problems in fields s
+                       uch as data analysis, artificial intelligence,
+                        and automation. Whether you're a beginner or an
+                        experienced programmer, learning how to solve 
+                        problems through programming is a valuable skill that can open up many doors and opportunities.
+                    </p>
+                    <p class="article-body-2">Solving problems through
+                         programming involves a structured and logical
+                          approach to finding solutions to a given problem.
+                           It involves breaking down the problem into smaller 
+                           pieces, designing a solution, implementing the 
+                           solution through code, and testing and debugging 
+                           the solution to ensure it is working correctly.
+                    </p>
+                    <p class="article-body-2">
+                     is to thoroughly understand the problem. 
+                         This involves identifying the input that needs to be 
+                         provided to the program, as well as the output that 
+                         is expected. It's important to have a clear understanding 
+                         of the problem before moving on to the next steps, as this
+                         
+                         will inform the design of the solution.
+                          Once you have a good understanding of the problem, the 
+                          next step is to break it down into smaller pieces. 
+                          This helps to make the problem more manageable and 
+                          easier to solve. Identify the key actions or steps 
+                          that need to be performed in order to solve the 
+                          problem, and consider how you might go about 
+                          implementing each of these steps.
+                    </p>
+                    <div class="comment-section">
+                        <form id="form" action="#">
+                           <div class="input-name">
+                                <label for="user-name">Your Name</label>
+                                <input type="text" id="user-name"  placeholder="Your name..">
+                                <div class="error"></div>
+                           </div>
+                           <div class="input-message">
+                                <label for="subject">Comment</label>
+                                <textarea id="comment-field"  placeholder="Write Your Comment.." style="height:200px"></textarea>
+                                <div class="error"></div>
+                          </div>
+                          <input type="submit" id="myBtn" value="Submit">
+                        </form>
+                      </div>
+                    <div class="btn-container">
+                        <button onclick="showhide()" id="toggle">Read more</button>
+                    </div>
+                <div class="article-button"> 
+                    <div class="like-button">
+                        <i class='bx bxs-like'></i>1<span> Like</span>
+                    </div>  
+                    <div class="comment-button">
+                   <i class='bx bxs-comment'></i>2<span> Comment</span> 
+                    </div>
+                </div>
+            </article>
+    <footer>
+      <div class="text">
+        <span
+          >Copyright | &#169; 2022 All Rights Reserved by
+          <a href="#">Ally Leandre</a></span
+        >
+      </div>
+    </footer>
+  </body>
+</html>
