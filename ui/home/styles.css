@@ -538,6 +538,25 @@ section .info-icon .github img {
 .message-box.success input {
   border-color: #28a745;
 }
+/* Footer CSS */
+footer {
+  background: #4070f4;
+  padding: 15px 0;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+}
+footer .text span {
+  font-size: 17px;
+  font-weight: 400;
+  color: #fff;
+}
+footer .text span a {
+  font-weight: 500;
+  color: #fff;
+}
+footer .text span a:hover {
+  text-decoration: underline;
+}
 
 /* for Ipad 1024  pro*/
 @media screen and (max-width: 1024px) {
