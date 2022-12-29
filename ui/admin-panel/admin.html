@@ -8,7 +8,9 @@
 				initial-scale=1.0">
     <title>leandre blog</title>
     <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./article.css">
     <link rel="stylesheet" href="./responsive.css">
+
 </head>
 
 <body>
@@ -202,6 +204,67 @@
                     </div>
                 </div>
             </div>
+            <!-- Manage article section -->
+            <div class="article-container">
+                <div class="article-header">
+                    <h1 class="manage-Articles">Manage Articles</h1>
+                    <button class="view">Add Article</button>
+                </div>
+
+                <div class="article-body">
+                    <table>
+                        <tr>
+                            <th>Article</th>
+                            <th>Dates</th>
+                            <th>Likes</th>
+                            <th>Comments</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                        <tr>
+                            <td>Article 73</td>
+                            <td>20Feb2022</td>
+                            <td>2.9k</td>
+                            <td>210</td>
+                            <td><button class="t-op-nextlvl edit-tag">Edit</button></td>
+                            <td><button class="t-op-nextlvl delete-tag">Delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>Article 73</td>
+                            <td>20Feb2022</td>
+                            <td>2.9k</td>
+                            <td>210</td>
+                            <td><button class="t-op-nextlvl edit-tag">Edit</button></td>
+                            <td><button class="t-op-nextlvl delete-tag">Delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>Article 73</td>
+                            <td>20Feb2022</td>
+                            <td>2.9k</td>
+                            <td>210</td>
+                            <td><button class="t-op-nextlvl edit-tag">Edit</button></td>
+                            <td><button class="t-op-nextlvl delete-tag">Delete</button></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <!-- End of article management -->
+
+            <!-- add article form -->
+            <div class="container">
+                <form action="">
+                    <label for="blog-title">Blog Title</label>
+                    <input type="text" id="blog-title" name="blog-title" placeholder="Blog title..">
+                    <label for="subject">Blog Content</label>
+                    <textarea id="subject" name="subject" placeholder="Write something.."
+                        style="height:200px"></textarea>
+
+                    <label for="blog-image">Upload Image</label>
+                    <input type="file" id="blog-image" name="blog-image">
+                    <input type="submit" value="Publish">
+                </form>
+            </div>
+            <!-- End of article form -->
         </div>
     </div>
 

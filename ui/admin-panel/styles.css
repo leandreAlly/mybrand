@@ -354,3 +354,43 @@ header {
 .logout a {
   text-decoration: none;
 }
+/* Hide some section*/
+/* .box-container,
+.report-container {
+  display: none;
+} */
+.container input[type="text"],
+input[type="file"],
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type="submit"] {
+  background-color: #04aa6d;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+input[type="file"] {
+  border: none;
+}
+
+.container {
+  margin-top: 20px;
+  border-radius: 30px;
+  background-color: #fafaff;
+  padding: 20px;
+}

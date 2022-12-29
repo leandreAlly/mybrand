@@ -10,6 +10,7 @@
     font-size: 15px;
   }
   .report-topic-heading,
+  .article-topic-heading,
   .item1,
   .items {
     width: 800px;
@@ -27,6 +28,7 @@
     font-size: 20px;
   }
   .report-topic-heading,
+  .article-topic-heading,
   .item1,
   .items {
     width: 700px;
@@ -94,18 +96,20 @@
   .nav-upper-options {
     gap: 15px;
   }
-  .recent-Articles {
+  .recent-Articles,
+  .manage-Articles {
     font-size: 20px;
   }
   .report-topic-heading,
-  .item1,
+  .article-topic-heading .item1,
   .items {
     width: 550px;
   }
 }
 
 @media screen and (max-width: 400px) {
-  .recent-Articles {
+  .recent-Articles,
+  .manage-Articles {
     font-size: 17px;
   }
   .view {
@@ -123,7 +127,8 @@
 }
 
 @media screen and (max-width: 320px) {
-  .recent-Articles {
+  .recent-Articles,
+  .manage-Articles {
     font-size: 12px;
   }
   .view {
@@ -131,7 +136,8 @@
     font-size: 8px;
     height: 27px;
   }
-  .report-header {
+  .report-header,
+  .article-header {
     height: 60px;
     padding: 10px 5px 5px 5px;
   }
@@ -142,11 +148,13 @@
     font-size: 10px;
   }
   .report-topic-heading,
+  .article-topic-heading,
   .item1,
   .items {
     width: 300px;
   }
-  .report-body {
+  .report-body,
+  .article-body {
     padding: 10px;
   }
   .lavel-tag {
