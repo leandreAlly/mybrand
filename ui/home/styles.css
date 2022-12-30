@@ -428,6 +428,25 @@ section .info-icon .github img {
   color: #0e2431;
   margin-bottom: 1em;
 }
+/* Styles the social media icon */
+.media-icons a i {
+  color: #3b5998;
+}
+.media-icons a i.fa-twitter {
+  color: #1da1f2;
+}
+
+.media-icons a i.fa-instagram {
+  color: #c13584;
+}
+.media-icons a {
+  padding: 0 15px;
+}
+
+.media-icons a i {
+  font-size: 1.5em;
+}
+/* Contact us form */
 .contact-form .topic {
   font-size: 2rem;
   font-weight: 500;
@@ -567,6 +586,13 @@ footer .text span a:hover {
   .home {
     height: auto;
   }
+  section .info-icon {
+    display: flex;
+    justify-content: center;
+    flex-grow: 2;
+    margin-top: 40px;
+    margin: 0 auto;
+  }
 }
 
 @media (max-width: 1000px) {
@@ -579,6 +605,14 @@ footer .text span a:hover {
     justify-content: center;
     width: 100%;
   }
+  /*
+  section .info-icon {
+    display: none;
+     display: flex;
+  position: relative;
+  justify-content: flex-end; 
+  }
+  */
   .about-details .right {
     width: 90%;
     margin: 40px 0;
@@ -652,23 +686,7 @@ footer .text span a:hover {
   .home .text-three{
     font-size: 35px;
   } */
-  .left-details-p {
-    font-size: 5rem;
-  }
-  .skills .skills-details {
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-  }
-  .skills-details .text {
-    width: 100%;
-    margin-bottom: 50px;
-  }
-  .skills-details .boxes {
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-  }
+
   .services .boxes .box {
     margin: 20px 0;
     width: 100%;

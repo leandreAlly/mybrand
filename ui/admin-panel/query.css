@@ -1,0 +1,168 @@
+/* .query-container {
+  min-height: 300px;
+  max-width: 1200px;
+  margin: 70px auto 0px auto;
+  background-color: #ffffff;
+  border-radius: 30px;
+  box-shadow: 3px 3px 10px rgb(188, 188, 188);
+  padding: 0px 20px 20px 20px;
+}
+.query-header {
+  height: 80px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 20px 10px 20px;
+  border-bottom: 2px solid rgba(0, 20, 151, 0.59);
+}
+
+.manage-query {
+  font-size: 30px;
+  font-weight: 600;
+  color: #5500cb;
+}
+
+.view-query {
+  height: 35px;
+  width: 90px;
+  border-radius: 8px;
+  background-color: #d7213a;
+  color: white;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+}
+
+.query-body {
+  max-width: 1160px;
+  overflow-x: auto;
+  padding: 20px;
+  display: flex;
+}
+
+.query-body table th,
+.query-body table tr {
+  width: 200px;
+  text-align: left;
+}
+/* Add some styling for the table 
+.query-body table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.query-body td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.query-body tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+/* Add some responsive styling
+@media screen and (max-width: 600px) {
+  .query-body td,
+  th {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+
+  .query-body td:nth-of-type(1):before {
+    content: "Name: ";
+    font-weight: bold;
+  }
+
+  .query-body td:nth-of-type(2):before {
+    content: "Email: ";
+    font-weight: bold;
+  }
+} */
+.query-container {
+  min-height: 300px;
+  max-width: 1200px;
+  margin: 70px auto 0px auto;
+  background-color: #ffffff;
+  border-radius: 30px;
+  box-shadow: 3px 3px 10px rgb(188, 188, 188);
+  padding: 0px 20px 20px 20px;
+}
+.query-header {
+  height: 80px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 20px 10px 20px;
+  border-bottom: 2px solid rgba(0, 20, 151, 0.59);
+}
+
+.manage-query {
+  font-size: 30px;
+  font-weight: 600;
+  color: #5500cb;
+}
+
+.view-query {
+  height: 35px;
+  width: 90px;
+  border-radius: 8px;
+  background-color: #d7213a;
+  color: white;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+}
+
+.query-body {
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 20px;
+  /* display: flex; */ /* removed */
+}
+
+.query-body table th,
+.query-body table tr {
+  width: 200px;
+  text-align: left;
+}
+/* Add some styling for the table */
+.query-body table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.query-body td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.query-body tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+/* Add some responsive styling */
+@media screen and (max-width: 600px) {
+  .query-body td,
+  th {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+
+  .query-body td:nth-of-type(1):before {
+    content: "Name: ";
+    font-weight: bold;
+  }
+
+  .query-body td:nth-of-type(2):before {
+    content: "Email: ";
+    font-weight: bold;
+  }
+}

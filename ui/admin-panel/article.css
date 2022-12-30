@@ -76,7 +76,8 @@
   font-weight: 600;
 }
 
-.edit-tag {
+.edit-tag,
+.approve-tag {
   width: 80px;
   text-align: center;
   background-color: #0d5e36;
@@ -84,7 +85,8 @@
   border: none;
   border-radius: 4px;
 }
-.delete-tag {
+.delete-tag,
+.delete-query-tag {
   width: 80px;
   text-align: center;
   background-color: #d7213a;

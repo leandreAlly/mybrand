@@ -9,6 +9,8 @@
     <title>leandre blog</title>
     <link rel="stylesheet" href="./styles.css">
     <link rel="stylesheet" href="./article.css">
+    <link rel="stylesheet" href="./query.css">
+    <link rel="stylesheet" href="./comment.css">
     <link rel="stylesheet" href="./responsive.css">
 
 </head>
@@ -265,6 +267,86 @@
                 </form>
             </div>
             <!-- End of article form -->
+
+            <!-- Manage Comment section -->
+            <div class="comment-container">
+                <div class="comment-header">
+                    <h1 class="manage-comment">Manage Comments</h1>
+                    <button class="view-comment">Clear All</button>
+                </div>
+
+                <div class="comment-body">
+                    <table>
+                        <tr>
+                            <th>Comment</th>
+                            <th>Article</th>
+                            <th>Author</th>
+                            <th>Date</th>
+                            <th>Action</th>
+                        </tr>
+                        <tr>
+
+                            <td>This is a great article!</td>
+                            <td>Article 73</td>
+                            <td>John Smith</td>
+                            <td>January 1, 2021</td>
+                            <td>
+                                <button class="t-op-nextlvl approve-tag">Approve</button>
+                                <button class="t-op-nextlvl delete-query-tag">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>I disagree with your point of view.</td>
+                            <td>Article 73</td>
+                            <td>Jane Doe</td>
+                            <td>January 2, 2021</td>
+                            <td>
+                                <button class="t-op-nextlvl approve-tag">Approve</button>
+                                <button class="t-op-nextlvl delete-query-tag">Delete</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <!-- End of comment management -->
+            <!-- Manage query section -->
+            <div class="query-container">
+                <div class="query-header">
+                    <h1 class="manage-query">Manage Query</h1>
+                    <button class="view-query">Clear All</button>
+                </div>
+
+                <div class="query-body">
+                    <table>
+                        <tr>
+                            <th>Query Message</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Actions</th>
+                        </tr>
+                        <tr>
+                            <td>Message 1</td>
+                            <td>Sender 1</td>
+                            <td>sender1@example.com</td>
+                            <td>
+                                <button class="t-op-nextlvl approve-tag">Contact</button>
+                                <button class="t-op-nextlvl delete-tag">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Message 2</td>
+                            <td>Sender 2</td>
+                            <td>sender2@example.com</td>
+                            <td>
+                                <button class="t-op-nextlvl approve-tag">Contact</button>
+                                <button class="t-op-nextlvl delete-tag">Delete</button>
+                            </td>
+                        </tr>
+
+                </div>
+            </div>
+
+            <!-- End of query management -->
         </div>
     </div>
 

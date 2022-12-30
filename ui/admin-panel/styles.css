@@ -354,11 +354,7 @@ header {
 .logout a {
   text-decoration: none;
 }
-/* Hide some section*/
-/* .box-container,
-.report-container {
-  display: none;
-} */
+
 .container input[type="text"],
 input[type="file"],
 textarea {
@@ -393,4 +389,21 @@ input[type="file"] {
   border-radius: 30px;
   background-color: #fafaff;
   padding: 20px;
+}
+
+/* Hide some section*/
+.box-container {
+  display: none;
+}
+.report-container {
+  display: none;
+}
+.article-container {
+  display: none;
+}
+.container {
+  display: none;
+}
+.comment-container {
+  display: none;
 }
