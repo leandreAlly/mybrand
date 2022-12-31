@@ -51,10 +51,12 @@ a:focus {
 
 .article-title {
   font-size: 1.5rem;
+  margin-bottom: 2rem;
 }
 .article-body,
 .article-body-2 {
   font-family: "Times New Roman", serif;
+  margin-bottom: 3rem;
 }
 .article-read-more,
 .article-info {
