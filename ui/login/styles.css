@@ -163,3 +163,15 @@ footer .text span a {
 footer .text span a:hover {
   text-decoration: underline;
 }
+@media screen and (max-width: 1024px) {
+.main-div-modify,footer{
+  width: 288px;
+}
+.main-div{
+    width: 221px;
+}
+body{
+  overflow: hidden;
+}
+ 
+}
