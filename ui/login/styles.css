@@ -1,177 +1,109 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
   margin: 0;
-  font-family: "Ubuntu", sans-serif;
-  font-size: 1.25rem;
-  font-weight: 100;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins',sans-serif;
 }
-
-/* Typography */
-
-h1,
-h2,
-h3 {
-  font-family: "Lora", serif;
-  font-weight: 400;
-  color: #143774;
-  margin-top: 0;
+body{
+  background:  #f0f8ff;
+  overflow: hidden;
 }
-
-h1 {
-  font-family: "Lora", serif;
-  font-weight: 400;
-  color: #143774;
-  font-size: 2rem;
-  margin: 0;
+::selection{
+  background: rgba(26,188,156,0.3);
 }
-
-.subtitle {
-  font-weight: 700;
-  color: #1792d2;
-  font-size: 0.75rem;
-  margin: 0;
+.container{
+  max-width: 440px;
+  padding: 0 20px;
+  margin: 100px auto;
 }
-
-/* Login-form */
-
-.main-div-modify {
-  display: grid;
-  height: 120vh;
-  margin-top: -50px;
-  place-items: center;
-  background: #f0f8ff;
-}
-.main-div {
-  width: 365px;
+.wrapper{
+  width: 100%;
   background: #fff;
-  padding: 30px;
   border-radius: 5px;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 4px 10px 1px rgba(0,0,0,0.1);
 }
-.main-div .form-title {
-  text-align: center;
+.wrapper .title{
+  height: 90px;
+  background: #fff;
+  border-radius: 5px 5px 0 0;
+  color: #000;
   font-size: 30px;
   font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
-form {
-  margin-top: 25px;
-  min-height: 70vh;
+.wrapper form{
+  padding: 30px 25px 25px 25px;
 }
-form .input_box {
-  height: 50px;
-  width: 100%;
+.wrapper form .row{
+  height: 45px;
+  margin-bottom: 50px;
   position: relative;
-  margin-top: 15px;
-  margin-bottom: 45px;
 }
-.input_box input {
+.wrapper form .row input{
   height: 100%;
   width: 100%;
   outline: none;
-  text-align: center;
-  border: 1px solid lightgrey;
+  padding-left: 60px;
   border-radius: 5px;
-  font-size: 17px;
+  border: 1px solid lightgrey;
+  font-size: 16px;
   transition: all 0.3s ease;
 }
-.input_box input:focus {
-  border-color: #be2edd;
+form .row input:focus{
+  border-color: #16a085;
+  box-shadow: inset 0px 0px 2px 2px rgba(26,188,156,0.25);
 }
-.input_box .icon {
+form .row input::placeholder{
+  color: #999;
+}
+.wrapper form .row i{
   position: absolute;
-  top: 50%;
-  left: 20px;
-  color: grey;
-  transform: translateY(-50%);
-}
-form .option_div {
-  margin-top: 5px;
-  display: flex;
-  justify-content: space-between;
-}
-.option_div .check_box {
+  width: 47px;
+  height: 100%;
+  color: #fff;
+  font-size: 18px;
+  background: #16a085;
+  border: 1px solid #16a085;
+  border-radius: 5px 0 0 5px;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
-.option_div span {
-  margin-left: 5px;
-  font-size: 16px;
-  color: #333;
+.wrapper form .pass{
+  margin: -8px 0 20px 0;
 }
-.option_div .forget_div a {
-  font-size: 16px;
-  color: #4c39c5;
+.wrapper form .pass a{
+  color: #4C39C5;
+  font-size: 17px;
+  text-decoration: none;
 }
-.input_box .error {
-  margin-top: 10px;
-  white-space: nowrap;
-  color: #dc3545;
+.wrapper form .pass a:hover{
+  text-decoration: underline;
 }
-.input_box.error input {
-  border-color: #dc3545;
-}
-.input_box.success input {
-  border-color: #28a745;
-}
-
-.button {
-  padding-top: 20px;
-}
-.button input {
+.wrapper form .button input{
   color: #fff;
   font-size: 20px;
   font-weight: 500;
-  border: none;
   padding-left: 0px;
-  background: #4c39c5;
+  background: #4C39C5;
+  border: 1px solid #4C39C5;
   cursor: pointer;
-  transition: all 0.3s linear;
 }
-.button input:hover {
-  background: #375695;
+form .button input:hover{
+  background: #4C39C5;
 }
-form .sign_up {
+.wrapper form .signup-link{
   text-align: center;
-  margin-top: 25px;
-}
-.sign_up a {
-  color: #4c39c5;
-}
-form a {
-  text-decoration: none;
-}
-form a:hover {
-  text-decoration: underline;
-}
-
-footer {
-  background: #4070f4;
-  padding: 15px 0;
-  text-align: center;
-  font-family: "Poppins", sans-serif;
-}
-footer .text span {
+  margin-top: 20px;
   font-size: 17px;
-  font-weight: 400;
-  color: #fff;
 }
-footer .text span a {
-  font-weight: 500;
-  color: #fff;
+.wrapper form .signup-link a{
+  color: #4C39C5;
   text-decoration: none;
 }
-footer .text span a:hover {
+form .signup-link a:hover{
   text-decoration: underline;
-}
-@media screen and (max-width: 1024px) {
-.main-div-modify,footer{
-  width: 288px;
-}
-.main-div{
-    width: 221px;
-}
-body{
-  overflow: hidden;
-}
- 
 }

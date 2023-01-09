@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:Lora,wght@0,300;0,400;1,300;1,400&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Login Page</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="main-div-modify">
+            <div class="main-div">
+                <div class="form-title">Login Form</div>
+                <!-- <div class="social_icons">
+          <a href="#"><i class="fab fa-facebook-f"></i><span>Facebook</span></a>
+          <a href="#"><i class="fab fa-twitter"></i><span>Twitter</span></a>
+        </div> -->
+                <form action="../admin-panel/admin.html">
+                    <div class="input_box">
+                        <input type="email" id="input-email" placeholder="Email" required />
+                        <div class="icon"><i class="fas fa-user"></i></div>
+                        <div class="error"></div>
+                    </div>
+                    <div class="input_box">
+                        <input type="password" id="input-password" placeholder="Password" required />
+                        <div class="icon"><i class="fas fa-lock"></i></div>
+                        <div class="error"></div>
+                    </div>
+                    <div class="option_div">
+                        <div class="check_box">
+                            <input type="checkbox" />
+                            <span>Remember me</span>
+                        </div>
+                        <div class="forget_div">
+                            <a href="#">Forget Password</a>
+                        </div>
+                    </div>
+                    <div class="input_box button">
+                        <input type="submit" id="log-btn" value="Login" />
+                    </div>
+
+                    <div class="sign_up">
+                        Not an Admin? <a href="/index.html">Back to Home</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="text footer-modify">
+            <span>Copyright | &#169; 2023 All Rights Reserved by
+                <a href="#">Ally Leandre</a></span>
+        </div>
+    </footer>
+
+</body>
+
+</html>
+
+body {
+  margin: 0;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 100;
+}
+
+/* Typography */
+
+h1,
+h2,
+h3 {
+  font-family: "Lora", serif;
+  font-weight: 400;
+  color: #143774;
+  margin-top: 0;
+}
+
+h1 {
+  font-family: "Lora", serif;
+  font-weight: 400;
+  color: #143774;
+  font-size: 2rem;
+  margin: 0;
+}
+
+.subtitle {
+  font-weight: 700;
+  color: #1792d2;
+  font-size: 0.75rem;
+  margin: 0;
+}
+
+/* Login-form */
+.container{
+  max-height: 100vh;
+}
+
+.main-div-modify {
+  display: flex;
+  justify-content: center;
+  max-height: 100vh;
+  margin-top: -50px;
+  background: #f0f8ff;
+}
+.main-div {
+  border: 1px solid red;
+  position: relative;
+  top: 60px;
+  max-height: 100vh;
+  width: 365px;
+  background: #fff;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
+}
+.main-div .form-title {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+form {
+
+}
+form .input_box {
+  height: 50px;
+  width: 100%;
+  position: relative;
+  margin-top: 15px;
+  margin-bottom: 45px;
+}
+.input_box input {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  text-align: center;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  font-size: 17px;
+  transition: all 0.3s ease;
+}
+.input_box input:focus {
+  border-color: #be2edd;
+}
+.input_box .icon {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  color: grey;
+  transform: translateY(-50%);
+}
+form .option_div {
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+.option_div .check_box {
+  display: flex;
+  align-items: center;
+}
+.option_div span {
+  margin-left: 5px;
+  font-size: 16px;
+  color: #333;
+}
+.option_div .forget_div a {
+  font-size: 16px;
+  color: #4c39c5;
+}
+.input_box .error {
+  margin-top: 10px;
+  white-space: nowrap;
+  color: #dc3545;
+}
+.input_box.error input {
+  border-color: #dc3545;
+}
+.input_box.success input {
+  border-color: #28a745;
+}
+
+.button {
+  padding-top: 20px;
+}
+.button input {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 500;
+  border: none;
+  padding-left: 0px;
+  background: #4c39c5;
+  cursor: pointer;
+  transition: all 0.3s linear;
+}
+.button input:hover {
+  background: #375695;
+}
+form .sign_up {
+  text-align: center;
+  margin-top: 25px;
+}
+.sign_up a {
+  color: #4c39c5;
+}
+form a {
+  text-decoration: none;
+}
+form a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  position: relative;
+  bottom: -13px;
+  background: #4070f4;
+  padding: 15px 0;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+}
+footer .text span {
+  font-size: 17px;
+  font-weight: 400;
+  color: #fff;
+}
+footer .text span a {
+  font-weight: 500;
+  color: #fff;
+  text-decoration: none;
+}
+footer .text span a:hover {
+  text-decoration: underline;
+}
+@media screen and (max-width: 1024px) {
+  .container{
+    border: 1px solid rebeccapurple;
+    width: 350px;
+  }
+.main-div-modify,footer{
+  width: 288px;
+}
+.main-div{
+    width: 221px;
+}
+
+}
