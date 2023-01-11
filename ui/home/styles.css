@@ -560,6 +560,19 @@ footer .text span a {
 footer .text span a:hover {
   text-decoration: underline;
 }
+/* Scroll TO Top Button CSS */
+.scroll-button a{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  color: #fff;
+  background: #4070f4;
+  padding: 7px 12px;;
+  font-size: 18px;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.15);
+  display: none;
+}
 
 /* for Ipad 1024  pro*/
 @media screen and (max-width: 1024px) {
