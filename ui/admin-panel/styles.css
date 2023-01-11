@@ -392,12 +392,7 @@ input[type="file"] {
 }
 
 /* Hide some section*/
-/* .box-container {
-  display: none;
-}
-.report-container {
-  display: none;
-}
+
 .article-container {
   display: none;
 }
@@ -406,4 +401,7 @@ input[type="file"] {
 }
 .comment-container {
   display: none;
-} */
+}
+.query-container{
+  display: none;
+}
