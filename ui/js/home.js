@@ -40,6 +40,7 @@ for (let i = 0; i < navLinks.length; i++) {
   navLinks[i].addEventListener("click" , function() {
     navBar.classList.remove("active");
     menuBtn.style.opacity = "1";
+    body.style.overflow = "auto";
     menuBtn.style.pointerEvents = "auto";
   });
 }
