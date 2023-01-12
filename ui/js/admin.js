@@ -59,4 +59,5 @@ messageBtn.addEventListener("click", () => {
 // Display Add article form
 addArticle.addEventListener("click", () => {
   addArticleForm.style.display = "block"
+   articleContainer.style.display = "none"
 })
