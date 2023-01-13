@@ -31,6 +31,11 @@ dashboardBtn.addEventListener("click", () => {
   commentContainer.style.display = "none"
   queryContainer.style.display = "none"
   addArticleForm.style.display = "none"
+  // Control active button
+  dashboardBtn.classList.add("active");
+  articleBtn.classList.remove("active");
+  commentBtn.classList.remove("active");
+  messageBtn.classList.remove("active");
 })
 articleBtn.addEventListener("click", () => {
   boxContainer.style.display = "none"
@@ -39,6 +44,11 @@ articleBtn.addEventListener("click", () => {
   commentContainer.style.display = "none"
   queryContainer.style.display = "none"
   addArticleForm.style.display = "none"
+  // Control active button
+  articleBtn.classList.add("active");
+  dashboardBtn.classList.remove("active");
+  commentBtn.classList.remove("active");
+  messageBtn.classList.remove("active");
 })
 commentBtn.addEventListener("click", () => {
   boxContainer.style.display = "none"
@@ -47,6 +57,11 @@ commentBtn.addEventListener("click", () => {
   commentContainer.style.display = "block"
   queryContainer.style.display = "none"
   addArticleForm.style.display = "none"
+   // Control active button
+  commentBtn.classList.add("active");
+  articleBtn.classList.remove("active");
+  dashboardBtn.classList.remove("active");
+  messageBtn.classList.remove("active");
 })
 messageBtn.addEventListener("click", () => {
   boxContainer.style.display = "none"
@@ -55,9 +70,16 @@ messageBtn.addEventListener("click", () => {
   commentContainer.style.display = "none"
   queryContainer.style.display = "block"
   addArticleForm.style.display = "none"
+  // Control active button
+  messageBtn.classList.add("active");
+  commentBtn.classList.remove("active");
+  articleBtn.classList.remove("active");
+  dashboardBtn.classList.remove("active");
+  
 })
 // Display Add article form
 addArticle.addEventListener("click", () => {
   addArticleForm.style.display = "block"
    articleContainer.style.display = "none"
 })
+
