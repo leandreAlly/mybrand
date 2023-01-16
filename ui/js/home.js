@@ -81,7 +81,7 @@ const suBtn = document.querySelector("#myBtn");
 suBtn.addEventListener("click", (e) => {
   const isFormValid = validateInputs();
 
-  if (isFormValid === true) {
+  if (isFormValid) {
     console.log(submitName.value);
     console.log(submitEmail.value);
     console.log(submitMessage.value);
