@@ -1,256 +1,287 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./ui/home/styles.css" />
+    <!-- Fontawesome CDN Link -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+    />
+    <title>My Portfolio Website</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="./ui/home/styles.css" />
-  <!-- Fontawesome CDN Link -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
-  <title>My Portfolio Website</title>
-</head>
+  <body>
+    <!-- Move to up button -->
+    <div class="scroll-button">
+      <a href="#home"><i class="fas fa-arrow-up"></i></a>
+    </div>
 
-<body>
-  <!-- Move to up button -->
-  <div class="scroll-button">
-    <a href="#home"><i class="fas fa-arrow-up"></i></a>
-  </div>
-
-  <!-- navgaition menu -->
-  <nav>
-    <div class="navbar">
-      <div class="logo"><a href="#">Leandre Dev.</a></div>
-      <ul class="menu">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="./ui/blog/index.html">Blog</a></li>
-        <li><a href="./ui/login/index.html">Login</a></li>
-        <div class="cancel-btn">
-          <i class="fas fa-times"></i>
+    <!-- navgaition menu -->
+    <nav>
+      <div class="navbar">
+        <div class="logo"><a href="#">Leandre Dev.</a></div>
+        <ul class="menu">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="./ui/blog/index.html">Blog</a></li>
+          <li><a href="./ui/login/index.html">Login</a></li>
+          <div class="cancel-btn">
+            <i class="fas fa-times"></i>
+          </div>
+        </ul>
+      </div>
+      <div class="menu-btn">
+        <i class="fas fa-bars"></i>
+      </div>
+    </nav>
+    <!-- Home Section Start -->
+    <section class="home" id="home">
+      <div class="home-content">
+        <div class="text">
+          <div class="text-one">Hello,</div>
+          <div class="text-two">I'm Leandre Ally</div>
+          <div class="text-three">Junior Full stack Developer</div>
+          <div class="text-four">From Rwanda</div>
         </div>
-      </ul>
-    </div>
-    <div class="menu-btn">
-      <i class="fas fa-bars"></i>
-    </div>
-  </nav>
-  <!-- Home Section Start -->
-  <section class="home" id="home">
-    <div class="home-content">
-      <div class="text">
-        <div class="text-one">Hello,</div>
-        <div class="text-two">I'm Leandre Ally</div>
-        <div class="text-three">Junior Full stack Developer</div>
-        <div class="text-four">From Rwanda</div>
-      </div>
-      <div class="button">
-        <button>Hire Me</button>
-      </div>
-    </div>
-  </section>
-  <!-- About Section Start -->
-  <section class="about" id="about">
-    <div class="content">
-      <div class="title"><span>About Me</span></div>
-      <div class="about-details">
-        <div class="right">
-          <div class="topic">Hi, I’m Leandre. Nice to meet you</div>
-          <p>
-            I’m Motivated fullstack web developer and familiar with a variety
-            of programming languages, including JavaScript, HTML,
-            CSS,MySQL,PHP, and Git. but I’m always adding new skills to my
-            repertoire.I believe a good day is a productive day. So I use my
-            work hours to be productive. I try to bring value each and every
-            day.
-          </p>
-          <div class="button">
-            <button>Download CV</button>
-          </div>
-          <div class="info-icon">
-            <div class="linkedin">
-              <a href="www.linkedin.com/in/tuyambaze-leandre" target="_blank"><img
-                  src="./ui/home/icons8-linkedin-circled.gif" alt="linkedin" /></a>
-            </div>
-            <div class="github">
-              <a href="https://github.com/leandreAlly" target="_blank"><img src="./ui/home/icons8-github.gif"
-                  alt="linkedin" /></a>
-            </div>
-          </div>
+        <div class="button">
+          <button>Hire Me</button>
         </div>
       </div>
-    </div>
-  </section>
-  <!-- My Services Section Start -->
-  <section class="services" id="services">
-    <div class="content">
-      <div class="title"><span>My Services</span></div>
-      <div class="boxes">
-        <div class="box">
-          <div class="icon">
-            <i class="fas fa-desktop"></i>
-          </div>
-          <div class="topic">Desginer</div>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia
-            autem quam odio, qui voluptatem eligendi?
-          </p>
-        </div>
-        <div class="box">
-          <div class="icon">
-            <i class="fas fa-code"></i>
-          </div>
-          <div class="topic">Frontend Development</div>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia
-            autem quam odio, qui voluptatem eligendi?
-          </p>
-        </div>
-        <div class="box">
-          <div class="icon">
-            <i class="fab fa-app-store"></i>
-          </div>
-          <div class="topic">Backend Development</div>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia
-            autem quam odio, qui voluptatem eligendi?
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- portfolio  section -->
-  <section class="portfolio" id="portfolio">
-    <div class="title"><span>Portfolio</span></div>
-    <div class="content portfolio-x">
-      <span class="prev ti-angle-left"><img src="https://img.icons8.com/ios-glyphs/30/null/less-than.png" /></span>
-      <div class="portfolio-slider slide fade">
-        <div class="image-wraper">
-          <img src="/ui/home/weBuildWeb.png" alt="project-image">
-        </div>
-        <div class="text-container">
-          <div class="text-header">
-            <h3>We Build Web</h3>
-            <span class="badge badge-primary">2022</span>
-          </div>
-          <div class="description-text">
-            <p class="portfolio-text">
-              A Static page for online construction company that shows their
-              information and service they offer to the clients.
+    </section>
+    <!-- About Section Start -->
+    <section class="about" id="about">
+      <div class="content">
+        <div class="title"><span>About Me</span></div>
+        <div class="about-details">
+          <div class="right">
+            <div class="topic">Hi, I’m Leandre. Nice to meet you</div>
+            <p>
+              I’m Motivated fullstack web developer and familiar with a variety
+              of programming languages, including JavaScript, HTML,
+              CSS,MySQL,PHP, and Git. but I’m always adding new skills to my
+              repertoire.I believe a good day is a productive day. So I use my
+              work hours to be productive. I try to bring value each and every
+              day.
             </p>
-          </div>
-          <div class="button-portfolio">
-            <a href="https://leandreally.github.io/const-web/" target="_blank" class="button">Visit site</a>
-          </div>
-        </div>
-      </div>
-      <!-- Slider section -->
-      <div class="portfolio-slider slide fade">
-        <div class="image-wraper">
-          <img src="/ui/home/calorie-tracker.png" alt="project-image">
-        </div>
-        <div class="text-container">
-          <div class="text-header">
-            <h3>Calorie tracker</h3>
-            <span class="badge badge-primary">2022</span>
-          </div>
-          <div class="description-text">
-            <p class="portfolio-text">
-              A single page Application that tracks the calories of food you ate
-              and how many calories you've consumed.
-              and it is builded using JavaScript module patterns.
-            </p>
-          </div>
-          <div class="button-portfolio">
-            <a href="https://calories-tracker-leandredev.netlify.app" target="_blank" class="button">Visit site</a>
-          </div>
-        </div>
-      </div>
-      <div class="portfolio-slider slide fade">
-        <div class="image-wraper">
-          <img src="/ui/home/githubFinder.png" alt="project-image">
-        </div>
-        <div class="text-container">
-          <div class="text-header">
-            <h3>Github Finder</h3>
-            <span class="badge badge-primary">2023</span>
-          </div>
-          <div class="description-text">
-            <p class="portfolio-text">
-              App to search Github users and display their info,
-              where it displays current repository user have.
-              it is builded on the top of github and fetch API
-            </p>
-          </div>
-          <div class="button-portfolio">
-            <a href="https://github-user-finder-ally.netlify.app" target="_blank" class="button">Visit site</a>
-          </div>
-        </div>
-      </div>
-      <!-- End of slider section -->
-      <span class="next ti-angle-right" onclick="plusSlides(1)"><img
-          src="https://img.icons8.com/ios-glyphs/30/null/more-than.png" /></span>
-    </div>
-  </section>
-  <!-- portfolio End section -->
-
-  <!-- Contact Me section Start -->
-  <section class="contact" id="contact">
-    <div class="content">
-      <div class="title"><span>Contact Me</span></div>
-      <div class="text">
-        <div class="contact-info">
-          <h2>CONTACT INFO</h2>
-          <i class="fas fa-envelope fa-2x"><span>&nbsp;tuyambazeleandre@gmail.com</span></i><br />
-          <i class="fas fa-phone-square-alt fa-2x"><span>&nbsp;+250&nbsp;788&nbsp;452&nbsp;466</span></i><br />
-          <i class="fas fa-map-marker-alt fa-2x"><span>&nbsp;Kigali, Rwanda 250</span></i>
-          <div class="media-icons">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-          </div>
-        </div>
-
-        <div class="contact-form">
-          <form id="send-message" action="#">
-            <div class="topic">Send us a message</div>
-            <div class="input-box">
-              <input type="text" id="submit-name" required />
-              <div class="error"></div>
-              <label>Enter your name</label>
-            </div>
-            <div class="input-box">
-              <input type="email" id="submit-email" required />
-              <div class="error"></div>
-              <label>Enter your email</label>
-            </div>
-            <div class="message-box">
-              <textarea id="submit-message" cols="30" rows="10"></textarea>
-              <div class="error"></div>
-              <label>Enter your message</label>
-            </div>
             <div class="button">
-              <button type="submit" id="myBtn" value="Submit">
-                Send Message
-              </button>
+              <button>Download CV</button>
             </div>
-          </form>
+            <div class="info-icon">
+              <div class="linkedin">
+                <a href="www.linkedin.com/in/tuyambaze-leandre" target="_blank"
+                  ><img
+                    src="./ui/home/icons8-linkedin-circled.gif"
+                    alt="linkedin"
+                /></a>
+              </div>
+              <div class="github">
+                <a href="https://github.com/leandreAlly" target="_blank"
+                  ><img src="./ui/home/icons8-github.gif" alt="linkedin"
+                /></a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-  <!-- Footer Section Start -->
-  <footer>
-    <div class="text">
-      <span>Copyright | &#169; 2023 All Rights Reserved by
-        <a href="#">Ally Leandre</a></span>
-    </div>
-  </footer>
+    </section>
+    <!-- My Services Section Start -->
+    <section class="services" id="services">
+      <div class="content">
+        <div class="title"><span>My Services</span></div>
+        <div class="boxes">
+          <div class="box">
+            <div class="icon">
+              <i class="fas fa-desktop"></i>
+            </div>
+            <div class="topic">Desginer</div>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia
+              autem quam odio, qui voluptatem eligendi?
+            </p>
+          </div>
+          <div class="box">
+            <div class="icon">
+              <i class="fas fa-code"></i>
+            </div>
+            <div class="topic">Frontend Development</div>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia
+              autem quam odio, qui voluptatem eligendi?
+            </p>
+          </div>
+          <div class="box">
+            <div class="icon">
+              <i class="fab fa-app-store"></i>
+            </div>
+            <div class="topic">Backend Development</div>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia
+              autem quam odio, qui voluptatem eligendi?
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- portfolio  section -->
+    <section class="portfolio" id="portfolio">
+      <div class="title"><span>Portfolio</span></div>
+      <div class="content portfolio-x">
+        <span class="prev ti-angle-left"
+          ><img src="https://img.icons8.com/ios-glyphs/30/null/less-than.png"
+        /></span>
+        <div class="portfolio-slider slide fade">
+          <div class="image-wraper">
+            <img src="/ui/home/weBuildWeb.png" alt="project-image" />
+          </div>
+          <div class="text-container">
+            <div class="text-header">
+              <h3>We Build Web</h3>
+              <span class="badge badge-primary">2022</span>
+            </div>
+            <div class="description-text">
+              <p class="portfolio-text">
+                A Static page for online construction company that shows their
+                information and service they offer to the clients.
+              </p>
+            </div>
+            <div class="button-portfolio">
+              <a
+                href="https://leandreally.github.io/const-web/"
+                target="_blank"
+                class="button"
+                >Visit site</a
+              >
+            </div>
+          </div>
+        </div>
+        <!-- Slider section -->
+        <div class="portfolio-slider slide fade">
+          <div class="image-wraper">
+            <img src="/ui/home/calorie-tracker.png" alt="project-image" />
+          </div>
+          <div class="text-container">
+            <div class="text-header">
+              <h3>Calorie tracker</h3>
+              <span class="badge badge-primary">2022</span>
+            </div>
+            <div class="description-text">
+              <p class="portfolio-text">
+                A single page Application that tracks the calories of food you
+                ate and how many calories you've consumed. and it is builded
+                using JavaScript module patterns.
+              </p>
+            </div>
+            <div class="button-portfolio">
+              <a
+                href="https://calories-tracker-leandredev.netlify.app"
+                target="_blank"
+                class="button"
+                >Visit site</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-slider slide fade">
+          <div class="image-wraper">
+            <img src="/ui/home/githubFinder.png" alt="project-image" />
+          </div>
+          <div class="text-container">
+            <div class="text-header">
+              <h3>Github Finder</h3>
+              <span class="badge badge-primary">2023</span>
+            </div>
+            <div class="description-text">
+              <p class="portfolio-text">
+                App to search Github users and display their info, where it
+                displays current repository user have. it is builded on the top
+                of github and fetch API
+              </p>
+            </div>
+            <div class="button-portfolio">
+              <a
+                href="https://github-user-finder-ally.netlify.app"
+                target="_blank"
+                class="button"
+                >Visit site</a
+              >
+            </div>
+          </div>
+        </div>
+        <!-- End of slider section -->
+        <span class="next ti-angle-right" onclick="plusSlides(1)"
+          ><img src="https://img.icons8.com/ios-glyphs/30/null/more-than.png"
+        /></span>
+      </div>
+    </section>
+    <!-- portfolio End section -->
 
-  <script src="./ui/js/home.js"></script>
-</body>
+    <!-- Contact Me section Start -->
+    <section class="contact" id="contact">
+      <div class="content">
+        <div class="title"><span>Contact Me</span></div>
+        <div class="text">
+          <div class="contact-info">
+            <h2>CONTACT INFO</h2>
+            <i class="fas fa-envelope fa-2x"
+              ><span>&nbsp;tuyambazeleandre@gmail.com</span></i
+            ><br />
+            <i class="fas fa-phone-square-alt fa-2x"
+              ><span>&nbsp;+250&nbsp;788&nbsp;452&nbsp;466</span></i
+            ><br />
+            <i class="fas fa-map-marker-alt fa-2x"
+              ><span>&nbsp;Kigali, Rwanda 250</span></i
+            >
+            <div class="media-icons">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
 
+          <div class="contact-form">
+            <form id="send-message" action="#">
+              <div class="topic">Send us a message</div>
+              <div class="input-box">
+                <input type="text" id="submit-name" required />
+                <div class="error"></div>
+                <label>Enter your name</label>
+              </div>
+              <div class="input-box">
+                <input type="email" id="submit-email" required />
+                <div class="error"></div>
+                <label>Enter your email</label>
+              </div>
+              <div class="message-box">
+                <textarea id="submit-message" cols="30" rows="10"></textarea>
+                <div class="error"></div>
+                <label>Enter your message</label>
+              </div>
+              <div class="button">
+                <button type="submit" id="myBtn" value="Submit">
+                  Send Message
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Footer Section Start -->
+    <footer>
+      <div class="text">
+        <span
+          >Copyright | &#169; 2023 All Rights Reserved by
+          <a href="#">Ally Leandre</a></span
+        >
+      </div>
+    </footer>
+
+    <script src="./ui/js/home.js"></script>
+  </body>
 </html>
