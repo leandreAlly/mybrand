@@ -108,14 +108,14 @@ form .signup-link a:hover {
   text-decoration: underline;
 }
 /* Control the validation */
-.row .error {
+form .row .error {
   margin-top: 10px;
   white-space: nowrap;
   color: #dc3545;
 }
-.row.error input {
+form .row.error input {
   border-color: #dc3545;
 }
-.row.success input {
+form .row.success input {
   border-color: #28a745;
 }

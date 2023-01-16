@@ -8,7 +8,9 @@ subBtn.addEventListener("click", (e) => {
   const isCommentValid = validateComment();
 
   if (isCommentValid) {
-    // Do stuff
+    console.log(userName.value);
+    console.log(commentTexts.value);
+    clearFields();
   }
 
   e.preventDefault();
@@ -32,6 +34,7 @@ const setSuccess = (element) => {
 };
 
 const validateComment = () => {
+  let status;
   const useName = userName.value.trim();
   const cmntText = commentTexts.value.trim();
 
@@ -50,4 +53,17 @@ const validateComment = () => {
   } else {
     setSuccess(commentTexts);
   }
+
+  if (useName && cmntText) {
+    status = true;
+  } else {
+    status = false;
+  }
+
+  return status;
 };
+
+function clearFields() {
+  userName.value = "";
+  commentTexts.value = "";
+}
