@@ -85,6 +85,7 @@ suBtn.addEventListener("click", (e) => {
     console.log(submitName.value);
     console.log(submitEmail.value);
     console.log(submitMessage.value);
+    clearField();
   }
 
   e.preventDefault();
@@ -112,43 +113,45 @@ const isValidEmail = (email) => {
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(String(email).toLowerCase());
 };
-const validateInputs = () => {
-  let status = false;
+const validateInputs = (e) => {
+  let status;
   const subName = submitName.value.trim();
   const subEmail = submitEmail.value.trim();
   const subMessage = submitMessage.value.trim();
 
   if (subName === "") {
     setError(submitName, "Your Name is required");
-    status = false;
   } else if (subName.length < 5 || subName.length > 25) {
     setError(submitName, "Your name must be between 5 and 25 letters");
-    status = false;
   } else {
     setSuccess(submitName);
-    status = true;
   }
 
   if (subEmail === "") {
     setError(submitEmail, "Email is required");
-    status = false;
   } else if (!isValidEmail(subEmail)) {
     setError(submitEmail, "Provide a valid email address");
-    status = false;
   } else {
     setSuccess(submitEmail);
-    status = true;
   }
-
   if (subMessage === "") {
     setError(submitMessage, "Message is required");
-    status = false;
   } else if (subMessage.length < 10 || subMessage.length > 100) {
     setError(submitMessage, "Your message must be between 10 and 100 letters");
-    status = false;
   } else {
     setSuccess(submitMessage);
+  }
+
+  if (subName && subEmail && subMessage.length > 10) {
     status = true;
+  } else {
+    status = false;
   }
   return status;
 };
+
+function clearField() {
+  submitName.value = "";
+  submitEmail.value = "";
+  submitMessage.value = "";
+}
