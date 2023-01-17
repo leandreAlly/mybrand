@@ -330,7 +330,7 @@ header {
 }
 
 /* Control hover and active section */
- .active {
+.active {
   border-left: 5px solid #010058af;
   background-color: var(--Border-color);
   color: white;
@@ -392,30 +392,43 @@ input[type="file"] {
   background-color: #fafaff;
   padding: 20px;
 }
-
-/* Control active button */
-
-
-
-
-
-
-
-
-
-
-
+/* Controll error */
+.title .error {
+  margin-top: -10px;
+  margin-bottom: 10px;
+  color: red;
+  /* white-space: nowrap; */
+}
+.subject .error {
+  margin-bottom: 10px;
+  margin-top: 10px;
+  color: red;
+  /* white-space: nowrap; */
+}
+.title.error input[type="text"] {
+  border-color: #dc3545;
+}
+.title.success input[type="text"] {
+  border-color: #28a745;
+}
+.subject.error textarea {
+  /* border-color: #dc3545; */
+  border: 1px solid red;
+}
+.subject.success textarea {
+  border-color: #28a745;
+}
 /* Hide some section*/
 
 .article-container {
   display: none;
 }
 .add-article-form {
-  display: none;
+  /* display: none; */
 }
 .comment-container {
   display: none;
 }
-.query-container{
+.query-container {
   display: none;
 }

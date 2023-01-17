@@ -256,14 +256,22 @@
             <!-- add article form -->
             <div class="container add-article-form">
                 <form action="">
-                    <label for="blog-title">Blog Title</label>
-                    <input type="text" id="blog-title" name="blog-title" placeholder="Blog title..">
-                    <label for="subject">Blog Content</label>
-                    <textarea id="subject" name="subject" placeholder="Write something.."
-                        style="height:200px"></textarea>
+                    <div class="title">
+                        <label for="blog-title">Blog Title</label>
+                        <input type="text" id="blog-title" placeholder="Blog title..">
+                        <div class="error"></div>
+                    </div>
+                    
+                    <div class="subject">
+                        <label for="subject">Blog Content</label>
+                        <textarea id="subject"  placeholder="Write something.."
+                            style="height:200px"></textarea>
+                        <div class="error"></div>
+                    </div>
+                    
 
                     <label for="blog-image">Upload Image</label>
-                    <input type="file" id="blog-image" name="blog-image">
+                    <input type="file" id="blog-image">
                     <input type="submit" id="publish-btn" value="Publish">
                 </form>
             </div>
@@ -350,11 +358,9 @@
             <!-- End of query management -->
         </div>
     </div>
-
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js"></script>
     <script src="/ui/js/admin.js"></script>
     <script src="/ui/js/addBlog.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js"></script>
-    <script>  new FroalaEditor('#subject'); </script>
+    
 </body>
-
 </html>
