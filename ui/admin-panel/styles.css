@@ -424,7 +424,7 @@ input[type="file"] {
   display: none;
 }
 .add-article-form {
-  /* display: none; */
+  display: none;
 }
 .comment-container {
   display: none;

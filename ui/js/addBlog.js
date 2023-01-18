@@ -8,6 +8,7 @@ const publishBtn = document.querySelector("#publish-btn");
 
 publishBtn.addEventListener("click", (e) => {
   const isblogValid = validatArticle();
+  // const isFildValid = validateFileType();
 
   if (isblogValid) {
     console.log(blogTitle.value);
@@ -39,7 +40,6 @@ const validatArticle = () => {
   let status;
   const blogT = blogTitle.value.trim();
   const blogCont = blogContent.value.trim();
-
   if (blogT === "") {
     setError(blogTitle, "Title is required");
   } else if (blogT.length < 10) {
@@ -64,36 +64,35 @@ const validatArticle = () => {
 
   return status;
 };
-
+// const fileInput = document.getElementById("blog-image");
 function clearFields() {
   blogTitle.value = "";
   editor.html.set("");
+  // fileInput.value = null;
 }
 
-// function validateFileType() {
-//   let inputElement = document.getElementById("file-upload");
-//   let files = inputElement.files;
-//   if (files.length == 0) {
-//     alert("Please choose a file first...");
-//     return false;
-//   } else {
-//     let filename = files[0].name;
+function validateFileType() {
+  let inputElement = document.getElementById("blog-image");
+  let files = inputElement.files;
+  if (files.length == 0) {
+    alert("file is required");
+    return false;
+  } else {
+    let filename = files[0].name;
 
-//     /* getting file extenstion eg- .jpg,.png, etc */
-//     let extension = filename.substr(filename.lastIndexOf("."));
+    let extension = filename.substr(filename.lastIndexOf("."));
 
-//     /* define allowed file types */
-//     let allowedExtensionsRegx = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+    let allowedExtensionsRegx = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
 
-//     /* testing extension with regular expression */
-//     let isAllowed = allowedExtensionsRegx.test(extension);
+    let isAllowed = allowedExtensionsRegx.test(extension);
 
-//     if (isAllowed) {
-//       alert("File type is valid for the upload");
-//       /* file upload logic goes here... */
-//     } else {
-//       alert("Invalid File Type.");
-//       return false;
-//     }
-//   }
-// }
+    if (isAllowed) {
+      alert("File type is valid for the upload");
+      fileInput.value = null;
+      /* file upload logic goes here... */
+    } else {
+      alert("Invalid File Type.");
+      return false;
+    }
+  }
+}

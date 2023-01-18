@@ -3,17 +3,38 @@ const userEmail = document.querySelector("#input-email");
 const inpPassword = document.querySelector("#input-password");
 const logBtn = document.querySelector("#log-btn");
 
+let usermail = "userleandre@gmail.com";
+let userPassword = "ally0788!";
+
 logBtn.addEventListener("click", (e) => {
   const isValidLogin = validateLogin();
 
   if (isValidLogin) {
     console.log(userEmail.value);
     console.log(inpPassword.value);
+
+    if (userEmail.value === usermail && inpPassword.value === userPassword) {
+      checkAuthstatus();
+      localStorage.setItem("auth_status", "on");
+      window.location.href = "/ui/admin-panel/admin.html";
+    } else {
+      alert("Incorrect email or password. Please try again.");
+    }
     clearField();
   }
 
   e.preventDefault();
 });
+
+function checkAuthstatus() {
+  let authStatus = localStorage.getItem("auth_status");
+  if (authStatus === "on") {
+    alert("You're already logged in!");
+    window.location.href = "/ui/admin-panel/admin.html";
+  } else {
+    return false;
+  }
+}
 
 const setError = (element, message) => {
   const inputBox = element.parentElement;
@@ -57,7 +78,7 @@ const validateLogin = (e) => {
     setError(inpPassword, "Password is required");
     status = false;
   } else if (inptPassword.length < 8 || inptPassword.length > 16) {
-    setError(inpPassword, "Your password must be between 8 and 16 characters");
+    setError(inpPassword, "Your password is wrong");
     status = false;
   } else {
     setSuccess(inpPassword);

@@ -79,6 +79,14 @@ addArticle.addEventListener("click", () => {
   articleContainer.style.display = "none";
 });
 
+document.querySelector(".logout").addEventListener("click", () => {
+  if (confirm("Are you sure You want to logout?")) {
+    logout();
+  } else {
+    return false;
+  }
+});
+
 getItemsFromStorage();
 
 // Get Message query from local
@@ -106,4 +114,9 @@ function getItemsFromStorage() {
   // Get parent
   const table = document.querySelector("#query-message");
   table.innerHTML += html;
+}
+
+function logout() {
+  localStorage.setItem("auth_status", "off");
+  window.location.href = "/ui/login/index.html";
 }
