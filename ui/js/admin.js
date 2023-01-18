@@ -78,3 +78,32 @@ addArticle.addEventListener("click", () => {
   addArticleForm.style.display = "block";
   articleContainer.style.display = "none";
 });
+
+getItemsFromStorage();
+
+// Get Message query from local
+function getItemsFromStorage() {
+  let messages;
+  let html = "";
+  if (localStorage.getItem("messages") === null) {
+    messages = [];
+  } else {
+    messages = JSON.parse(localStorage.getItem("messages"));
+  }
+  messages.forEach(function (message) {
+    html += ` 
+        <tr id="${message.id}">
+          <td>${message.message}</td>
+          <td>${message.name}</td>
+          <td>${message.email}</td>
+          <td>
+              <button class="t-op-nextlvl approve-tag">Contact</button>
+              <button class="t-op-nextlvl delete-tag">Delete</button>
+          </td>
+      </tr>
+    `;
+  });
+  // Get parent
+  const table = document.querySelector("#query-message");
+  table.innerHTML += html;
+}

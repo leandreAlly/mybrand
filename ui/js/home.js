@@ -75,6 +75,7 @@ const submitName = document.querySelector("#submit-name");
 const submitEmail = document.querySelector("#submit-email");
 const submitMessage = document.querySelector("#submit-message");
 const form = document.querySelector("#send-message");
+const alert = document.getElementById("alert");
 const suBtn = document.querySelector("#myBtn");
 // const erMsg = document.querySelector("#error-message");
 
@@ -82,14 +83,34 @@ suBtn.addEventListener("click", (e) => {
   const isFormValid = validateInputs();
 
   if (isFormValid) {
-    console.log(submitName.value);
-    console.log(submitEmail.value);
-    console.log(submitMessage.value);
+    let newId = Math.floor(Math.random() * (1000000 - 100000) + 100000);
+    const data = {
+      id: newId,
+      name: submitName.value,
+      email: submitEmail.value,
+      message: submitMessage.value,
+    };
+
+    storeMessageInLocalStorage(data);
+    showAlert();
     clearField();
   }
 
   e.preventDefault();
 });
+
+function storeMessageInLocalStorage(message) {
+  let messages;
+  if (localStorage.getItem("messages") === null) {
+    messages = [];
+  } else {
+    messages = JSON.parse(localStorage.getItem("messages"));
+  }
+
+  messages.push(message);
+
+  localStorage.setItem("messages", JSON.stringify(messages));
+}
 
 const setError = (element, message) => {
   const inputBox = element.parentElement;
@@ -99,6 +120,7 @@ const setError = (element, message) => {
   inputBox.classList.add("error");
   inputBox.classList.remove("success");
 };
+
 const setSuccess = (element) => {
   const inputBox = element.parentElement;
   const errorDisplay = inputBox.querySelector(".error");
@@ -149,9 +171,18 @@ const validateInputs = (e) => {
   }
   return status;
 };
-
+// Clear Input fields
 function clearField() {
   submitName.value = "";
   submitEmail.value = "";
   submitMessage.value = "";
 }
+
+const showAlert = () => {
+  let message = "Thank you for contact us!";
+  alert.innerHTML = message;
+  alert.classList.add("show");
+  setTimeout(function () {
+    alert.classList.remove("show");
+  }, 5000);
+};

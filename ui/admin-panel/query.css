@@ -36,6 +36,7 @@
 
 .query-body {
   max-width: 100%;
+  max-height: 300px;
   overflow-x: auto;
   padding: 20px;
   /* display: flex; */ /* removed */
@@ -58,7 +59,6 @@ th {
   padding: 8px;
 }
 
-
 /* Add some responsive styling */
 @media screen and (max-width: 600px) {
   .query-body td,
@@ -67,4 +67,4 @@ th {
     width: 100%;
     text-align: left;
   }
- }
+}

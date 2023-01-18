@@ -294,28 +294,28 @@ section .info-icon .github img {
 }
 /* Portfolio section */
 
-.portfolio-slider{
+.portfolio-slider {
   display: flex;
   justify-content: space-between;
   gap: 30px;
 }
- .image-wraper{
- width: 80%;
+.image-wraper {
+  width: 80%;
 }
- .image-wraper img{
+.image-wraper img {
   width: 100%;
 }
- .text-container{
+.text-container {
   /* border: 2px solid green; */
   width: 40%;
   height: auto;
 }
-.text-container .text-header{
+.text-container .text-header {
   display: flex;
   align-items: center;
-  gap: 10px; 
+  gap: 10px;
 }
-.text-header h3{
+.text-header h3 {
   /* border: 1px solid blueviolet; */
   position: relative;
   font-size: 2rem;
@@ -324,22 +324,22 @@ section .info-icon .github img {
   display: inline-block;
   top: 20px;
 }
- .description-text{
+.description-text {
   position: relative;
   top: 40px;
 }
-.description-text .portfolio-text{
+.description-text .portfolio-text {
   letter-spacing: 1px;
   line-height: 1.5;
   font-size: 1.1rem;
   /* font-family: "Poppins", sans-serif; */
 }
-.button-portfolio{
+.button-portfolio {
   position: relative;
   top: 90px;
 }
-.button-portfolio .button{
- outline: none;
+.button-portfolio .button {
+  outline: none;
   padding: 8px 16px;
   /* margin-top: -5px; */
   border-radius: 6px;
@@ -351,30 +351,30 @@ section .info-icon .github img {
   border: 2px solid transparent;
   transition: all 0.4s ease;
 }
-.button-portfolio .button:hover{
+.button-portfolio .button:hover {
   border-color: #4070f4;
   background-color: #fff;
   color: #4070f4;
 }
-.text-header .badge{
+.text-header .badge {
   display: inline-block;
   padding: 0 5px;
   border-radius: 7px;
   position: relative;
   top: 20px;
 }
-.text-header .badge-primary{
-   background-color: #6610f2;
+.text-header .badge-primary {
+  background-color: #6610f2;
   color: #e2e8f0;
   font-size: 1.2rem;
   font-weight: 900;
 }
-.portfolio-x .prev{
+.portfolio-x .prev {
   position: relative;
   top: 200px;
   left: -35px;
 }
-.portfolio-x .next{
+.portfolio-x .next {
   position: relative;
   left: 1035px;
   bottom: 200px;
@@ -521,6 +521,15 @@ section .info-icon .github img {
   white-space: nowrap;
   color: red;
 }
+/* alert  classes*/
+#alert {
+  display: none;
+}
+#alert.show {
+  display: block;
+  color: #4070f4;
+  font-weight: 500;
+}
 .message-box .error {
   position: absolute;
   top: 110px;
@@ -561,13 +570,13 @@ footer .text span a:hover {
   text-decoration: underline;
 }
 /* Scroll TO Top Button CSS */
-.scroll-button a{
+.scroll-button a {
   position: fixed;
   bottom: 20px;
   right: 20px;
   color: #fff;
   background: #4070f4;
-  padding: 7px 12px;;
+  padding: 7px 12px;
   font-size: 18px;
   border-radius: 6px;
   box-shadow: rgba(0, 0, 0, 0.15);
@@ -576,15 +585,13 @@ footer .text span a:hover {
 
 /* Controlling slider */
 .slide {
-    display: none;
+  display: none;
 }
 .next:hover,
 .prev:hover {
- filter: invert(24%) sepia(67%) saturate(2502%) hue-rotate(231deg)
+  filter: invert(24%) sepia(67%) saturate(2502%) hue-rotate(231deg)
     brightness(78%) contrast(76%);
-   
 }
-
 
 /* for Ipad 1024  pro*/
 @media screen and (max-width: 1024px) {
@@ -602,44 +609,42 @@ footer .text span a:hover {
     margin-top: 40px;
     margin: 0 auto;
   }
-  .portfolio-slider{
+  .portfolio-slider {
     display: flex;
     flex-direction: column;
   }
-  .image-wraper{
+  .image-wraper {
     width: 100%;
   }
- .image-wraper img{
-  width: 100%;
-}
-.text-container{
-  width: 100%;
-  height: auto;
-}
- .text-header{
-  position: relative;
-  top: -30px;
-}
- .description-text{
-  position: relative;
-  top: -10px;
-}
-.button-portfolio .button{
-  position: relative;
-  top: -50px;
-}
-.portfolio-x .prev{
-  position: relative;
-  top: 315px;
-  left: -35px;
-}
-.portfolio-x .next{
-  position: relative;
-  left: 300px;
-  bottom: 123px;
-}
-
- 
+  .image-wraper img {
+    width: 100%;
+  }
+  .text-container {
+    width: 100%;
+    height: auto;
+  }
+  .text-header {
+    position: relative;
+    top: -30px;
+  }
+  .description-text {
+    position: relative;
+    top: -10px;
+  }
+  .button-portfolio .button {
+    position: relative;
+    top: -50px;
+  }
+  .portfolio-x .prev {
+    position: relative;
+    top: 315px;
+    left: -35px;
+  }
+  .portfolio-x .next {
+    position: relative;
+    left: 300px;
+    bottom: 123px;
+  }
 }
 
 @media (max-width: 1000px) {
@@ -720,7 +725,6 @@ footer .text span a:hover {
     display: block;
   }
 
-
   .services .boxes .box {
     margin: 20px 0;
     width: 100%;
@@ -729,7 +733,6 @@ footer .text span a:hover {
     flex-direction: column;
   }
 }
-
 
 @media screen and (max-width: 425px) {
   .home .home-content {
