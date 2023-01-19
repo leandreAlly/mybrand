@@ -6,6 +6,10 @@ const logBtn = document.querySelector("#log-btn");
 let usermail = "userleandre@gmail.com";
 let userPassword = "ally0788!";
 
+// Check login status while page is loading
+document.addEventListener("DOMContentLoaded", checkAuthstatus);
+
+// Login Event
 logBtn.addEventListener("click", (e) => {
   const isValidLogin = validateLogin();
 
@@ -14,7 +18,6 @@ logBtn.addEventListener("click", (e) => {
     console.log(inpPassword.value);
 
     if (userEmail.value === usermail && inpPassword.value === userPassword) {
-      checkAuthstatus();
       localStorage.setItem("auth_status", "on");
       window.location.href = "/ui/admin-panel/admin.html";
     } else {
@@ -26,14 +29,20 @@ logBtn.addEventListener("click", (e) => {
   e.preventDefault();
 });
 
+// check if user is not already Login
 function checkAuthstatus() {
   let authStatus = localStorage.getItem("auth_status");
   if (authStatus === "on") {
-    alert("You're already logged in!");
+    // alert("You're already logged in!");
     window.location.href = "/ui/admin-panel/admin.html";
   } else {
     return false;
   }
+}
+
+function clearField() {
+  userEmail.value = "";
+  inpPassword.value = "";
 }
 
 const setError = (element, message) => {
@@ -58,6 +67,7 @@ const isValidEmail = (email) => {
   return re.test(String(email).toLowerCase());
 };
 
+// Validate Login form
 const validateLogin = (e) => {
   let status = false;
   const uEmail = userEmail.value.trim();
@@ -86,8 +96,3 @@ const validateLogin = (e) => {
   }
   return status;
 };
-
-function clearField() {
-  userEmail.value = "";
-  inpPassword.value = "";
-}

@@ -79,6 +79,18 @@ addArticle.addEventListener("click", () => {
   articleContainer.style.display = "none";
 });
 
+// Check if the user is logged off
+document.addEventListener("DOMContentLoaded", () => {
+  // Get the Message from LocalStorage
+  getItemsFromStorage();
+  let authStatus = localStorage.getItem("auth_status");
+  if (authStatus === "off") {
+    window.location.href = "/ui/login/index.html";
+  } else {
+    return false;
+  }
+});
+// Logout event
 document.querySelector(".logout").addEventListener("click", () => {
   if (confirm("Are you sure You want to logout?")) {
     logout();
@@ -87,7 +99,26 @@ document.querySelector(".logout").addEventListener("click", () => {
   }
 });
 
-getItemsFromStorage();
+// Delete message from localStorage
+function deleteMessage(event) {
+  if (confirm("Do You want to delete this message")) {
+    const button = event.target;
+    const tr = button.closest("tr");
+    const dataId = tr.getAttribute("data-id");
+    // console.log(dataId);
+    let messages;
+    if (localStorage.getItem("messages") === null) {
+      messages = [];
+    } else {
+      messages = JSON.parse(localStorage.getItem("messages"));
+    }
+    messages = messages.filter((message) => message.id !== parseInt(dataId));
+    tr.remove();
+    localStorage.setItem("messages", JSON.stringify(messages));
+  } else {
+    return false;
+  }
+}
 
 // Get Message query from local
 function getItemsFromStorage() {
@@ -100,22 +131,23 @@ function getItemsFromStorage() {
   }
   messages.forEach(function (message) {
     html += ` 
-        <tr id="${message.id}">
+        <tr data-id="${message.id}">
           <td>${message.message}</td>
           <td>${message.name}</td>
           <td>${message.email}</td>
           <td>
               <button class="t-op-nextlvl approve-tag">Contact</button>
-              <button class="t-op-nextlvl delete-tag">Delete</button>
+              <button  onclick ="deleteMessage(event);" class="t-op-nextlvl delete-tag">Delete</button>
           </td>
       </tr>
     `;
   });
-  // Get parent
+  // Get parent element
   const table = document.querySelector("#query-message");
   table.innerHTML += html;
 }
 
+// Logout function
 function logout() {
   localStorage.setItem("auth_status", "off");
   window.location.href = "/ui/login/index.html";
