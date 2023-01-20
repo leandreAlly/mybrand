@@ -11,13 +11,35 @@ publishBtn.addEventListener("click", (e) => {
   // const isFildValid = validateFileType();
 
   if (isblogValid) {
-    console.log(blogTitle.value);
-    console.log(blogContent.value);
+    // console.log(blogTitle.value);
+    // console.log(blogContent.value);
+    let newId = Math.floor(Math.random() * (1000000 - 100000) + 100000);
+    const data = {
+      id: newId,
+      title: blogTitle.value,
+      blogContent: blogContent.value,
+      date: getCurrentDate(),
+    };
+    storeArticleInLocalStorage(data);
+
     clearFields();
   }
 
   e.preventDefault();
 });
+
+function storeArticleInLocalStorage(article) {
+  let articles;
+  if (localStorage.getItem("articles") === null) {
+    articles = [];
+  } else {
+    articles = JSON.parse(localStorage.getItem("articles"));
+  }
+
+  articles.push(article);
+
+  localStorage.setItem("articles", JSON.stringify(articles));
+}
 
 const setError = (element, message) => {
   const inputBox = element.parentElement;
@@ -95,4 +117,27 @@ function validateFileType() {
       return false;
     }
   }
+}
+
+function getCurrentDate() {
+  let date = new Date();
+  let month = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  let formDate =
+    month[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
+  // console.log(formDate);
+
+  return formDate;
 }

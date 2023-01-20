@@ -130,7 +130,7 @@ function getItemsFromStorage() {
     messages = JSON.parse(localStorage.getItem("messages"));
   }
   messages.forEach(function (message) {
-    html += ` 
+    html += `
         <tr data-id="${message.id}">
           <td>${message.message}</td>
           <td>${message.name}</td>
