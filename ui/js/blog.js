@@ -44,6 +44,7 @@ for (var i = 0; i < navLinks.length; i++) {
 }
 
 // document.addEventListener("DOMContentLoaded", getMessageFromStorage);
+
 getMessageFromStorage();
 
 function getMessageFromStorage() {
@@ -57,7 +58,7 @@ function getMessageFromStorage() {
   }
   articles.forEach(function (article) {
     let shortContent = article.blogContent.substring(0, 300) + ".....</p>";
-    console.log(article.id);
+    // console.log(article.id);
 
     html += `
     <article class="article-recent">
@@ -65,7 +66,7 @@ function getMessageFromStorage() {
       <h2 class="article-title">${article.title}</h2>
       <p class="article-body">${shortContent}</p>
       <div class="btn-container">
-        <button onclick="showhide()" id="toggle" data-set="${article.id}">Read more</button>
+        <button onclick="showMore(event);" data-id="${article.id}" id="toggle">Read more</button>
       </div>
       <div class="article-button">
         <div class="like-button">
@@ -89,3 +90,11 @@ function getMessageFromStorage() {
   const mainDiv = document.querySelector("#main");
   mainDiv.innerHTML += html;
 }
+
+// function showMore(event) {
+//   // Get the data-id attribute value
+//   let articleId = event.target.getAttribute("data-id");
+
+//   // Redirect the user to another page and pass the article id as a query string
+//   window.location.href = `/ui/blog/single-blog-view.html?id=${articleId}`;
+// }

@@ -82,7 +82,10 @@ addArticle.addEventListener("click", () => {
 // Check if the user is logged off
 document.addEventListener("DOMContentLoaded", () => {
   // Get the Message from LocalStorage
-  getItemsFromStorage();
+  getMessageFromStorage();
+
+  // Get article from LocalStorage
+  getArticleFromStorage();
   let authStatus = localStorage.getItem("auth_status");
   if (authStatus === "off") {
     window.location.href = "/ui/login/index.html";
@@ -120,8 +123,29 @@ function deleteMessage(event) {
   }
 }
 
+// Delete article from localStorage
+function deleteArticle(event) {
+  if (confirm("Do You want to delete this Article")) {
+    const button = event.target;
+    const tr = button.closest("tr");
+    const dataId = tr.getAttribute("data-id");
+    // console.log(dataId);
+    let articles;
+    if (localStorage.getItem("articles") === null) {
+      articles = [];
+    } else {
+      articles = JSON.parse(localStorage.getItem("articles"));
+    }
+    articles = articles.filter((article) => article.id !== parseInt(dataId));
+    tr.remove();
+    localStorage.setItem("articles", JSON.stringify(articles));
+  } else {
+    return false;
+  }
+}
+
 // Get Message query from local
-function getItemsFromStorage() {
+function getMessageFromStorage() {
   let messages;
   let html = "";
   if (localStorage.getItem("messages") === null) {
@@ -147,6 +171,32 @@ function getItemsFromStorage() {
   table.innerHTML += html;
 }
 
+// Get article from local storage
+function getArticleFromStorage() {
+  let articles;
+  let html = "";
+  if (localStorage.getItem("articles") === null) {
+    articles = [];
+  } else {
+    articles = JSON.parse(localStorage.getItem("articles"));
+  }
+  articles.forEach(function (article) {
+    html += `
+            <tr data-id = "${article.id}">
+                <td>${article.title}</td>
+                <td>${article.date}</td>
+                <td>2.9k</td>
+                <td>210</td>
+                <td><button class="t-op-nextlvl edit-tag">Edit</button></td>
+                <td><button onclick="deleteArticle(event)" class="t-op-nextlvl delete-tag">Delete</button></td>
+          </tr>
+</table>
+    `;
+  });
+  // Get parent element
+  const table = document.querySelector("#article-list");
+  table.innerHTML += html;
+}
 // Logout function
 function logout() {
   localStorage.setItem("auth_status", "off");

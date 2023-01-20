@@ -122,10 +122,10 @@ function validateFileType() {
 function getCurrentDate() {
   let date = new Date();
   let month = [
-    "January",
-    "February",
-    "March",
-    "April",
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
     "May",
     "June",
     "July",
