@@ -1,5 +1,5 @@
 /* Google Font CDN Link */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;family=Ubuntu:wght@400;500;700&amp;display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;family=Ubuntu:wght@400;500;700&amp;display=swap"); */
 
 /* Custom Scroll Bar CSS */
 ::-webkit-scrollbar {
@@ -20,6 +20,7 @@
 /* navbar styling */
 nav {
   position: fixed;
+  /* background-color: #ededed; */
   width: 100%;
   margin-top: -100px;
   padding: 20px 0;
@@ -613,4 +614,3 @@ input[type="submit"]:hover {
 .comment-section form .input-message.success textarea {
   border-color: #28a745;
 }
- 

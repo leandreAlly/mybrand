@@ -1,3 +1,18 @@
+// Sticky Navigation Menu JS Code
+let nav = document.querySelector("nav");
+let scrollBtn = document.querySelector(".scroll-button a");
+// console.log(scrollBtn);
+let val;
+window.onscroll = function () {
+  if (document.documentElement.scrollTop > 20) {
+    nav.classList.add("sticky");
+    // scrollBtn.style.display = "block";
+  } else {
+    nav.classList.remove("sticky");
+    // scrollBtn.style.display = "none";
+  }
+};
+
 // Get all articles from local storage
 let articles = JSON.parse(localStorage.getItem("articles"));
 //Get ID of single blog after click on read More button
@@ -17,11 +32,13 @@ function displayFullBlog(article) {
   let articleComments = comments.filter(
     (comment) => comment.articleId === article[0].id
   );
+  const numComments = articleComments.length;
+
   let html = `
   <article class="article-featured">
   <h2 class="article-title">${article[0].title}</h2>
-  <img src="images/asset7.jpg" alt="" class="article-image" />
-  <p class="article-info">${article[0].date}| 3 comments</p>
+  <img src="images/asset10.jpg" alt="" class="article-image" />
+  <p class="article-info">${article[0].date}| ${numComments} comments</p>
 
   <div class="article-body">${article[0].blogContent}</div>
   <div class="article-button">
@@ -29,7 +46,7 @@ function displayFullBlog(article) {
               <i class="bx bxs-like"></i>1<span> Like</span>
             </div>
   <div class="comment-button">
-              <i class="bx bxs-comment"></i>2<span> Comment</span>
+              <i class="bx bxs-comment"></i>${numComments}<span> Comment</span>
             </div>
       </div>
       <section class="comments-display">
