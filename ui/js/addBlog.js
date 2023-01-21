@@ -6,23 +6,31 @@ const blogContent = document.querySelector("#subject");
 const blogImage = document.querySelector("#blog-image");
 const publishBtn = document.querySelector("#publish-btn");
 
+// const selectedFile = blogImage.files[0];
+// const reader = new FileReader();
+
 publishBtn.addEventListener("click", (e) => {
   const isblogValid = validatArticle();
   // const isFildValid = validateFileType();
 
   if (isblogValid) {
-    // console.log(blogTitle.value);
-    // console.log(blogContent.value);
-    let newId = Math.floor(Math.random() * (1000000 - 100000) + 100000);
-    const data = {
-      id: newId,
-      title: blogTitle.value,
-      blogContent: blogContent.value,
-      date: getCurrentDate(),
+    const selectedFile = blogImage.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(selectedFile);
+    reader.onload = () => {
+      let newId = Math.floor(Math.random() * (1000000 - 100000) + 100000);
+      const data = {
+        id: newId,
+        title: blogTitle.value,
+        blogContent: blogContent.value,
+        date: getCurrentDate(),
+        image: reader.result,
+      };
+      console.log(data);
+      storeArticleInLocalStorage(data);
+      // clear fields
+      clearFields();
     };
-    storeArticleInLocalStorage(data);
-
-    clearFields();
   }
 
   e.preventDefault();
@@ -59,29 +67,27 @@ const setSuccess = (element) => {
 };
 
 const validatArticle = () => {
-  let status;
+  let status = true;
   const blogT = blogTitle.value.trim();
   const blogCont = blogContent.value.trim();
   if (blogT === "") {
     setError(blogTitle, "Title is required");
+    status = false;
   } else if (blogT.length < 10) {
     setError(blogTitle, "Your title must be greater than 10 letters");
+    status = false;
   } else {
     setSuccess(blogTitle);
   }
 
   if (blogCont === "") {
     setError(blogContent, "content is required");
+    status = false;
   } else if (blogCont.length < 10) {
     setError(blogContent, "Your content must greater than 10 letters");
+    status = false;
   } else {
     setSuccess(blogContent);
-  }
-
-  if (blogT && blogCont) {
-    status = true;
-  } else {
-    status = false;
   }
 
   return status;
@@ -90,6 +96,7 @@ const validatArticle = () => {
 function clearFields() {
   blogTitle.value = "";
   editor.html.set("");
+  blogImage.value = "";
   // fileInput.value = null;
 }
 

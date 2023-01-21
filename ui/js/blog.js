@@ -90,11 +90,10 @@ function getMessageFromStorage() {
     </div>
 
     <div class="article-recent-secondary">
-      <img src="images/asset7.jpg" alt="" class="article-image" />
-      <p class="article-info">${article.date}| 3 comments</p>
+      <img src="${article.image}" alt="" class="article-image" />
+      <p class="article-info">${article.date}| ${numComments} comments</p>
     </div>
   </article>
-
     `;
   });
   // Get parent element

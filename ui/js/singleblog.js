@@ -28,16 +28,21 @@ displayFullBlog(articleToDisplay);
 // Display full blog after getting it in local storage
 function displayFullBlog(article) {
   // Get all comments belongs to single article and display it's length
-  let comments = JSON.parse(localStorage.getItem("comments"));
-  let articleComments = comments.filter(
-    (comment) => comment.articleId === article[0].id
-  );
+  let comments = localStorage.getItem("comments");
+  let articleComments = [];
+  if (comments !== null) {
+    comments = JSON.parse(comments);
+    if (comments.length > 0) {
+      articleComments = comments.filter(
+        (comment) => comment.articleId === article[0].id
+      );
+    }
+  }
   const numComments = articleComments.length;
-
   let html = `
   <article class="article-featured">
   <h2 class="article-title">${article[0].title}</h2>
-  <img src="images/asset10.jpg" alt="" class="article-image" />
+  <img src="${article[0].image}" alt="" class="article-image" />
   <p class="article-info">${article[0].date}| ${numComments} comments</p>
 
   <div class="article-body">${article[0].blogContent}</div>
@@ -52,23 +57,28 @@ function displayFullBlog(article) {
       <section class="comments-display">
       <h3>Comments</h3>
       <ul>
-        ${articleComments
-          .map(
-            (comment) => `
-          <li class="comment">
-            <div class="user-info">
-              <span class="user-name">${comment.author}</span>
-              <span class="date">${comment.date}</span>
-            </div>
-            <p class="comment-text">
-              ${comment.comment}
-            </p>
-          </li>
-        `
-          )
-          .join("")}
+        ${
+          articleComments.length > 0
+            ? articleComments
+                .map(
+                  (comment) => `
+              <li class="comment">
+                <div class="user-info">
+                  <span class="user-name">${comment.author}</span>
+                  <span class="date">${comment.date}</span>
+                </div>
+                <p class="comment-text">
+                  ${comment.comment}
+                </p>
+              </li>
+            `
+                )
+                .join("")
+            : '<li class="comment">No Comments Yet</li>'
+        }
       </ul>
     </section>
+    
   
   <div class="comment-section">
     <form id="form" action="#">
