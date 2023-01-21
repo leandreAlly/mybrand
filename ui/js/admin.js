@@ -86,6 +86,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Get article from LocalStorage
   getArticleFromStorage();
+
+  // Get Comments From local storage
+  getCommentFromStorage();
+
   let authStatus = localStorage.getItem("auth_status");
   if (authStatus === "off") {
     window.location.href = "/ui/login/index.html";
@@ -143,7 +147,28 @@ function deleteArticle(event) {
     return false;
   }
 }
-
+// Delete Comments from localStorage
+function deleteComment(event) {
+  if (confirm("Do You want to delete this Comment")) {
+    const button = event.target;
+    const tr = button.closest("tr");
+    const dataId = tr.getAttribute("data-id");
+    // console.log(dataId);
+    let comments;
+    if (localStorage.getItem("comments") === null) {
+      comments = [];
+    } else {
+      comments = JSON.parse(localStorage.getItem("comments"));
+    }
+    comments = comments.filter(
+      (comment) => comment.commentId !== parseInt(dataId)
+    );
+    tr.remove();
+    localStorage.setItem("comments", JSON.stringify(comments));
+  } else {
+    return false;
+  }
+}
 // Get Message query from local
 function getMessageFromStorage() {
   let messages;
@@ -180,21 +205,68 @@ function getArticleFromStorage() {
   } else {
     articles = JSON.parse(localStorage.getItem("articles"));
   }
+
   articles.forEach(function (article) {
+    let comments;
+    if (localStorage.getItem("comments") === null) {
+      comments = [];
+    } else {
+      comments = JSON.parse(localStorage.getItem("comments"));
+    }
+    const matchingComments = comments.filter(
+      (comment) => comment.articleId === article.id
+    );
+    const numComments = matchingComments.length;
     html += `
             <tr data-id = "${article.id}">
                 <td>${article.title}</td>
                 <td>${article.date}</td>
                 <td>2.9k</td>
-                <td>210</td>
+                <td>${numComments}</td>
                 <td><button class="t-op-nextlvl edit-tag">Edit</button></td>
                 <td><button onclick="deleteArticle(event)" class="t-op-nextlvl delete-tag">Delete</button></td>
           </tr>
-</table>
     `;
   });
   // Get parent element
   const table = document.querySelector("#article-list");
+  table.innerHTML += html;
+}
+// Get Comment from local storage
+function getCommentFromStorage() {
+  let comments;
+  let html = "";
+  if (localStorage.getItem("comments") === null) {
+    comments = [];
+  } else {
+    comments = JSON.parse(localStorage.getItem("comments"));
+  }
+
+  comments.forEach(function (comment) {
+    // Get All articles from Local storage
+    let articles = JSON.parse(localStorage.getItem("articles"));
+
+    // Find the articles to match with one that has comment
+    let articleToDisplay = articles.filter(function (art) {
+      return art.id == comment.articleId;
+    });
+
+    html += `
+            <tr data-id="${comment.commentId}">
+                  <td>${comment.comment}</td>
+                  <td>${articleToDisplay[0].title}</td>
+                  <td>${comment.author}</td>
+                  <td>${comment.date}</td>
+                  <td>
+                    <button class="t-op-nextlvl approve-tag">Approve</button>
+                    <button onclick="deleteComment(event)"; class="t-op-nextlvl delete-query-tag">Delete</button>
+                  </td>
+            </tr>
+
+    `;
+  });
+  // Get parent element
+  const table = document.querySelector("#comment-body");
   table.innerHTML += html;
 }
 // Logout function
@@ -202,3 +274,12 @@ function logout() {
   localStorage.setItem("auth_status", "off");
   window.location.href = "/ui/login/index.html";
 }
+
+// let comments = JSON.parse(localStorage.getItem("comments"));
+// let counts;
+// let commentsToDisplay = comments.filter(function (comt) {
+//   if (comt.id === comments.articleId) {
+//     counts++;
+//   }
+//   console.log(counts);
+// });

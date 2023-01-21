@@ -58,7 +58,18 @@ function getMessageFromStorage() {
   }
   articles.forEach(function (article) {
     let shortContent = article.blogContent.substring(0, 300) + ".....</p>";
-    // console.log(article.id);
+
+    // Get all comments belongs to single article and display it's length
+    let comments;
+    if (localStorage.getItem("comments") === null) {
+      comments = [];
+    } else {
+      comments = JSON.parse(localStorage.getItem("comments"));
+    }
+    const matchingComments = comments.filter(
+      (comment) => comment.articleId === article.id
+    );
+    const numComments = matchingComments.length; //comments length belongs to single article
 
     html += `
     <article class="article-recent">
@@ -73,7 +84,7 @@ function getMessageFromStorage() {
           <i class="bx bxs-like"></i>1<span> Like</span>
         </div>
         <div class="comment-button">
-          <i class="bx bxs-comment"></i>2<span> Comment</span>
+          <i class="bx bxs-comment"></i>${numComments}<span> Comment</span>
         </div>
       </div>
     </div>

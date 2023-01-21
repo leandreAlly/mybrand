@@ -1,16 +1,22 @@
-// Validate Comment Section
+// Get all articles from local storage
 let articles = JSON.parse(localStorage.getItem("articles"));
+//Get ID of single blog after click on read More button
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get("id");
-console.log(id);
 
+// Filter all article to match with one has id passed
 let articleToDisplay = articles.filter(function (art) {
   return art.id == parseInt(id);
 });
 
-console.log(articleToDisplay);
 displayFullBlog(articleToDisplay);
+// Display full blog after getting it in local storage
 function displayFullBlog(article) {
+  // Get all comments belongs to single article and display it's length
+  let comments = JSON.parse(localStorage.getItem("comments"));
+  let articleComments = comments.filter(
+    (comment) => comment.articleId === article[0].id
+  );
   let html = `
   <article class="article-featured">
   <h2 class="article-title">${article[0].title}</h2>
@@ -18,7 +24,35 @@ function displayFullBlog(article) {
   <p class="article-info">${article[0].date}| 3 comments</p>
 
   <div class="article-body">${article[0].blogContent}</div>
-
+  <div class="article-button">
+            <div class="like-button">
+              <i class="bx bxs-like"></i>1<span> Like</span>
+            </div>
+  <div class="comment-button">
+              <i class="bx bxs-comment"></i>2<span> Comment</span>
+            </div>
+      </div>
+      <section class="comments-display">
+      <h3>Comments</h3>
+      <ul>
+        ${articleComments
+          .map(
+            (comment) => `
+          <li class="comment">
+            <div class="user-info">
+              <span class="user-name">${comment.author}</span>
+              <span class="date">${comment.date}</span>
+            </div>
+            <p class="comment-text">
+              ${comment.comment}
+            </p>
+          </li>
+        `
+          )
+          .join("")}
+      </ul>
+    </section>
+  
   <div class="comment-section">
     <form id="form" action="#">
       <div class="input-name">
@@ -39,15 +73,7 @@ function displayFullBlog(article) {
     </form>
   </div>
   <div class="btn-container">
-    <button id="toggle">Read more</button>
-  </div>
-  <div class="article-button">
-    <div class="like-button">
-      <i class="bx bxs-like"></i>1<span> Like</span>
-    </div>
-    <div class="comment-button">
-      <i class="bx bxs-comment"></i>2<span> Comment</span>
-    </div>
+    <button id="toggle">Read Less</button>
   </div>
 </article>
   `;
@@ -61,15 +87,20 @@ const commentTexts = document.querySelector("#comment-field");
 const subBtn = document.querySelector("#myBtn");
 
 subBtn.addEventListener("click", (e) => {
+  e.preventDefault();
   const isCommentValid = validateComment();
-
   if (isCommentValid) {
-    console.log(userName.value);
-    console.log(commentTexts.value);
+    let newId = Math.floor(Math.random() * (1000000 - 100000) + 100000);
+    const data = {
+      commentId: newId,
+      articleId: parseInt(id),
+      author: userName.value,
+      comment: commentTexts.value,
+      date: getCurrentDate(),
+    };
+    storeCommentInLocalStorage(data);
     clearFields();
   }
-
-  e.preventDefault();
 });
 
 const setError = (element, message) => {
@@ -90,36 +121,68 @@ const setSuccess = (element) => {
 };
 
 const validateComment = () => {
-  let status;
+  let status = true;
   const useName = userName.value.trim();
   const cmntText = commentTexts.value.trim();
 
   if (useName === "") {
     setError(userName, "Your name is required");
+    status = false;
   } else if (useName.length < 5 || useName.length > 25) {
     setError(userName, "Your name must be between 5 and 25 letters");
+    status = false;
   } else {
     setSuccess(userName);
   }
 
   if (cmntText === "") {
     setError(commentTexts, "Message is required");
-  } else if (cmntText.length < 10 || cmntText.length > 30) {
+    status = false;
+  } else if (cmntText.length < 10 || cmntText.length > 100) {
     setError(commentTexts, "Your message must be between 10 and 50 letters");
+    status = false;
   } else {
     setSuccess(commentTexts);
   }
-
-  if (useName && cmntText) {
-    status = true;
-  } else {
-    status = false;
-  }
-
   return status;
 };
+// Store comment in Local Storage
+function storeCommentInLocalStorage(comment) {
+  let comments;
+  if (localStorage.getItem("comments") === null) {
+    comments = [];
+  } else {
+    comments = JSON.parse(localStorage.getItem("comments"));
+  }
+
+  comments.push(comment);
+
+  localStorage.setItem("comments", JSON.stringify(comments));
+}
 
 function clearFields() {
   userName.value = "";
   commentTexts.value = "";
+}
+function getCurrentDate() {
+  let date = new Date();
+  let month = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  let formDate =
+    month[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
+  // console.log(formDate);
+
+  return formDate;
 }
