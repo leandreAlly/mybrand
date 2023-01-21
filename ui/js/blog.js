@@ -50,6 +50,7 @@ getMessageFromStorage();
 function getMessageFromStorage() {
   let articles;
   let html = "";
+  let sideWidets = "";
   if (localStorage.getItem("articles") === null) {
     articles = [];
   } else {
@@ -95,10 +96,20 @@ function getMessageFromStorage() {
     </div>
   </article>
     `;
+
+    sideWidets += `
+    <div class="widget-recent-post">
+            <h3 class="widget-recent-post-title">${article.title}</h3>
+            <img onclick="showMore(event);" data-id="${article.id}" src="${article.image}" alt="" class="widget-image" />
+          </div>
+    `;
   });
   // Get parent element
   const mainDiv = document.querySelector("#main");
   mainDiv.innerHTML += html;
+
+  const sideMain = document.querySelector("#sidebar-article");
+  sideMain.innerHTML += sideWidets;
 }
 
 // function showMore(event) {
