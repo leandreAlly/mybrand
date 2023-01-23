@@ -67,6 +67,7 @@ function getMessageFromStorage() {
     } else {
       comments = JSON.parse(localStorage.getItem("comments"));
     }
+
     const matchingComments = comments.filter(
       (comment) => comment.articleId === article.id
     );

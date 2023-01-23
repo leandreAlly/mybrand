@@ -243,18 +243,33 @@ function getCommentFromStorage() {
   }
 
   comments.forEach(function (comment) {
-    // Get All articles from Local storage
-    let articles = JSON.parse(localStorage.getItem("articles"));
+    // // Get All articles from Local storage
+    // let articles = JSON.parse(localStorage.getItem("articles"));
 
-    // Find the articles to match with one that has comment
-    let articleToDisplay = articles.filter(function (art) {
-      return art.id == comment.articleId;
-    });
+    // // Find the articles to match with one that has comment
+    // let articleToDisplay = articles.filter(function (art) {
+    //   return art.id == comment.articleId;
+    // });
+
+    let article;
+    let articlesNotFound = "Article deleted";
+    if (localStorage.getItem("articles") === null) {
+      article = [];
+    } else {
+      article = JSON.parse(localStorage.getItem("articles"));
+    }
+    const articleToDisplay = article.filter(
+      (art) => art.articleId === comment.articleId
+    );
 
     html += `
             <tr data-id="${comment.commentId}">
                   <td>${comment.comment}</td>
-                  <td>${articleToDisplay[0].title}</td>
+                   <td>${
+                     articleToDisplay.length > 0
+                       ? articleToDisplay[0].title
+                       : articlesNotFound
+                   }</td>
                   <td>${comment.author}</td>
                   <td>${comment.date}</td>
                   <td>
