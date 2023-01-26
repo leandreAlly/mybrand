@@ -1,6 +1,7 @@
 let editor = new FroalaEditor("#subject", {
   heightMax: 200,
 });
+
 const blogTitle = document.querySelector("#blog-title");
 const blogContent = document.querySelector("#subject");
 const blogImage = document.querySelector("#blog-image");
