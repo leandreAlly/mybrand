@@ -24,9 +24,9 @@ const queryContainer = document.querySelector(".query-container");
 dashboardBtn.addEventListener("click", () => {
   boxContainer.style.display = "flex";
   recentContainer.style.display = "block";
-  articleContainer.style.display = "none";
   commentContainer.style.display = "none";
   queryContainer.style.display = "none";
+  articleContainer.style.display = "none";
   addArticleForm.style.display = "none";
   // Control active button
   dashboardBtn.classList.add("active");
@@ -140,9 +140,20 @@ function deleteArticle(event) {
     } else {
       articles = JSON.parse(localStorage.getItem("articles"));
     }
+
+    let comments;
+    if (localStorage.getItem("comments") === null) {
+      comments = [];
+    } else {
+      comments = JSON.parse(localStorage.getItem("comments"));
+    }
+    comments = comments.filter(
+      (comment) => comment.articleId !== parseInt(dataId)
+    );
     articles = articles.filter((article) => article.id !== parseInt(dataId));
     tr.remove();
     localStorage.setItem("articles", JSON.stringify(articles));
+    localStorage.setItem("comments", JSON.stringify(comments));
   } else {
     return false;
   }
@@ -223,7 +234,7 @@ function getArticleFromStorage() {
                 <td>${article.date}</td>
                 <td>2.9k</td>
                 <td>${numComments}</td>
-                <td><button class="t-op-nextlvl edit-tag">Edit</button></td>
+                <td><button onclick="editArticle(event)" class="t-op-nextlvl edit-tag">Edit</button></td>
                 <td><button onclick="deleteArticle(event)" class="t-op-nextlvl delete-tag">Delete</button></td>
           </tr>
     `;
@@ -243,33 +254,26 @@ function getCommentFromStorage() {
   }
 
   comments.forEach(function (comment) {
-    // // Get All articles from Local storage
-    // let articles = JSON.parse(localStorage.getItem("articles"));
-
-    // // Find the articles to match with one that has comment
-    // let articleToDisplay = articles.filter(function (art) {
-    //   return art.id == comment.articleId;
-    // });
-
-    let article;
-    let articlesNotFound = "Article deleted";
+    let articles;
     if (localStorage.getItem("articles") === null) {
-      article = [];
+      articles = [];
     } else {
-      article = JSON.parse(localStorage.getItem("articles"));
+      articles = JSON.parse(localStorage.getItem("articles"));
     }
-    const articleToDisplay = article.filter(
-      (art) => art.articleId === comment.articleId
+    // const articleToDisplay = article.filter(
+    //   (art) => art.articleId === comment.articleId
+    // );
+    const articleToDisplay = articles.map((article) =>
+      parseInt(article.id) === comment.articleId ? article : null
     );
+    const article = articleToDisplay.find((a) => a !== null);
+    // console.log(article);
+    if (!article) return alert("Article not found");
 
     html += `
             <tr data-id="${comment.commentId}">
                   <td>${comment.comment}</td>
-                   <td>${
-                     articleToDisplay.length > 0
-                       ? articleToDisplay[0].title
-                       : articlesNotFound
-                   }</td>
+                   <td>${article.title}</td>
                   <td>${comment.author}</td>
                   <td>${comment.date}</td>
                   <td>
@@ -284,17 +288,74 @@ function getCommentFromStorage() {
   const table = document.querySelector("#comment-body");
   table.innerHTML += html;
 }
+
+// Edit blog
+function editArticle(event) {
+  if (confirm("Do You want to edit this Article")) {
+    const button = event.target;
+    const tr = button.closest("tr");
+    const dataId = tr.getAttribute("data-id");
+    let articles;
+    if (localStorage.getItem("articles") === null) {
+      articles = [];
+    } else {
+      articles = JSON.parse(localStorage.getItem("articles"));
+    }
+    const articlesToEdit = articles.map((article) =>
+      parseInt(article.id) === parseInt(dataId) ? article : null
+    );
+    const article = articlesToEdit.find((a) => a !== null);
+    if (!article) return alert("Article not found");
+
+    articleContainer.style.display = "none";
+    addArticleForm.style.display = "block";
+    const blogTitle = document.querySelector("#blog-title");
+    const blogContent = document.querySelector("#subject");
+    const updateBtn = document.querySelector("#publish-btn");
+    updateBtn.value = "Update";
+
+    blogTitle.value = article.title;
+    blogContent.value = editor.html.set(article.blogContent);
+
+    updateBtn.addEventListener("click", updateArticle);
+
+    function updateArticle() {
+      const blogTitle = document.querySelector("#blog-title").value;
+      const blogContent = editor.html.get();
+      const blogImage = document.querySelector("#blog-image");
+      const updateBtn = document.querySelector("#publish-btn");
+      const articles = JSON.parse(localStorage.getItem("articles"));
+
+      const selectedFile = blogImage.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(selectedFile);
+
+      articles.forEach((article, index) => {
+        if (parseInt(article.id) === parseInt(dataId)) {
+          reader.onload = () => {
+            const updatedArticle = {
+              id: article.id,
+              title: blogTitle,
+              blogContent: blogContent,
+              image: reader.result,
+              date: getCurrentDate(),
+            };
+            articles[index] = updatedArticle;
+            localStorage.setItem("articles", JSON.stringify(articles));
+            addArticleForm.style.display = "none";
+            articleContainer.style.display = "block";
+            updateBtn.value = "Publish";
+            alert("Article updated successfully!");
+          };
+        }
+      });
+    }
+  } else {
+    return false;
+  }
+}
 // Logout function
 function logout() {
   localStorage.setItem("auth_status", "off");
   window.location.href = "/ui/login/index.html";
 }
-
-// let comments = JSON.parse(localStorage.getItem("comments"));
-// let counts;
-// let commentsToDisplay = comments.filter(function (comt) {
-//   if (comt.id === comments.articleId) {
-//     counts++;
-//   }
-//   console.log(counts);
-// });
