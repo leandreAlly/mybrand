@@ -7,13 +7,13 @@ import {
   updateBlog,
   deleteBlog,
 } from "../controllers/blog.controller.js";
-
+import isValid from "../middleware/blogValidate.js";
 const router = express();
 
 router.get("/", getAllBlog);
-router.post("/", postBlog);
+router.post("/", isValid, postBlog);
 router.get("/:id", getSingleBlog);
-router.patch("/:id", updateBlog);
+router.patch("/:id", isValid, updateBlog);
 router.delete("/:id", deleteBlog);
 
 export default router;
