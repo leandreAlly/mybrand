@@ -1,12 +1,12 @@
 import Joi from "@hapi/joi";
 
 const BlogSchema = Joi.object({
-  title: Joi.string().min(5).required(),
-  content: Joi.string().min(5).required(),
+  blogTitle: Joi.string(),
+  blogContent: Joi.string(),
 });
 
 const validateBlog = (blogData) => {
-  return BlogSchema.validate(blogData);
+  return BlogSchema.validate(blogData, { abortEarly: false });
 };
 
 export default validateBlog;

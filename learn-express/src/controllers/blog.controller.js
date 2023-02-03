@@ -1,4 +1,6 @@
 import Blog from "../models/Blog.js";
+// import upload from "../services/multer.js";
+import cloudinary from "../services/cloudinary.js";
 
 // Get all blogs
 const getAllBlog = async (req, res) => {
@@ -13,11 +15,15 @@ const getAllBlog = async (req, res) => {
 // Submit a blog
 const postBlog = async (req, res) => {
   try {
-    // const image = req.file.path
+    const result = await cloudinary.uploader.upload(req.file.path);
+    console.log(result.secure_url);
+    console.log(req.body.blogContent);
+    console.log(req.body.blogTitle);
+
     const post = new Blog({
-      title: req.body.title,
-      content: req.body.content,
-      // picture: imageUrl,
+      blogTitle: req.body.blogTitle,
+      blogContent: req.body.blogContent,
+      blogImage: result.secure_url,
     });
     await post.save();
 

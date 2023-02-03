@@ -3,15 +3,9 @@ import mongoose from "mongoose";
 const schema = mongoose.Schema;
 
 const BlogSchema = new schema({
-  title: {
-    type: String,
-    require: true,
-  },
-  content: {
-    type: String,
-    require: true,
-  },
-  picture: String,
+  blogTitle: { type: String, required: true },
+  blogContent: { type: String, required: true },
+  blogImage: { type: String },
 });
 
 const Blog = mongoose.model("Blog", BlogSchema);

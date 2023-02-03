@@ -4,7 +4,7 @@ import apiRouter from "./routes/api.js";
 
 const app = express();
 
-app.use(morgan("combined"));
+// app.use(morgan("combined"));
 app.use(express.json());
 
 app.use("/api/v1", apiRouter);
