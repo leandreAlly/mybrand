@@ -16,9 +16,9 @@ const getAllBlog = async (req, res) => {
 const postBlog = async (req, res) => {
   try {
     const result = await cloudinary.uploader.upload(req.file.path);
-    console.log(result.secure_url);
-    console.log(req.body.blogContent);
-    console.log(req.body.blogTitle);
+    // console.log(result.secure_url);
+    // console.log(req.body.blogContent);
+    // console.log(req.body.blogTitle);
 
     const post = new Blog({
       blogTitle: req.body.blogTitle,
@@ -44,27 +44,35 @@ const getSingleBlog = async (req, res) => {
 };
 
 const updateBlog = async (req, res) => {
+  let result;
   try {
     const blog = await Blog.findOne({ _id: req.params.id });
 
-    if (req.body.title) {
-      blog.title = req.body.title;
+    if (req.body.blogTitle) {
+      blog.blogTitle = req.body.blogTitle;
     }
 
-    if (req.body.content) {
-      blog.content = req.body.content;
+    if (req.body.blogContent) {
+      blog.blogContent = req.body.blogContent;
     }
-    // if (req.body.picture) {
-    //   blog.picture = req.file.path;
-    // }
+
+    if (req.file) {
+      result = await cloudinary.uploader
+        .upload(req.file.path)
+        .catch((error) => {
+          throw error;
+        });
+      blog.blogImage = result.secure_url;
+    }
 
     await blog.save();
     res.status(200).json({ Post: blog });
-  } catch {
-    res.status(404).json({ error: error.message });
-    console.log(error.message);
+  } catch (error) {
+    console.error(error);
+    res.status(404).json({ error: `Something went wrong: ${error.message}` });
   }
 };
+
 const deleteBlog = async (req, res) => {
   try {
     await Blog.deleteOne({ _id: req.params.id });
