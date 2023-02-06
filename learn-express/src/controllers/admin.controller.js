@@ -2,6 +2,7 @@ import Admin from "../models/Admin.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import { generateToken } from "../services/passport.js";
 
 dotenv.config();
 
@@ -44,7 +45,8 @@ const adminLogin = async (req, res) => {
       error: "Incorect password or email..!",
     });
   }
-  const token = jwt.sign({ adminId: admin._id }, process.env.TOKEN_SECRET);
+  // const token = jwt.sign({ adminId: admin._id }, process.env.TOKEN_SECRET);
+  const token = generateToken(admin);
 
   //   res.header("auth-token", token).send(token);
   res.status(200).header("auth-token", token).json({

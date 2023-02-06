@@ -1,6 +1,7 @@
 import Blog from "../models/Blog.js";
 // import upload from "../services/multer.js";
 import cloudinary from "../services/cloudinary.js";
+import { generateToken } from "../services/passport.js";
 
 // Get all blogs
 const getAllBlog = async (req, res) => {
