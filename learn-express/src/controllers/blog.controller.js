@@ -1,12 +1,11 @@
 import Blog from "../models/Blog.js";
 // import upload from "../services/multer.js";
 import cloudinary from "../services/cloudinary.js";
-import { generateToken } from "../services/passport.js";
 
 // Get all blogs
 const getAllBlog = async (req, res) => {
   try {
-    const blogList = await Blog.find();
+    const blogList = await Blog.find().select("-likedBy");
     return res.status(200).json({ blogs: blogList });
   } catch (error) {
     return res.status(500).json({ error: error.message });
