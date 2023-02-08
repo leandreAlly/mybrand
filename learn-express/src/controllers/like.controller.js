@@ -27,14 +27,18 @@ const addLikes = async (req, res) => {
 };
 
 const likeCounter = async (req, res) => {
-  const blog = await Blog.findOne({ _id: req.params.id }).select(
-    "BlogTitle likes"
-  );
+  try {
+    const blog = await Blog.findOne({ _id: req.params.id }).select(
+      "BlogTitle likes"
+    );
 
-  if (!blog)
-    return res.status(204).json({ message: "Can't find blog with given Id" });
+    if (!blog)
+      return res.status(204).json({ message: "Can't find blog with given Id" });
 
-  return res.status(200).json({ blog: blog });
+    return res.status(200).json({ blog: blog });
+  } catch (error) {
+    res.status(500).json({ error: "something Went wrong...!" });
+  }
 };
 
 export { addLikes, likeCounter };

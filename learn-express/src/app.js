@@ -3,7 +3,8 @@ import morgan from "morgan";
 import apiRouter from "./routes/api.js";
 import passport from "passport";
 import { jwtStrategy } from "./config/passport.js";
-
+import dotenv from "dotenv";
+dotenv.config();
 const app = express();
 
 // app.use(morgan("combined"));

@@ -21,7 +21,7 @@ const postContactMessage = async (req, res) => {
     await query.save();
     res.status(201).json({ queries: query });
   } catch {
-    res.status(404);
+    res.status(400);
     res.send({ error: "some error occured" });
   }
 };

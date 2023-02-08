@@ -16,13 +16,19 @@ import { isAuth } from "../middleware/auth.js";
 const router = express();
 
 router.get("/", getAllBlog);
-router.post("/", isAuth(passport), upload.single("picture"), isValid, postBlog);
+router.post(
+  "/",
+  isAuth(passport),
+  upload.single("picture"),
+  isValid("blog"),
+  postBlog
+);
 router.get("/:id", getSingleBlog);
 router.patch(
   "/:id",
   isAuth(passport),
   upload.single("picture"),
-  isValid,
+  isValid("blog"),
   updateBlog
 );
 router.delete("/:id", isAuth(passport), deleteBlog);

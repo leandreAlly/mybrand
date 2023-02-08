@@ -16,9 +16,6 @@ const getAllBlog = async (req, res) => {
 const postBlog = async (req, res) => {
   try {
     const result = await cloudinary.uploader.upload(req.file.path);
-    // console.log(result.secure_url);
-    // console.log(req.body.blogContent);
-    // console.log(req.body.blogTitle);
 
     const post = new Blog({
       blogTitle: req.body.blogTitle,
