@@ -1,0 +1,620 @@
+/* Google Font CDN Link */
+/* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;family=Ubuntu:wght@400;500;700&amp;display=swap"); */
+
+/* Custom Scroll Bar CSS */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #6e93f7;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4070f4;
+}
+/* navbar styling */
+nav {
+  position: fixed;
+  /* background-color: #ededed; */
+  width: 100%;
+  margin-top: -100px;
+  padding: 20px 0;
+  z-index: 998;
+  transition: all 0.3s ease;
+  font-family: "Ubuntu", sans-serif;
+}
+nav.sticky {
+  background: #4070f4;
+  padding: 13px 0;
+}
+nav .navbar {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+}
+nav .navbar .logo a {
+  font-weight: 500;
+  font-size: 35px;
+  color: #4070f4;
+}
+nav.sticky .navbar .logo a {
+  color: #fff;
+}
+nav .navbar .menu {
+  display: flex;
+  position: relative;
+}
+nav .navbar .menu li {
+  list-style: none;
+  margin: 0 8px;
+}
+.navbar .menu a {
+  font-size: 18px;
+  font-weight: 500;
+  color: #0e2431;
+  padding: 6px 0;
+  transition: all 0.4s ease;
+}
+.navbar .menu a:hover {
+  color: #4070f4;
+}
+nav.sticky .menu a {
+  color: #fff;
+}
+nav.sticky .menu a:hover {
+  color: #0e2431;
+}
+.navbar .media-icons a {
+  color: #4070f4;
+  font-size: 18px;
+  margin: 0 6px;
+}
+nav.sticky .media-icons a {
+  color: #fff;
+}
+
+/* Side Navigation Menu Button CSS */
+nav .menu-btn,
+.navbar .menu .cancel-btn {
+  position: absolute;
+  color: #fff;
+  right: 30px;
+  top: 20px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: none;
+}
+nav .menu-btn {
+  color: #4070f4;
+}
+nav.sticky .menu-btn {
+  color: #fff;
+}
+.navbar .menu .menu-btn {
+  color: #fff;
+}
+
+body {
+  margin: 0;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 100;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+/* back button */
+.back-button {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+.back-button i {
+  font-size: 35px;
+  margin-left: 5px;
+  color: #1792d2;
+}
+.back-button i:hover,
+.back-button i:focus {
+  color: #000;
+}
+
+/* Typography */
+
+h1,
+h2,
+h3 {
+  font-family: "Lora", serif;
+  font-weight: 400;
+  color: #143774;
+  margin-top: 0;
+}
+
+h1 {
+  font-family: "Lora", serif;
+  font-weight: 400;
+  color: #143774;
+  font-size: 2rem;
+  margin: 0;
+}
+a {
+  color: #1792d2;
+}
+a:hover,
+a:focus {
+  color: #143774;
+}
+.subtitle {
+  font-weight: 700;
+  color: #1792d2;
+  font-size: 0.75rem;
+  margin: 0;
+}
+
+.article-title {
+  font-size: 1.5rem;
+}
+.article-body,
+.article-body-2 {
+  font-family: "Times New Roman", serif;
+}
+.article-read-more,
+.article-info {
+  font-size: 0.875rem;
+}
+.article-read-more {
+  color: #1792d2;
+  text-decoration: none;
+  font-weight: 700;
+}
+.article-read-more:hover,
+.article-read-more:focus {
+  color: #000;
+  text-decoration: underline;
+}
+.article-info {
+  margin: 2em 0;
+}
+.widget-title,
+.widget-recent-post-title {
+  font-size: 1.025rem;
+}
+.widget-title {
+  font-family: "ubuntu", sans-serif;
+  font-weight: 700;
+}
+.widget-body {
+  font-family: "Times New Roman", serif;
+}
+header {
+  text-align: center;
+  background: #f0f8ff;
+  padding: 2em 0;
+  margin-bottom: 3em;
+}
+footer {
+  position: fixed;
+  bottom: 0;
+  background: #4070f4;
+  padding: 15px 0;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  width: 100%;
+}
+footer .text span {
+  font-size: 17px;
+  font-weight: 400;
+  color: #fff;
+}
+footer .text span a {
+  font-weight: 500;
+  color: #fff;
+  text-decoration: none;
+}
+footer .text span a:hover {
+  text-decoration: underline;
+}
+
+.container {
+  width: 90%;
+  max-width: 900px;
+  margin: 0 auto;
+  margin-top: 100px;
+}
+.container-flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+@media (min-width: 675px) {
+  .container-flex {
+    flex-direction: row;
+  }
+  main {
+    width: 70%;
+  }
+  aside {
+    width: 25%;
+    min-width: 200px;
+  }
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+nav li {
+  margin-left: 2em;
+}
+nav a {
+  text-decoration: none;
+  color: #707070;
+  font-weight: 700;
+  padding: 0.25em 0;
+}
+nav a:hover,
+nav a:focus {
+  color: #1792d2;
+}
+.current-page {
+  border-bottom: 1px solid #707070;
+}
+.current-page:hover {
+  color: #707070;
+}
+.site-title {
+  margin-left: 0.5em;
+}
+
+/* .article-image,
+.widget-image{
+    width: 50%;
+} */
+
+@media (max-width: 670px) {
+  nav ul {
+    flex-direction: column;
+  }
+  nav li {
+    padding: 0.5em 0;
+  }
+}
+
+/* articles*/
+
+.article-featured {
+  border-bottom: #707070 1px solid;
+  padding-bottom: 2em;
+  margin-bottom: 2em;
+}
+.article-featured.active {
+  width: 100%;
+}
+.article-recent {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2em;
+}
+
+.article-recent-main {
+  order: 2;
+}
+.article-recent-secondary {
+  order: 1;
+}
+.btn-container {
+  margin: auto;
+  height: 44px;
+  width: 166.23px;
+  margin-left: 10px;
+}
+button {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  cursor: pointer;
+  border: none;
+  padding: 8px;
+  font-size: 20px;
+  background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+  color: white;
+  font-family: cursive;
+  box-sizing: border-box;
+}
+
+button:hover {
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+@media (min-width: 675px) {
+  .article-recent {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .article-recent-main {
+    width: 68%;
+  }
+  .article-recent-secondary {
+    width: 30%;
+  }
+  .article-featured {
+    display: flex;
+    flex-direction: column;
+  }
+  .article-image {
+    order: -2;
+    min-height: 250px;
+    object-fit: cover;
+  }
+  .article-info {
+    order: -1;
+  }
+}
+#more {
+  display: none;
+}
+#moreRecent {
+  display: none;
+}
+
+/* widgets */
+
+.sidebar-widget {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  margin-bottom: 2em;
+  padding: 1em;
+  border-radius: 15px;
+}
+.widget-recent-post {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #707070;
+  margin-bottom: 1em;
+}
+.widget-recent-post:last-child {
+  border: 0;
+  margin: 0;
+}
+.widget-image {
+  margin-top: 10px;
+  order: -1;
+}
+
+.article-button {
+  display: flex;
+  margin-top: 1em;
+}
+.article-button,
+.like-button,
+.comment-button {
+  margin-right: 1.5em;
+  font-size: 20px;
+  text-align: center;
+}
+.like-button i {
+  color: #1da1f2;
+  font-size: 1em;
+}
+.comment-button i {
+  color: #1da1f2;
+  font-size: 1em;
+}
+.like-button i:hover {
+  color: #143774;
+}
+.comment-button i:hover {
+  color: #143774;
+}
+.like-button span {
+  font-family: "Lora", serif;
+  font-weight: 700;
+  font-size: 20px;
+}
+.comment-button span {
+  font-family: "Lora", serif;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+/* Login-form */
+
+.main-div-modify {
+  display: grid;
+  height: 80vh;
+  margin-top: -100px;
+  place-items: center;
+  background: #f0f8ff;
+}
+.main-div {
+  width: 365px;
+  background: #fff;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
+}
+.main-div .form-title {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 600;
+}
+.main-div .social_icons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+.social_icons a {
+  display: block;
+  height: 45px;
+  width: 100%;
+  line-height: 45px;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 20px;
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.3s linear;
+}
+.social_icons span {
+  margin-left: 5px;
+  font-size: 18px;
+}
+.social_icons a:first-child {
+  margin-right: 5px;
+  background: #4267b2;
+}
+.social_icons a:first-child:hover {
+  background: #375695;
+}
+.social_icons a:last-child {
+  margin-left: 5px;
+  background: #1da1f2;
+}
+.social_icons a:last-child:hover {
+  background: #0d8bd9;
+}
+form {
+  margin-top: 25px;
+  min-height: 70vh;
+}
+form .input_box {
+  height: 50px;
+  width: 100%;
+  position: relative;
+  margin-top: 15px;
+}
+.input_box input {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  text-align: center;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  font-size: 17px;
+  transition: all 0.3s ease;
+}
+.input_box input:focus {
+  border-color: #be2edd;
+}
+.input_box .icon {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  color: grey;
+  transform: translateY(-50%);
+}
+form .option_div {
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+.option_div .check_box {
+  display: flex;
+  align-items: center;
+}
+.option_div span {
+  margin-left: 5px;
+  font-size: 16px;
+  color: #333;
+}
+.option_div .forget_div a {
+  font-size: 16px;
+  color: #4c39c5;
+}
+.button input {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 500;
+  border: none;
+  padding-left: 0px;
+  background: #4c39c5;
+  cursor: pointer;
+  transition: all 0.3s linear;
+}
+.button input:hover {
+  background: #375695;
+}
+form .sign_up {
+  text-align: center;
+  margin-top: 25px;
+}
+.sign_up a {
+  color: #4c39c5;
+}
+form a {
+  text-decoration: none;
+}
+form a:hover {
+  text-decoration: underline;
+}
+
+/* Comment Form */
+/* Style inputs with type="text", select elements and textareas */
+input[type="text"],
+textarea {
+  width: 100%; /* Full width */
+  padding: 12px; /* Some padding */
+  border: 1px solid #ccc; /* Gray border */
+  border-radius: 4px; /* Rounded borders */
+  box-sizing: border-box; /* Make sure that padding and width stays in place */
+  margin-top: 6px; /* Add a top margin */
+  margin-bottom: 18px; /* Bottom margin */
+  resize: vertical; /* Allow the user to vertically resize the textarea (not horizontally)*/
+}
+
+/* Style the submit button with a specific background color etc */
+input[type="submit"] {
+  background-color: #04aa6d;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* When moving the mouse over the submit button, add a darker green color */
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+/* Add a background color and some padding around the form */
+.comment-section {
+  border-radius: 5px;
+  /* background-color: #f2f2f2; */
+  padding: 1em;
+}
+.comment-section form .input-name .error {
+  margin-top: -10px;
+  margin-bottom: 10px;
+  color: red;
+  /* white-space: nowrap; */
+}
+.comment-section form .input-message .error {
+  margin-top: -10px;
+  margin-bottom: 10px;
+  color: red;
+  /* white-space: nowrap; */
+}
+.comment-section form .input-name.error input[type="text"] {
+  border-color: #dc3545;
+}
+.comment-section form .input-name.success input[type="text"] {
+  border-color: #28a745;
+}
+.comment-section form .input-message.error textarea {
+  border-color: #dc3545;
+}
+.comment-section form .input-message.success textarea {
+  border-color: #28a745;
+}
