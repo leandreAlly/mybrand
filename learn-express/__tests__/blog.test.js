@@ -1,9 +1,9 @@
 import request from "supertest";
 
-import { dbConnect, dbDisconnect } from "../services/mongo.js";
-import app from "../app";
-import { blog } from "../data/blog.data.js";
-import { generateToken } from "../services/passport.js";
+import { dbConnect, dbDisconnect } from "../src/services/mongo.js";
+import app from "../src/app.js";
+import { blog } from "../src/data/blog.data.js";
+import { generateToken } from "../src/services/passport.js";
 
 jest.setTimeout(30000);
 

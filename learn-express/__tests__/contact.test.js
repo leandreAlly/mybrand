@@ -1,10 +1,10 @@
 import request from "supertest";
 
-import { dbConnect, dbDisconnect } from "../services/mongo.js";
-import app from "../app";
-import { queries } from "../data/contact.data.js";
-import { generateToken } from "../services/passport.js";
-import Queries from "../models/Queries.js";
+import { dbConnect, dbDisconnect } from "../src/services/mongo.js";
+import app from "../src/app";
+import { queries } from "../src/data/contact.data.js";
+import { generateToken } from "../src/services/passport.js";
+import Queries from "../src/models/Queries.js";
 
 jest.setTimeout(10000);
 

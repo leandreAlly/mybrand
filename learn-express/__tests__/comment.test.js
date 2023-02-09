@@ -1,10 +1,9 @@
 import request from "supertest";
 
-import { dbConnect, dbDisconnect } from "../services/mongo.js";
-import app from "../app";
-import { comment, blogId } from "../data/comment.data.js";
-import Comment from "../models/Comment.js";
-import Blog from "../models/Blog.js";
+import { dbConnect, dbDisconnect } from "../src/services/mongo.js";
+import app from "../src/app";
+import { comment, blogId } from "../src/data/comment.data.js";
+import Comment from "../src/models/Comment.js";
 
 describe("Comment API Test", () => {
   beforeAll(async () => {
