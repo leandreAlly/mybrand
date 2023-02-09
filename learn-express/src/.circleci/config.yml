@@ -6,5 +6,7 @@ jobs:
       - image: node:18.13.0
 
     steps:
+      - checkout
+
       - run: npm install
       - run: npm test
