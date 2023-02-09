@@ -23,6 +23,16 @@ describe("Blog API Test", () => {
   afterAll(async () => {
     await dbDisconnect();
   });
+  describe("Test API entry point", () => {
+    test("It should return 200 status and message", async () => {
+      const { body } = await request(app)
+        .get("/")
+        .expect("Content-Type", /json/)
+        .expect(200);
+      expect(body.message).toStrictEqual("My Blog Api");
+    });
+  });
+
   test("It should create Blog with valid data", async (done) => {
     const response = await request(app)
       .post("/api/v1/blogs")
@@ -33,7 +43,7 @@ describe("Blog API Test", () => {
       //   .attach("picture", "../data/image.jpg")
       .expect(201);
 
-    console.log(response.body);
+    // console.log(response.body);
   });
   test("It should list Blogs.", async () => {
     const { body } = await request(app)

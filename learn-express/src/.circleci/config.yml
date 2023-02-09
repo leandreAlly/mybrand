@@ -1,0 +1,10 @@
+version: 2.4
+
+jobs:
+  build:
+    docker:
+      - image: node:18.13.0
+
+    steps:
+      - run: npm install
+      - run: npm test

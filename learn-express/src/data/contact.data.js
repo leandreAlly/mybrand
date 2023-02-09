@@ -10,4 +10,5 @@ export const queries = {
     email: "alileand",
     content: "Th",
   },
+  invalidToken: "wlkjfdhjsofdighdfjskpsokj",
 };
