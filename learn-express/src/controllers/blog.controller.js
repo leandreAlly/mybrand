@@ -36,7 +36,7 @@ const getSingleBlog = async (req, res) => {
     const post = await Blog.findOne({ _id: req.params.id });
     res.status(200).json({ Post: post });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(404).json({ message: "Something went wrong..!" });
   }
 };
 
@@ -66,7 +66,7 @@ const updateBlog = async (req, res) => {
     res.status(200).json({ Post: blog });
   } catch (error) {
     console.error(error);
-    res.status(404).json({ error: `Something went wrong: ${error.message}` });
+    res.status().json({ message: "Something went wrong!" });
   }
 };
 
@@ -75,7 +75,7 @@ const deleteBlog = async (req, res) => {
     await Blog.deleteOne({ _id: req.params.id });
     res.status(200).json({ message: "blog deleted" });
   } catch (error) {
-    res.status(404).json({ error: "Post doesn't exist!" });
+    res.status(404).json({ message: "Post doesn't exist!" });
   }
 };
 

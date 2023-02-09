@@ -12,8 +12,6 @@ const token = generateToken({
   email: "Ally LEANDRE",
   _id: 123445,
 });
-
-console.log(token);
 describe("Contact Message API Test", () => {
   beforeAll(async () => {
     await dbConnect();
@@ -33,7 +31,7 @@ describe("Contact Message API Test", () => {
       .send(queries.invalid)
       .expect("Content-Type", /json/)
       .expect(400);
-    // expect(body.message).toStrictEqual("Welcome to the movie api");
+    // expect(body.message).toStrictEqual("");
   });
 
   test("It should create Query with valid data", async () => {
@@ -42,14 +40,15 @@ describe("Contact Message API Test", () => {
       .send(queries.valid)
       .expect("Content-Type", /json/)
       .expect(201);
-    // expect(body.message).toStrictEqual("Welcome to the movie api");
+    // expect(body.message).toStrictEqual("");
   });
 
   test("It should list queries when token provided.", async () => {
     const { body } = await request(app)
       .get("/api/v1/contact")
       .set("Authorization", "Bearer " + token)
+      .expect("Content-Type", /json/)
       .expect(200);
-    // expect(body.message).toStrictEqual("Welcome to the movie api");
+    // expect(body.message).toStrictEqual("");
   });
 });
