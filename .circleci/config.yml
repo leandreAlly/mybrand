@@ -13,4 +13,4 @@ jobs:
           command: npm install
       - run:
           name: Run tests
-          command: npm jest --coverage -- --verbose && npm coveralls < coverage/lcov.info
+          command: npm test --coverage -- --verbose && npm coveralls < coverage/lcov.info
