@@ -11,6 +11,7 @@ jobs:
       - run:
           name: Install dependencies
           command: npm install
+          command: echo ${DB_URL}
       - run:
           name: Run tests
           command: npm test
