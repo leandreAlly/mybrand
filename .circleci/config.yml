@@ -4,6 +4,8 @@ jobs:
   build:
     docker:
       - image: node:18.13.0
+    environment:
+      COVERALLS_REPO_TOKEN: P3oVZrkN3ro0EWL1sSTkE4OjWrsvruxHq
     working_directory: ~/mybrand/learn-express
     steps:
       - checkout:
