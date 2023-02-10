@@ -12,7 +12,7 @@ const token = generateToken({
   email: "Ally LEANDRE",
   _id: 123445,
 });
-let blogId = "63e099ce1c0f7730d651bd04";
+let blogId = "63e5f9b5a8ad89b399ad8ba6";
 let invalidId = "63e07cffc653376c89c655";
 
 describe("Blog API Test", () => {
