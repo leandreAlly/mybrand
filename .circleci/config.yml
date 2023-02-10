@@ -7,8 +7,10 @@ jobs:
     working_directory: ~/mybrand/learn-express
     steps:
       - checkout:
-            path: ~/mybrand
-    - run: npm install
-    - run: npm test
-
-     
+          path: ~/mybrand
+      - run:
+          name: Install dependencies
+          command: npm install
+      - run:
+          name: Run tests
+          command: npm test
