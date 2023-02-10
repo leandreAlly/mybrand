@@ -1,2 +1,1 @@
-# mybrand
-##Workresponsiv
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/leandreAlly/mybrand/tree/ft-node-endpoints.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/leandreAlly/mybrand/tree/ft-node-endpoints)
