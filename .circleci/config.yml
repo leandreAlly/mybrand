@@ -6,7 +6,8 @@ jobs:
       - image: node:18.13.0
     working_directory: ~/mybrand/learn-express
     steps:
-      - checkout
+      - checkout:
+            path: ~/mybrand
     - run: npm install
     - run: npm test
 
