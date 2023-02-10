@@ -1,19 +1,19 @@
 import request from "supertest";
+import path from "path";
 
 import { dbConnect, dbDisconnect } from "../src/services/mongo.js";
 import app from "../src/app.js";
-import { blog } from "../src/data/blog.data.js";
+import { blog, blogId } from "../src/data/blog.data.js";
 import { generateToken } from "../src/services/passport.js";
 
-jest.setTimeout(30000);
+jest.setTimeout(60000);
 
 const token = generateToken({
   name: "Ally",
   email: "Ally LEANDRE",
   _id: 123445,
 });
-let blogId = "63e5f9b5a8ad89b399ad8ba6";
-let invalidId = "63e07cffc653376c89c655";
+let uploadedPost;
 
 describe("Blog API Test", () => {
   beforeAll(async () => {
@@ -33,18 +33,18 @@ describe("Blog API Test", () => {
     });
   });
 
-  test("It should create Blog with valid data", async (done) => {
-    const response = await request(app)
+  test("It should create Blog with valid data", async () => {
+    const { body } = await request(app)
       .post("/api/v1/blogs")
       .set("Authorization", `Bearer ${token}`)
-      .set("Content-Type", "application/x-www-form-urlencoded")
       .field("blogTitle", blog.valid.blogTitle)
       .field("blogContent", blog.valid.blogContent)
-      //   .attach("picture", "../data/image.jpg")
+      .attach("picture", path.resolve(__dirname, "../src/data/image.jpg"))
       .expect(201);
 
-    // console.log(response.body);
+    uploadedPost = body.posts._id;
   });
+
   test("It should list Blogs.", async () => {
     const { body } = await request(app)
       .get("/api/v1/blogs")
@@ -53,20 +53,20 @@ describe("Blog API Test", () => {
   });
   test("It should list single blog with valid blog_ID.", async () => {
     const { body } = await request(app)
-      .get(`/api/v1/blogs/${blogId}`)
+      .get(`/api/v1/blogs/${blogId.validId}`)
       .expect("Content-Type", /json/)
       .expect(200);
   });
   test("It should Not  list single blog with Invalid blog_ID.", async () => {
     const { body } = await request(app)
-      .get(`/api/v1/blogs/${invalidId}`)
+      .get(`/api/v1/blogs/${blogId.invalId}`)
       .expect("Content-Type", /json/)
       .expect(404);
     expect(body.message).toStrictEqual("Something went wrong..!");
   });
   test("It should Not delete blog with Invalid ID.", async () => {
     const { body } = await request(app)
-      .delete(`/api/v1/blogs/${invalidId}`)
+      .delete(`/api/v1/blogs/${blogId.invalId}`)
       .set("Authorization", `Bearer ${token}`)
       .expect("Content-Type", /json/)
       .expect(404);
@@ -74,7 +74,7 @@ describe("Blog API Test", () => {
   });
   test("It should delete blog with valid ID.", async () => {
     const { body } = await request(app)
-      .delete(`/api/v1/blogs/${blogId}`)
+      .delete(`/api/v1/blogs/${uploadedPost}`)
       .set("Authorization", `Bearer ${token}`)
       .expect("Content-Type", /json/)
       .expect(200);
