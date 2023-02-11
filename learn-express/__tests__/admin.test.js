@@ -33,6 +33,6 @@ describe("Admin API Test", () => {
       .post("/api/v1/auth/login")
       .send(admin.valid)
       .expect(200);
-    expect(body.message).toStrictEqual("Access granted..!");
+    expect(body.message).toStrictEqual("Access granted..ertyy!");
   });
 });
