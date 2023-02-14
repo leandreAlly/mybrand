@@ -1,11 +1,5 @@
 import Blog from "../models/Blog.js";
 
-// export const addLikes = async (req, res) => {
-//   await Blog.findOneAndUpdate({ _id: req.params.id }, { $inc: { likes: 1 } });
-//   const blog = await Blog.findOne({ _id: req.params.id });
-
-//   return res.status(201).json({ meessage: "Likes added!", blog: blog });
-
 const addLikes = async (req, res) => {
   const clientIp = req.ip;
   const blog = await Blog.findOne({ _id: req.params.id });
@@ -16,14 +10,18 @@ const addLikes = async (req, res) => {
       .json({ message: "You have already liked this post!" });
   }
 
-  await Blog.findOneAndUpdate(
-    { _id: req.params.id },
-    { $inc: { likes: 1 }, $push: { likedBy: clientIp } }
-  );
+  try {
+    await Blog.findOneAndUpdate(
+      { _id: req.params.id },
+      { $inc: { likes: 1 }, $push: { likedBy: clientIp } }
+    );
 
-  const updatedBlog = await Blog.findOne({ _id: req.params.id });
+    const updatedBlog = await Blog.findOne({ _id: req.params.id });
 
-  return res.status(201).json({ message: "Likes added!", blog: updatedBlog });
+    return res.status(201).json({ message: "Likes added!", blog: updatedBlog });
+  } catch (error) {
+    res.status(500).json({ message: "Something went wrong" });
+  }
 };
 
 const likeCounter = async (req, res) => {
