@@ -24,7 +24,7 @@ const postBlog = async (req, res) => {
     });
     await post.save();
 
-    res.status(201).json({ Post: post });
+    res.status(201).json({ posts: post });
   } catch (error) {
     res.status(500).json({ error: error.message });
     console.log(error.message);

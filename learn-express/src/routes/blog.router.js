@@ -9,13 +9,13 @@ import {
 } from "../controllers/blog.controller.js";
 import upload from "../services/multer.js";
 import isValid from "../middleware/Validate.js";
-// import auth from "../middleware/auth.js";
 import passport from "passport";
 import { isAuth } from "../middleware/auth.js";
 
 const router = express();
 
 router.get("/", getAllBlog);
+
 router.post(
   "/",
   isAuth(passport),
@@ -24,6 +24,7 @@ router.post(
   postBlog
 );
 router.get("/:id", getSingleBlog);
+
 router.patch(
   "/:id",
   isAuth(passport),

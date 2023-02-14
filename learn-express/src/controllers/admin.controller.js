@@ -36,19 +36,17 @@ const adminLogin = async (req, res) => {
   if (!admin) {
     return res.status(404).json({ message: "Wrong credintial" });
   }
-  console.log(admin.password);
   const adminPassword = await bcrypt.compare(req.body.password, admin.password);
 
   if (!adminPassword) {
     return res.status(401).json({
       status: false,
-      error: "Incorect password or email..!",
+      message: "Incorect password or email..!",
     });
   }
-  // const token = jwt.sign({ adminId: admin._id }, process.env.TOKEN_SECRET);
+
   const token = generateToken(admin);
 
-  //   res.header("auth-token", token).send(token);
   res.status(200).header("auth-token", token).json({
     status: true,
     adminId: admin._id,

@@ -9,3 +9,8 @@ export const blog = {
     blogContent: "Th",
   },
 };
+
+export const blogId = {
+  validId: "63e60416d4dd2b606d1fff3a",
+  invalId: "63e24c89528bbab4ac",
+};

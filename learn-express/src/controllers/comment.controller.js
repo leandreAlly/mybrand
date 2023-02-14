@@ -4,10 +4,9 @@ import Blog from "../models/Blog.js";
 
 const storeComment = async (req, res) => {
   try {
-    console.log(req.params);
     const blog = await Blog.findOne({ _id: req.params.id });
     if (!blog)
-      return res.status(204).json({ message: "Can't find blog with given Id" });
+      return res.status(404).json({ message: "Can't find blog with given Id" });
 
     const comment = new Comment({
       name: req.body.name,
@@ -19,7 +18,7 @@ const storeComment = async (req, res) => {
 
     return res.status(201).json({ comment: comment });
   } catch (error) {
-    res.status(500).json({ error: "something Went wrong...!" });
+    res.status(404).json({ message: "Bad request" });
   }
 };
 
@@ -28,7 +27,6 @@ const getCommentsPerPost = async (req, res) => {
     const comment = await Comment.find({
       blog: mongoose.Types.ObjectId(req.params.id),
     }).select("name content -_id");
-    //   console.log(comment);
     if (!comment)
       return res
         .status(204)
