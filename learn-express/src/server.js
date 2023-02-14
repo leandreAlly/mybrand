@@ -1,4 +1,4 @@
-// import http from "http";
+import http from "http";
 import dotenv from "dotenv";
 
 import { dbConnect } from "./services/mongo.js";
@@ -8,19 +8,13 @@ dotenv.config();
 
 const port = process.env.PORT || 3000;
 
-// // const server = http.createServer(app);
+const server = http.createServer(app);
 
-// const startServer = async () => {
-//   await dbConnect();
-//   app.listen(process.env.PORT || 3000, () => {
-//     console.log(`server is running on port: ${PORT}`);
-//   });
-// };
+const startServer = async () => {
+  await dbConnect();
+  server.listen(port, () => {
+    console.log(`server is running on port: ${port}`);
+  });
+};
 
-// startServer();
-app.listen(port, (err) => {
-  if (err) {
-    return console.log("something bad happened", err);
-  }
-  console.log(`server is listening on ${port} ...`);
-});
+startServer();
