@@ -7,8 +7,7 @@
     "test": "cross-env jest --coverage ",
     "pro": "node node_modules/.bin/babel-node src/server.js",
     "dev": "nodemon node_modules/.bin/babel-node src/server.js",
-    "build": " babel src --out-dir dist",
-    "start": "npm run build && node ./dist/server.js"
+    "start": "babel-node src/server"
   },
   "keywords": [],
   "author": "",
