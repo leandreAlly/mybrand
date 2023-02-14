@@ -5,8 +5,10 @@
   "main": "src/server.js",
   "scripts": {
     "test": "cross-env jest --coverage ",
-    "start": "node node_modules/.bin/babel-node src/server.js",
-    "dev": "nodemon node_modules/.bin/babel-node src/server.js"
+    "pro": "node node_modules/.bin/babel-node src/server.js",
+    "dev": "nodemon node_modules/.bin/babel-node src/server.js",
+    "build": " babel src --out-dir dist",
+    "start": "npm run build && node ./dist/server.js"
   },
   "keywords": [],
   "author": "",
