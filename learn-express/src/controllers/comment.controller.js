@@ -10,7 +10,7 @@ const storeComment = async (req, res) => {
 
     const comment = new Comment({
       name: req.body.name,
-      content: req.body.name,
+      content: req.body.content,
       blog: blog,
     });
 

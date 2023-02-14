@@ -170,7 +170,7 @@
           {
             "name": "blogID",
             "in": "path",
-            "description": "ID of article that needs to be updated",
+            "description": "ID of Blog that needs to be updated",
             "required": true,
             "type": "string"
           },
@@ -214,8 +214,8 @@
         "tags": [
           "Blogs"
         ],
-        "summary": "Deletes an article",
-        "description": "Delete a single article",
+        "summary": "Deletes an Blog",
+        "description": "Delete a single Blog",
         "produces": [
           "application/json"
         ],
@@ -235,7 +235,137 @@
         }
       }
     },
-    "/query": {
+    "/blogs/{blogId}/comments": {
+      "post": {
+        "tags": [
+          "Blogs"
+        ],
+        "summary": "Create a new comment",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "blogId",
+            "in": "path",
+            "description": "ID of blog to comment",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "Comment",
+            "description": "Comment Body",
+            "schema": {
+              "$ref": "#/definitions/comment"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Comment added successfully!"
+          },
+          "422": {
+            "description": "Validation fails"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Blogs"
+        ],
+        "summary": "Find comment by blog ID",
+        "description": "Returns a all comments for blog ",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "blogId",
+            "in": "path",
+            "description": "ID of blog to return comments",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/comment"
+            }
+          },
+          "404": {
+            "description": "Blog not found"
+          }
+        }
+      }
+    },
+    "/blogs/{blogId}/likes": {
+      "post": {
+        "tags": [
+          "Blogs"
+        ],
+        "summary": "Create a new like",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "blogId",
+            "in": "path",
+            "description": "ID of blog to like",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Like added successfully!"
+          },
+          "422": {
+            "description": "cant find blog Id"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Blogs"
+        ],
+        "summary": "Count the likes per blog",
+        "description": "Returns a all likes for blog ",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "blogId",
+            "in": "path",
+            "description": "ID of blog to return likes",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Blogs"
+            }
+          },
+          "404": {
+            "description": "Blog not found"
+          }
+        }
+      }
+    },
+    "/contact": {
       "post": {
         "tags": [
           "Queries"
@@ -291,6 +421,7 @@
       }
     }
   },
+
   "securityDefinitions": {
     "Bearer": {
       "type": "apiKey",
@@ -332,49 +463,24 @@
         }
       }
     },
-    "user": {
-      "type": "object",
-      "required": [
-        "name",
-        "email",
-        "password"
-      ],
-      "properties": {
-        "_id": {
-          "type": "string",
-          "example": "1whw2i2si277e37"
-        },
-        "name": {
-          "type": "string",
-          "example": "Alain MUCYO"
-        },
-        "email": {
-          "type": "string",
-          "example": "alainmucyo3@gmail.com"
-        },
-        "password": {
-          "type": "string",
-          "example": "password"
-        }
-      }
-    },
+
     "query": {
       "type": "object",
       "required": [
         "name",
         "email",
-        "content"
+        "message"
       ],
       "properties": {
         "name": {
           "type": "string",
-          "example": "Alain MUCYO"
+          "example": "Ally leandre"
         },
         "email": {
           "type": "string",
-          "example": "alainmucyo3@gmail.com"
+          "example": "leandre@gmail.com"
         },
-        "content": {
+        "message": {
           "type": "string",
           "example": "These are some texts"
         }
@@ -383,13 +489,13 @@
     "comment": {
       "type": "object",
       "required": [
-        "names",
+        "name",
         "content"
       ],
       "properties": {
-        "names": {
+        "name": {
           "type": "string",
-          "example": "Alain MUCYO"
+          "example": "Ally leandre"
         },
         "content": {
           "type": "string",
