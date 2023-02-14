@@ -14,10 +14,10 @@ app.use(express.json());
 passport.use(jwtStrategy);
 app.use(passport.initialize());
 
-app.use("/api/v1", apiRouter);
-app.use("/api-docs", serve, setup(swaggerDocument));
 app.get("/", (req, res) => {
   return res.status(200).json({ message: "My Blog Api" });
 });
+app.use("/api/v1", apiRouter);
+app.use("/api-docs", serve, setup(swaggerDocument));
 
 export default app;

@@ -6,15 +6,14 @@ import app from "./app.js";
 
 dotenv.config();
 
-const PORT = process.env.PORT || 3000;
+// const PORT = process.env.PORT || 3000;
 
 const server = http.createServer(app);
 
 const startServer = async () => {
   await dbConnect();
-
-  server.listen(PORT, () => {
-    console.log(`server is running on port: ${PORT}`);
+  server.listen(process.env.PORT || 3000, () => {
+    console.log(`server is running on port: ${process.env.PORT}`);
   });
 };
 
