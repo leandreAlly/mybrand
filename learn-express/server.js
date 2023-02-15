@@ -1,8 +1,8 @@
 import http from "http";
 import dotenv from "dotenv";
 
-import { dbConnect } from "./services/mongo.js";
-import app from "./app.js";
+import { dbConnect } from "./src/services/mongo.js";
+import app from "./src/app";
 
 dotenv.config();
 

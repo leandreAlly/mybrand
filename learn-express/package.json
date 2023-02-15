@@ -2,12 +2,11 @@
   "name": "learn-express",
   "version": "1.0.0",
   "description": "",
-  "main": "src/server.js",
+  "main": "server.js",
   "scripts": {
     "test": "cross-env jest --coverage ",
-    "pro": "node node_modules/.bin/babel-node src/server.js",
-    "dev": "nodemon node_modules/.bin/babel-node src/server.js",
-    "start": "babel-node src/server"
+    "dev": "nodemon node_modules/.bin/babel-node server.js",
+    "start": "babel-node server.js"
   },
   "keywords": [],
   "author": "",
