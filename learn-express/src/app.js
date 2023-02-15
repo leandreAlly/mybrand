@@ -22,7 +22,7 @@ mongoose
     console.log("+++++++++", err);
   });
 
-// app.use(morgan("combined"));
+app.use(morgan("combined"));
 app.use(express.json());
 passport.use(jwtStrategy);
 app.use(passport.initialize());
