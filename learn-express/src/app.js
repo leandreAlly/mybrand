@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import express from "express";
 import morgan from "morgan";
 import apiRouter from "./routes/api.js";
@@ -9,6 +10,18 @@ const swaggerDocument = require("../swagger.json");
 
 dotenv.config();
 const app = express();
+const DB_URL = process.env.DB_URL;
+
+mongoose
+  .set("strictQuery", false)
+  .connect(DB_URL)
+  .then(() => {
+    console.log("Database connected .......");
+  })
+  .catch((err) => {
+    console.log("+++++++++", err);
+  });
+
 // app.use(morgan("combined"));
 app.use(express.json());
 passport.use(jwtStrategy);
