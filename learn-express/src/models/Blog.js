@@ -8,6 +8,7 @@ const BlogSchema = new schema({
   blogImage: { type: String },
   likes: { type: Number, default: 0 },
   likedBy: [{ type: String }],
+  date: String
 });
 
 const Blog = mongoose.model("Blog", BlogSchema);
