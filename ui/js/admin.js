@@ -1,3 +1,7 @@
+const token = localStorage.getItem("jwtToken");
+if (!token) {
+  window.location.href = "/ui/login/index.html";
+}
 let menuicn = document.querySelector(".menuicn");
 let nav = document.querySelector(".navcontainer");
 
@@ -181,30 +185,47 @@ function deleteComment(event) {
   }
 }
 // Get Message query from local
-function getMessageFromStorage() {
+async function getMessageFromStorage() {
   let messages;
   let html = "";
-  if (localStorage.getItem("messages") === null) {
-    messages = [];
-  } else {
-    messages = JSON.parse(localStorage.getItem("messages"));
+  const options = {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  };
+  try {
+    const response = await fetch(
+      "https://portifolio-website.up.railway.app/api/v1/contact",
+      options
+    );
+    if (!response.ok) {
+      throw new Error("Getting blog failed");
+    }
+    const data = await response.json();
+    messages = data.queries;
+
+    messages.forEach(function (message) {
+      html += `
+          <tr data-id="${message.id}">
+            <td>${message.message}</td>
+            <td>${message.name}</td>
+            <td>${message.email}</td>
+            <td>
+                <button class="t-op-nextlvl approve-tag">Contact</button>
+                <button  onclick ="deleteMessage(event);" class="t-op-nextlvl delete-tag">Delete</button>
+            </td>
+        </tr>
+      `;
+    });
+    // Get parent element
+    const table = document.querySelector("#query-message");
+    table.innerHTML += html;
+  } catch (error) {
+    alert("Something went wrong while fetching message");
+    console.log(error);
   }
-  messages.forEach(function (message) {
-    html += `
-        <tr data-id="${message.id}">
-          <td>${message.message}</td>
-          <td>${message.name}</td>
-          <td>${message.email}</td>
-          <td>
-              <button class="t-op-nextlvl approve-tag">Contact</button>
-              <button  onclick ="deleteMessage(event);" class="t-op-nextlvl delete-tag">Delete</button>
-          </td>
-      </tr>
-    `;
-  });
-  // Get parent element
-  const table = document.querySelector("#query-message");
-  table.innerHTML += html;
 }
 
 // Get article from local storage
@@ -356,6 +377,6 @@ function editArticle(event) {
 }
 // Logout function
 function logout() {
-  localStorage.setItem("auth_status", "off");
+  localStorage.removeItem("jwtToken");
   window.location.href = "/ui/login/index.html";
 }

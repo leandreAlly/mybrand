@@ -3,26 +3,47 @@ const userEmail = document.querySelector("#input-email");
 const inpPassword = document.querySelector("#input-password");
 const logBtn = document.querySelector("#log-btn");
 
-let usermail = "userleandre@gmail.com";
-let userPassword = "ally0788!";
-
 // Check login status while page is loading
 document.addEventListener("DOMContentLoaded", checkAuthstatus);
 
 // Login Event
+
+async function login() {
+  const userInfo = {
+    email: userEmail.value,
+    password: inpPassword.value,
+  };
+
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(userInfo),
+  };
+
+  try {
+    const response = await fetch(
+      "https://portifolio-website.up.railway.app/api/v1/auth/login",
+      options
+    );
+    if (!response.ok) {
+      throw new Error("Login failed");
+    }
+    const data = await response.json();
+    const token = data.token;
+    localStorage.setItem("jwtToken", token);
+    window.location.href = "/ui/admin-panel/admin.html";
+  } catch (error) {
+    alert("Invalid passoword or email");
+  }
+}
+
 logBtn.addEventListener("click", (e) => {
   const isValidLogin = validateLogin();
 
   if (isValidLogin) {
-    console.log(userEmail.value);
-    console.log(inpPassword.value);
-
-    if (userEmail.value === usermail && inpPassword.value === userPassword) {
-      localStorage.setItem("auth_status", "on");
-      window.location.href = "/ui/admin-panel/admin.html";
-    } else {
-      alert("Incorrect email or password. Please try again.");
-    }
+    login();
     clearField();
   }
 
@@ -31,9 +52,8 @@ logBtn.addEventListener("click", (e) => {
 
 // check if user is not already Login
 function checkAuthstatus() {
-  let authStatus = localStorage.getItem("auth_status");
-  if (authStatus === "on") {
-    // alert("You're already logged in!");
+  const token = localStorage.getItem("jwtToken");
+  if (token) {
     window.location.href = "/ui/admin-panel/admin.html";
   } else {
     return false;

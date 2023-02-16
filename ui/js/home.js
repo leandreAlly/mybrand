@@ -83,34 +83,38 @@ suBtn.addEventListener("click", (e) => {
   const isFormValid = validateInputs();
 
   if (isFormValid) {
-    let newId = Math.floor(Math.random() * (1000000 - 100000) + 100000);
-    const data = {
-      id: newId,
+    const query = {
       name: submitName.value,
       email: submitEmail.value,
       message: submitMessage.value,
     };
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(query),
+    };
+    fetch("https://portifolio-website.up.railway.app/api/v1/contact", options)
+      .then((data) => {
+        if (!data.ok) {
+          throw Error(data.status);
+        }
+        return data.json();
+      })
+      .then((query) => {
+        console.log(query);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
 
-    storeMessageInLocalStorage(data);
     showAlert();
     clearField();
   }
 
   e.preventDefault();
 });
-
-function storeMessageInLocalStorage(message) {
-  let messages;
-  if (localStorage.getItem("messages") === null) {
-    messages = [];
-  } else {
-    messages = JSON.parse(localStorage.getItem("messages"));
-  }
-
-  messages.push(message);
-
-  localStorage.setItem("messages", JSON.stringify(messages));
-}
 
 const setError = (element, message) => {
   const inputBox = element.parentElement;
