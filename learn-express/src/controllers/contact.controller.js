@@ -23,5 +23,17 @@ const postContactMessage = async (req, res) => {
     res.status(404).json({ message: "Bad request" });
   }
 };
+const deleteMessage = async (req, res) => {
+  try {
+    const query = await Queries.findByIdAndRemove(req.params.id);
+    if (!query)
+      return res
+        .status(404)
+        .send({ message: "query with given ID was not found!" });
+    res.status(200).json({ message: "Query deleted" });
+  } catch (error) {
+    res.status(404).json({ message: "Query doesn't exist!" });
+  }
+};
 
-export { getAllContactMessage, postContactMessage };
+export { getAllContactMessage, postContactMessage, deleteMessage };
