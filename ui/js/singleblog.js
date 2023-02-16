@@ -13,73 +13,84 @@ window.onscroll = function () {
   }
 };
 
-// Get all articles from local storage
-let articles = JSON.parse(localStorage.getItem("articles"));
-//Get ID of single blog after click on read More button
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get("id");
+displayFullBlog(id);
 
-// Filter all article to match with one has id passed
-let articleToDisplay = articles.filter(function (art) {
-  return art.id == parseInt(id);
-});
-
-displayFullBlog(articleToDisplay);
+let userName;
+let commentTexts;
 // Display full blog after getting it in local storage
-function displayFullBlog(article) {
-  // Get all comments belongs to single article and display it's length
-  let comments = localStorage.getItem("comments");
-  let articleComments = [];
-  if (comments !== null) {
-    comments = JSON.parse(comments);
-    if (comments.length > 0) {
-      articleComments = comments.filter(
-        (comment) => comment.articleId === article[0].id
-      );
-    }
-  }
+async function displayFullBlog(id) {
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  const response = await fetch(
+    `https://portifolio-website.up.railway.app/api/v1/blogs/${id}`,
+    options
+  );
+
+  const data = await response.json();
+
+  let article = data.Post;
+
+  const commentResponse = await fetch(
+    `https://portifolio-website.up.railway.app/api/v1/blogs/${id}/comments`,
+    options
+  );
+
+  const commentData = await commentResponse.json();
+
+  let articleComments = commentData.comment;
   const numComments = articleComments.length;
+
   let html = `
   <article class="article-featured">
-  <h2 class="article-title">${article[0].title}</h2>
-  <img src="${article[0].image}" alt="" class="article-image" />
-  <p class="article-info">${article[0].date}| ${numComments} comments</p>
+  <h2 class="article-title">${article.blogTitle}</h2>
+  <img src="${article.blogImage}" alt="" class="article-image" />
+  <p class="article-info">date|30 comments</p>
 
-  <div class="article-body">${article[0].blogContent}</div>
+  <div class="article-body">${article.blogContent}</div>
   <div class="article-button">
             <div class="like-button">
-              <i class="bx bxs-like"></i>1<span> Like</span>
+              <i class="bx bxs-like"></i>${article.likes}<span> Like</span>
             </div>
   <div class="comment-button">
               <i class="bx bxs-comment"></i>${numComments}<span> Comment</span>
             </div>
       </div>
-      <section class="comments-display">
-      <h3>Comments</h3>
-      <ul>
-        ${
-          articleComments.length > 0
-            ? articleComments
-                .map(
-                  (comment) => `
-              <li class="comment">
-                <div class="user-info">
-                  <span class="user-name">${comment.author}</span>
-                  <span class="date">${comment.date}</span>
-                </div>
-                <p class="comment-text">
-                  ${comment.comment}
-                </p>
-              </li>
-            `
-                )
-                .join("")
-            : '<li class="comment">No Comments Yet</li>'
-        }
-      </ul>
-    </section>
-    
-  
+
+
+    <!--Comment section -->
+    <section class="comments-display">
+    <h3>Comments</h3>
+    <ul>
+      ${
+        articleComments.length > 0
+          ? articleComments
+              .map(
+                (comment) => `
+            <li class="comment">
+              <div class="user-info">
+                <span class="user-name">${comment.name}</span>
+                <span class="date">${comment.date}</span>
+              </div>
+              <p class="comment-text">
+                ${comment.content}
+              </p>
+            </li>
+          `
+              )
+              .join("")
+          : '<li class="comment">No Comments Yet</li>'
+      }
+    </ul>
+  </section>
+
+
   <div class="comment-section">
     <form id="form" action="#">
       <div class="input-name">
@@ -107,28 +118,48 @@ function displayFullBlog(article) {
 
   const mainDiv = document.querySelector(".main");
   mainDiv.innerHTML += html;
+
+  const submitComment = async (event) => {
+    event.preventDefault();
+    userName = document.querySelector("#user-name");
+    commentTexts = document.querySelector("#comment-field");
+
+    const isCommentValid = validateComment();
+    if (isCommentValid) {
+      const data = {
+        name: userName.value,
+        content: commentTexts.value,
+        // date: getCurrentDate(),
+      };
+
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      };
+
+      try {
+        const response = await fetch(
+          `https://portifolio-website.up.railway.app/api/v1/blogs/${id}/comments`,
+          options
+        );
+        if (!response.ok) {
+          throw new Error("Posting comment failed");
+        }
+        console.log("comment successfully added");
+      } catch (error) {
+        console.log("error happen", error);
+      }
+      clearFields();
+    } else {
+      return false;
+    }
+  };
+  const subBtn = document.getElementById("myBtn");
+  subBtn.addEventListener("click", submitComment);
 }
-
-const userName = document.querySelector("#user-name");
-const commentTexts = document.querySelector("#comment-field");
-const subBtn = document.querySelector("#myBtn");
-
-subBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-  const isCommentValid = validateComment();
-  if (isCommentValid) {
-    let newId = Math.floor(Math.random() * (1000000 - 100000) + 100000);
-    const data = {
-      commentId: newId,
-      articleId: parseInt(id),
-      author: userName.value,
-      comment: commentTexts.value,
-      date: getCurrentDate(),
-    };
-    storeCommentInLocalStorage(data);
-    clearFields();
-  }
-});
 
 const setError = (element, message) => {
   const commentSection = element.parentElement;
@@ -173,19 +204,6 @@ const validateComment = () => {
   }
   return status;
 };
-// Store comment in Local Storage
-function storeCommentInLocalStorage(comment) {
-  let comments;
-  if (localStorage.getItem("comments") === null) {
-    comments = [];
-  } else {
-    comments = JSON.parse(localStorage.getItem("comments"));
-  }
-
-  comments.push(comment);
-
-  localStorage.setItem("comments", JSON.stringify(comments));
-}
 
 function clearFields() {
   userName.value = "";

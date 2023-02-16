@@ -45,78 +45,73 @@ for (var i = 0; i < navLinks.length; i++) {
 
 // document.addEventListener("DOMContentLoaded", getMessageFromStorage);
 
-getMessageFromStorage();
+getBlogs();
 
-function getMessageFromStorage() {
+async function getBlogs() {
   let articles;
   let html = "";
   let sideWidets = "";
-  if (localStorage.getItem("articles") === null) {
-    articles = [];
-  } else {
-    articles = JSON.parse(localStorage.getItem("articles"));
-    // console.log(articles);
-  }
-  articles.forEach(function (article) {
-    let shortContent = article.blogContent.substring(0, 300) + ".....</p>";
 
-    // Get all comments belongs to single article and display it's length
-    let comments;
-    if (localStorage.getItem("comments") === null) {
-      comments = [];
-    } else {
-      comments = JSON.parse(localStorage.getItem("comments"));
-    }
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
 
-    const matchingComments = comments.filter(
-      (comment) => comment.articleId === article.id
+  try {
+    const response = await fetch(
+      "https://portifolio-website.up.railway.app/api/v1/blogs",
+      options
     );
-    const numComments = matchingComments.length; //comments length belongs to single article
+    if (!response.ok) {
+      throw new Error("Getting blog failed");
+    }
+    const data = await response.json();
 
-    html += `
-    <article class="article-recent">
-    <div class="article-recent-main">
-      <h2 class="article-title">${article.title}</h2>
-      <p class="article-body">${shortContent}</p>
-      <div class="btn-container">
-        <button onclick="showMore(event);" data-id="${article.id}" id="toggle">Read more</button>
-      </div>
-      <div class="article-button">
-        <div class="like-button">
-          <i class="bx bxs-like"></i>1<span> Like</span>
+    articles = data.blogs;
+
+    articles.forEach(function (article) {
+      let shortContent = article.blogContent.substring(0, 300) + ".....</p>";
+      html += `
+      <article class="article-recent">
+      <div class="article-recent-main">
+        <h2 class="article-title">${article.blogTitle}</h2>
+        <p class="article-body">${shortContent}</p>
+        <div class="btn-container">
+          <button onclick="showMore(event);" data-id="${article._id}" id="toggle">Read more</button>
         </div>
-        <div class="comment-button">
-          <i class="bx bxs-comment"></i>${numComments}<span> Comment</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="article-recent-secondary">
-      <img src="${article.image}" alt="" class="article-image" />
-      <p class="article-info">${article.date}| ${numComments} comments</p>
-    </div>
-  </article>
-    `;
-
-    sideWidets += `
-    <div class="widget-recent-post">
-            <h3 class="widget-recent-post-title">${article.title}</h3>
-            <img onclick="showMore(event);" data-id="${article.id}" src="${article.image}" alt="" class="widget-image" />
+        <div class="article-button">
+          <div class="like-button">
+            <i class="bx bxs-like"></i>${article.likes}<span> Like</span>
           </div>
-    `;
-  });
-  // Get parent element
-  const mainDiv = document.querySelector("#main");
-  mainDiv.innerHTML += html;
+          <div class="comment-button">
+            <i class="bx bxs-comment"></i>0<span> Comment</span>
+          </div>
+        </div>
+      </div>
+  
+      <div class="article-recent-secondary">
+        <img src="${article.blogImage}" alt="" class="article-image" />
+        <p class="article-info">25| 0 comments</p>
+      </div>
+    </article>
+      `;
 
-  const sideMain = document.querySelector("#sidebar-article");
-  sideMain.innerHTML += sideWidets;
+      sideWidets += `
+      <div class="widget-recent-post">
+              <h3 class="widget-recent-post-title">${article.blogTitle}</h3>
+              <img onclick="showMore(event);" data-id="${article._id}" src="${article.blogImage}" alt="" class="widget-image" />
+            </div>
+      `;
+    });
+    // Get parent element
+    const mainDiv = document.querySelector("#main");
+    mainDiv.innerHTML += html;
+
+    const sideMain = document.querySelector("#sidebar-article");
+    sideMain.innerHTML += sideWidets;
+  } catch (error) {
+    console.log("error", error);
+  }
 }
-
-// function showMore(event) {
-//   // Get the data-id attribute value
-//   let articleId = event.target.getAttribute("data-id");
-
-//   // Redirect the user to another page and pass the article id as a query string
-//   window.location.href = `/ui/blog/single-blog-view.html?id=${articleId}`;
-// }

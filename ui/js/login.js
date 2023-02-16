@@ -2,6 +2,7 @@
 const userEmail = document.querySelector("#input-email");
 const inpPassword = document.querySelector("#input-password");
 const logBtn = document.querySelector("#log-btn");
+const alert = document.getElementById("alert");
 
 // Check login status while page is loading
 document.addEventListener("DOMContentLoaded", checkAuthstatus);
@@ -21,6 +22,7 @@ async function login() {
     },
     body: JSON.stringify(userInfo),
   };
+  showLoader();
 
   try {
     const response = await fetch(
@@ -35,7 +37,10 @@ async function login() {
     localStorage.setItem("jwtToken", token);
     window.location.href = "/ui/admin-panel/admin.html";
   } catch (error) {
-    alert("Invalid passoword or email");
+    console.log("error happpen", error);
+    showAlert("Wrong password or email");
+  } finally {
+    hideLoader();
   }
 }
 
@@ -115,4 +120,21 @@ const validateLogin = (e) => {
     status = true;
   }
   return status;
+};
+
+function showLoader() {
+  document.getElementById("loader-overlay").style.display = "block";
+  document.body.style.overflow = "hidden";
+}
+
+function hideLoader() {
+  document.getElementById("loader-overlay").style.display = "none";
+  document.body.style.overflow = "auto";
+}
+const showAlert = (message) => {
+  alert.innerHTML = message;
+  alert.classList.add("show");
+  setTimeout(function () {
+    alert.classList.remove("show");
+  }, 5000);
 };

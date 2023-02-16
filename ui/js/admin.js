@@ -89,17 +89,10 @@ document.addEventListener("DOMContentLoaded", () => {
   getMessageFromStorage();
 
   // Get article from LocalStorage
-  getArticleFromStorage();
+  getArticle();
 
   // Get Comments From local storage
   getCommentFromStorage();
-
-  let authStatus = localStorage.getItem("auth_status");
-  if (authStatus === "off") {
-    window.location.href = "/ui/login/index.html";
-  } else {
-    return false;
-  }
 });
 // Logout event
 document.querySelector(".logout").addEventListener("click", () => {
@@ -242,40 +235,53 @@ async function getMessageFromStorage() {
 }
 
 // Get article from local storage
-function getArticleFromStorage() {
+async function getArticle() {
   let articles;
   let html = "";
-  if (localStorage.getItem("articles") === null) {
-    articles = [];
-  } else {
-    articles = JSON.parse(localStorage.getItem("articles"));
-  }
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
 
-  articles.forEach(function (article) {
-    let comments;
-    if (localStorage.getItem("comments") === null) {
-      comments = [];
-    } else {
-      comments = JSON.parse(localStorage.getItem("comments"));
-    }
-    const matchingComments = comments.filter(
-      (comment) => comment.articleId === article.id
+  try {
+    const response = await fetch(
+      "https://portifolio-website.up.railway.app/api/v1/blogs",
+      options
     );
-    const numComments = matchingComments.length;
-    html += `
-            <tr data-id = "${article.id}">
-                <td>${article.title}</td>
-                <td>${article.date}</td>
-                <td>2.9k</td>
-                <td>${numComments}</td>
-                <td><button onclick="editArticle(event)" class="t-op-nextlvl edit-tag">Edit</button></td>
-                <td><button onclick="deleteArticle(event)" class="t-op-nextlvl delete-tag">Delete</button></td>
-          </tr>
-    `;
-  });
-  // Get parent element
-  const table = document.querySelector("#article-list");
-  table.innerHTML += html;
+    if (!response.ok) {
+      throw new Error("Getting blog failed");
+    }
+
+    const data = await response.json();
+
+    articles = data.blogs;
+
+    articles.forEach(function (article) {
+      // let comments;
+
+      // const matchingComments = comments.filter(
+      //   (comment) => comment.articleId === article.id
+      // );
+      // const numComments = matchingComments.length;
+      html += `
+              <tr data-id = "${article._id}">
+                  <td>${article.blogTitle}</td>
+                  <td>35</td>
+                  <td>2.9k</td>
+                  <td>356</td>
+                  <td><button onclick="editArticle(event)" class="t-op-nextlvl edit-tag">Edit</button></td>
+                  <td><button onclick="deleteArticle(event)" class="t-op-nextlvl delete-tag">Delete</button></td>
+            </tr>
+      `;
+    });
+    // Get parent element
+    const table = document.querySelector("#article-list");
+    table.innerHTML += html;
+  } catch (error) {
+    console.log("something went wrong", error);
+  }
 }
 // Get Comment from local storage
 function getCommentFromStorage() {
