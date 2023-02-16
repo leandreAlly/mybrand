@@ -1,2 +1,4 @@
-test.html
-test.js
+/learn-express/node_modules
+/learn-express/node_modules/
+/learn-express/.env
+/learn-express/.env/
