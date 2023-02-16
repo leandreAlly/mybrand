@@ -1,53 +1,59 @@
 let editor = new FroalaEditor("#subject", {
   heightMax: 200,
 });
-
+// const token = localStorage.getItem("jwtToken");
+const alert = document.getElementById("alert");
 const blogTitle = document.querySelector("#blog-title");
 const blogContent = document.querySelector("#subject");
 const blogImage = document.querySelector("#blog-image");
 const publishBtn = document.querySelector("#publish-btn");
 
-// const selectedFile = blogImage.files[0];
-// const reader = new FileReader();
+// console.log(token);
 
 publishBtn.addEventListener("click", (e) => {
   const isblogValid = validatArticle();
   // const isFildValid = validateFileType();
 
   if (isblogValid) {
-    const selectedFile = blogImage.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(selectedFile);
-    reader.onload = () => {
-      let newId = Math.floor(Math.random() * (1000000 - 100000) + 100000);
-      const data = {
-        id: newId,
-        title: blogTitle.value,
-        blogContent: blogContent.value,
-        date: getCurrentDate(),
-        image: reader.result,
-      };
-      console.log(data);
-      storeArticleInLocalStorage(data);
-      // clear fields
-      clearFields();
-    };
+    storeArticle();
+    // clear fields
+    clearFields();
   }
-
   e.preventDefault();
 });
 
-function storeArticleInLocalStorage(article) {
-  let articles;
-  if (localStorage.getItem("articles") === null) {
-    articles = [];
-  } else {
-    articles = JSON.parse(localStorage.getItem("articles"));
+async function storeArticle() {
+  showLoader();
+  const formData = new FormData();
+  const selectedFile = blogImage.files[0];
+
+  formData.append("blogTitle", blogTitle.value);
+  formData.append("blogContent", blogContent.value);
+  formData.append("picture", selectedFile);
+
+  const options = {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: formData,
+  };
+  showLoader();
+  try {
+    const response = await fetch(
+      "https://portifolio-website.up.railway.app/api/v1/blogs",
+      options
+    );
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    showAlert("Blog post created successfully");
+  } catch (error) {
+    console.error("Error creating blog post:", error);
+    showAlert("Something went wrong ..!");
+  } finally {
+    hideLoader();
   }
-
-  articles.push(article);
-
-  localStorage.setItem("articles", JSON.stringify(articles));
 }
 
 const setError = (element, message) => {
@@ -149,3 +155,21 @@ function getCurrentDate() {
 
   return formDate;
 }
+
+function showLoader() {
+  document.getElementById("loader-overlay").style.display = "block";
+  document.body.style.overflow = "hidden";
+}
+
+function hideLoader() {
+  document.getElementById("loader-overlay").style.display = "none";
+  document.body.style.overflow = "auto";
+}
+
+const showAlert = (message) => {
+  alert.innerHTML = message;
+  alert.classList.add("show");
+  setTimeout(function () {
+    alert.classList.remove("show");
+  }, 5000);
+};

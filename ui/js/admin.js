@@ -111,21 +111,34 @@ document.querySelector(".logout").addEventListener("click", () => {
 });
 
 // Delete message from localStorage
-function deleteMessage(event) {
+async function deleteMessage(event) {
+  const options = {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  };
+
   if (confirm("Do You want to delete this message")) {
     const button = event.target;
     const tr = button.closest("tr");
     const dataId = tr.getAttribute("data-id");
-    // console.log(dataId);
-    let messages;
-    if (localStorage.getItem("messages") === null) {
-      messages = [];
-    } else {
-      messages = JSON.parse(localStorage.getItem("messages"));
+
+    try {
+      const response = await fetch(
+        `https://portifolio-website.up.railway.app/api/v1/contact/${dataId}`,
+        options
+      );
+      if (!response.ok) {
+        throw new Error("query not deleted");
+      }
+      tr.remove();
+      alert("query deleted successfully");
+      console.log("query deleted successfully");
+    } catch (error) {
+      console.log("Error deleting query:", error);
     }
-    messages = messages.filter((message) => message.id !== parseInt(dataId));
-    tr.remove();
-    localStorage.setItem("messages", JSON.stringify(messages));
   } else {
     return false;
   }
@@ -208,7 +221,7 @@ async function getMessageFromStorage() {
 
     messages.forEach(function (message) {
       html += `
-          <tr data-id="${message.id}">
+          <tr data-id="${message._id}">
             <td>${message.message}</td>
             <td>${message.name}</td>
             <td>${message.email}</td>
