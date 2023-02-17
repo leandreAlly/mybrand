@@ -40,7 +40,7 @@ const getCommentsPerPost = async (req, res) => {
 
 const getAllComment = async (req, res) => {
   try {
-    const comments = await Comment.find().populate("blog");
+    const comments = await Comment.find().populate("blog", "blogTitle");
     return res.status(200).json({ comments: comments });
   } catch {
     res.status(404).json({ message: "no comments" });
