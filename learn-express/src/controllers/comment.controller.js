@@ -38,4 +38,13 @@ const getCommentsPerPost = async (req, res) => {
   }
 };
 
-export { storeComment, getCommentsPerPost };
+const getAllComment = async (req, res) => {
+  try {
+    const comments = await Comment.find();
+    return res.status(200).json({ comments: comments });
+  } catch {
+    res.status(404).json({ message: "no comments" });
+  }
+};
+
+export { storeComment, getCommentsPerPost, getAllComment };
