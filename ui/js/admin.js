@@ -305,45 +305,31 @@ async function getCommentFromStorage() {
   const data = await response.json();
   comments = data.comments;
 
-  comments.forEach(async function (comment) {
-    // // console.log(comment.blog._id);
-    // let articles;
-    // const response = await fetch(
-    //   "https://portifolio-website.up.railway.app/api/v1/blogs",
-    //   options
-    // );
-    // if (!response.ok) {
-    //   throw new Error("Getting blog failed");
-    // }
+  const commentsWithBlogTitle = comments.map((comment) => {
+    const blogTitle = comment.blog ? comment.blog.blogTitle : "Unknown";
+    return {
+      _id: comment._id,
+      content: comment.content,
+      blogTitle: blogTitle,
+      name: comment.name,
+    };
+  });
 
-    // const data = await response.json();
-
-    // articles = data.blogs;
-
-    // const articleToDisplay = article.filter(
-    //   (art) => art.articleId === comment.articleId
-    // );
-    // const articleToDisplay = articles.map((article) =>
-    //   article._id === comment.articleId ? article : null
-    // );
-    // const article = articleToDisplay.find((a) => a !== null);
-    // // console.log(article);
-    // if (!article) return console.log("Article not found");
-
+  commentsWithBlogTitle.forEach((comment) => {
     html += `
-            <tr data-id="${comment._id}">
-                  <td>${comment.content}</td>
-                   <td>articleTitle</td>
-                  <td>${comment.name}</td>
-                  <td>20feb2023</td>
-                  <td>
-                    <button class="t-op-nextlvl approve-tag">Approve</button>
-                    <button onclick="deleteComment(event)"; class="t-op-nextlvl delete-query-tag">Delete</button>
-                  </td>
-            </tr>
-
+      <tr data-id="${comment._id}">
+        <td>${comment.content}</td>
+        <td>${comment.blogTitle}</td>
+        <td>${comment.name}</td>
+        <td>20feb2023</td>
+        <td>
+          <!--<button class="t-op-nextlvl approve-tag">Approve</button>-->
+          <button onclick="deleteComment(event)" class="t-op-nextlvl delete-query-tag">Delete</button>
+        </td>
+      </tr>
     `;
   });
+
   // Get parent element
   const table = document.querySelector("#comment-body");
   table.innerHTML += html;
