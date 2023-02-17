@@ -306,7 +306,7 @@ async function getCommentFromStorage() {
   comments = data.comments;
 
   comments.forEach(async function (comment) {
-    console.log(comment.name);
+    // // console.log(comment.blog._id);
     // let articles;
     // const response = await fetch(
     //   "https://portifolio-website.up.railway.app/api/v1/blogs",
