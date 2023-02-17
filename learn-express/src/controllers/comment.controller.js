@@ -46,5 +46,16 @@ const getAllComment = async (req, res) => {
     res.status(404).json({ message: "no comments" });
   }
 };
-
-export { storeComment, getCommentsPerPost, getAllComment };
+const deleteComment = async (req, res) => {
+  try {
+    const query = await Comment.findByIdAndRemove(req.params.id);
+    if (!query)
+      return res
+        .status(404)
+        .send({ message: "comment with given ID was not found!" });
+    res.status(200).json({ message: "comment deleted" });
+  } catch (error) {
+    res.status(404).json({ message: "comment doesn't exist!" });
+  }
+};
+export { storeComment, getCommentsPerPost, getAllComment, deleteComment };
