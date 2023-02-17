@@ -1,4 +1,6 @@
 import express from "express";
+import passport from "passport";
+import { isAuth } from "../middleware/auth.js";
 
 import {
   storeComment,
@@ -12,6 +14,6 @@ const router = express();
 router.get("/all/comment", getAllComment);
 router.post("/:id/comments", isValid("comment"), storeComment);
 router.get("/:id/comments", getCommentsPerPost);
-router.delete("/all/:id/comment", deleteComment);
+router.delete("/all/:id/comment", isAuth(passport), deleteComment);
 
 export default router;
