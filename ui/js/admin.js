@@ -159,6 +159,13 @@ async function deleteArticle(event) {
       if (!response.ok) {
         throw new Error("blog not deleted");
       }
+      const commentResponse = await fetch(
+        `https://portifolio-website.up.railway.app/api/v1/blogs/all/${dataId}/comment`,
+        options
+      );
+      if (!commentResponse.ok) {
+        throw new Error("comment belongs to blog not deleted");
+      }
       tr.remove();
       alert("blog deleted successfully");
       console.log("query deleted successfully");
