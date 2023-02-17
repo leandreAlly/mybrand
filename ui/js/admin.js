@@ -138,32 +138,33 @@ async function deleteMessage(event) {
 }
 
 // Delete article from localStorage
-function deleteArticle(event) {
-  if (confirm("Do You want to delete this Article")) {
+async function deleteArticle(event) {
+  const options = {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  };
+  if (confirm("Do You want to delete this blog?")) {
     const button = event.target;
     const tr = button.closest("tr");
     const dataId = tr.getAttribute("data-id");
     // console.log(dataId);
-    let articles;
-    if (localStorage.getItem("articles") === null) {
-      articles = [];
-    } else {
-      articles = JSON.parse(localStorage.getItem("articles"));
+    try {
+      const response = await fetch(
+        `https://portifolio-website.up.railway.app/api/v1/blogs/${dataId}`,
+        options
+      );
+      if (!response.ok) {
+        throw new Error("blog not deleted");
+      }
+      tr.remove();
+      alert("blog deleted successfully");
+      console.log("query deleted successfully");
+    } catch (error) {
+      console.log("Error deleting blog:", error);
     }
-
-    let comments;
-    if (localStorage.getItem("comments") === null) {
-      comments = [];
-    } else {
-      comments = JSON.parse(localStorage.getItem("comments"));
-    }
-    comments = comments.filter(
-      (comment) => comment.articleId !== parseInt(dataId)
-    );
-    articles = articles.filter((article) => article.id !== parseInt(dataId));
-    tr.remove();
-    localStorage.setItem("articles", JSON.stringify(articles));
-    localStorage.setItem("comments", JSON.stringify(comments));
   } else {
     return false;
   }
@@ -269,7 +270,7 @@ async function getArticle() {
               <tr data-id = "${article._id}">
                   <td>${article.blogTitle}</td>
                   <td>35</td>
-                  <td>2.9k</td>
+                  <td>${article.likes}</td>
                   <td>356</td>
                   <td><button onclick="editArticle(event)" class="t-op-nextlvl edit-tag">Edit</button></td>
                   <td><button onclick="deleteArticle(event)" class="t-op-nextlvl delete-tag">Delete</button></td>
