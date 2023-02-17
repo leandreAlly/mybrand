@@ -91,7 +91,7 @@ const validatArticle = () => {
     setError(blogContent, "content is required");
     status = false;
   } else if (blogCont.length < 10) {
-    setError(blogContent, "Your content must greater than 10 letters");
+    // setError(blogContent, "Your content must greater than 10 letters");
     status = false;
   } else {
     setSuccess(blogContent);

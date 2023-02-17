@@ -159,13 +159,6 @@ async function deleteArticle(event) {
       if (!response.ok) {
         throw new Error("blog not deleted");
       }
-      const commentResponse = await fetch(
-        `https://portifolio-website.up.railway.app/api/v1/blogs/all/${dataId}/comment`,
-        options
-      );
-      if (!commentResponse.ok) {
-        throw new Error("comment belongs to blog not deleted");
-      }
       tr.remove();
       alert("blog deleted successfully");
       console.log("query deleted successfully");
@@ -177,23 +170,31 @@ async function deleteArticle(event) {
   }
 }
 // Delete Comments from localStorage
-function deleteComment(event) {
+async function deleteComment(event) {
+  const options = {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  };
   if (confirm("Do You want to delete this Comment")) {
     const button = event.target;
     const tr = button.closest("tr");
     const dataId = tr.getAttribute("data-id");
     // console.log(dataId);
-    let comments;
-    if (localStorage.getItem("comments") === null) {
-      comments = [];
-    } else {
-      comments = JSON.parse(localStorage.getItem("comments"));
+    try {
+      const response = await fetch(
+        `https://portifolio-website.up.railway.app/api/v1/blogs/all/${dataId}/comment`,
+        options
+      );
+      if (!response.ok) {
+        throw new Error("comment not deleted");
+      }
+      tr.remove();
+    } catch (error) {
+      console.log("error happen", error);
     }
-    comments = comments.filter(
-      (comment) => comment.commentId !== parseInt(dataId)
-    );
-    tr.remove();
-    localStorage.setItem("comments", JSON.stringify(comments));
   } else {
     return false;
   }
@@ -276,9 +277,9 @@ async function getArticle() {
       html += `
               <tr data-id = "${article._id}">
                   <td>${article.blogTitle}</td>
-                  <td>35</td>
+                  <td>17feb2022</td>
                   <td>${article.likes}</td>
-                  <td>356</td>
+                  <td>0</td>
                   <td><button onclick="editArticle(event)" class="t-op-nextlvl edit-tag">Edit</button></td>
                   <td><button onclick="deleteArticle(event)" class="t-op-nextlvl delete-tag">Delete</button></td>
             </tr>
@@ -343,22 +344,34 @@ async function getCommentFromStorage() {
 }
 
 // Edit blog
-function editArticle(event) {
+async function editArticle(event) {
   if (confirm("Do You want to edit this Article")) {
     const button = event.target;
     const tr = button.closest("tr");
     const dataId = tr.getAttribute("data-id");
-    let articles;
-    if (localStorage.getItem("articles") === null) {
-      articles = [];
-    } else {
-      articles = JSON.parse(localStorage.getItem("articles"));
-    }
-    const articlesToEdit = articles.map((article) =>
-      parseInt(article.id) === parseInt(dataId) ? article : null
+    let article;
+
+    const options = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const response = await fetch(
+      `https://portifolio-website.up.railway.app/api/v1/blogs/${dataId}`,
+      options
     );
-    const article = articlesToEdit.find((a) => a !== null);
-    if (!article) return alert("Article not found");
+    if (!response.ok) {
+      throw new Error("Getting blog failed");
+    }
+
+    const data = await response.json();
+
+    article = data.Post;
+    console.log(article);
+
+    // const article = articlesToEdit.find((a) => a !== null);
+    // if (!article) return alert("Article not found");
 
     articleContainer.style.display = "none";
     addArticleForm.style.display = "block";
@@ -367,41 +380,45 @@ function editArticle(event) {
     const updateBtn = document.querySelector("#publish-btn");
     updateBtn.value = "Update";
 
-    blogTitle.value = article.title;
+    blogTitle.value = article.blogTitle;
     blogContent.value = editor.html.set(article.blogContent);
 
     updateBtn.addEventListener("click", updateArticle);
 
-    function updateArticle() {
+    async function updateArticle() {
       const blogTitle = document.querySelector("#blog-title").value;
       const blogContent = editor.html.get();
       const blogImage = document.querySelector("#blog-image");
       const updateBtn = document.querySelector("#publish-btn");
       const articles = JSON.parse(localStorage.getItem("articles"));
-
+      const formData = new FormData();
       const selectedFile = blogImage.files[0];
-      const reader = new FileReader();
-      reader.readAsDataURL(selectedFile);
 
-      articles.forEach((article, index) => {
-        if (parseInt(article.id) === parseInt(dataId)) {
-          reader.onload = () => {
-            const updatedArticle = {
-              id: article.id,
-              title: blogTitle,
-              blogContent: blogContent,
-              image: reader.result,
-              date: getCurrentDate(),
-            };
-            articles[index] = updatedArticle;
-            localStorage.setItem("articles", JSON.stringify(articles));
-            addArticleForm.style.display = "none";
-            articleContainer.style.display = "block";
-            updateBtn.value = "Publish";
-            alert("Article updated successfully!");
-          };
+      formData.append("blogTitle", blogTitle);
+      formData.append("blogContent", blogContent);
+      formData.append("picture", selectedFile);
+      const optionsUpdate = {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+      };
+      try {
+        const response = await fetch(
+          `https://portifolio-website.up.railway.app/api/v1/blogs/${dataId}`,
+          optionsUpdate
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
         }
-      });
+        addArticleForm.style.display = "none";
+        articleContainer.style.display = "block";
+        updateBtn.value = "Publish";
+        // alert("Article updated successfully!");
+      } catch (error) {
+        console.log("error happen", error);
+      }
     }
   } else {
     return false;

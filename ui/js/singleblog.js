@@ -46,7 +46,12 @@ async function displayFullBlog(id) {
 
   let articleComments = commentData.comment;
   const numComments = articleComments.length;
-
+  function addEventListeners() {
+    const likeButton = document.querySelector(".like-button");
+    likeButton.addEventListener("click", function () {
+      likeBlog();
+    });
+  }
   let html = `
   <article class="article-featured">
   <h2 class="article-title">${article.blogTitle}</h2>
@@ -118,7 +123,7 @@ async function displayFullBlog(id) {
 
   const mainDiv = document.querySelector(".main");
   mainDiv.innerHTML += html;
-
+  addEventListeners();
   const submitComment = async (event) => {
     event.preventDefault();
     userName = document.querySelector("#user-name");
@@ -204,6 +209,23 @@ const validateComment = () => {
   }
   return status;
 };
+
+async function likeBlog() {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const response = await fetch(
+    `https://portifolio-website.up.railway.app/api/v1/blogs/${id}/likes`,
+    options
+  );
+  if (!response.ok) {
+    throw new Error("Network response was not ok");
+  }
+  location.reload();
+}
 
 function clearFields() {
   userName.value = "";
