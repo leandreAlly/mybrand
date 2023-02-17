@@ -9,7 +9,7 @@
       "email": "tuyambazeleandre@gmail.com"
     }
   },
-  "host": "localhost:5000",
+  "host": "portifolio-website.up.railway.app",
   "basePath": "/api/v1",
   "schemes": [
     "https",

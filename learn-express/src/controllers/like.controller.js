@@ -1,29 +1,24 @@
 import Blog from "../models/Blog.js";
 
 const addLikes = async (req, res) => {
-  const userId = req.cookies.userId;
+  const clientIp = req.ip;
   const blog = await Blog.findOne({ _id: req.params.id });
 
-  if (blog.likedBy.includes(userId)) {
-    await Blog.findOneAndUpdate(
-      { _id: req.params.id },
-      { $inc: { likes: -1 }, $pull: { likedBy: userId } }
-    );
-    const updatedBlog = await Blog.findOne({ _id: req.params.id });
-    res.cookie("userId", userId, { maxAge: 1000 * 60 * 60 * 24 * 7 });
+  if (blog.likedBy.includes(clientIp)) {
     return res
-      .status(201)
-      .json({ message: "Post unliked!", blog: updatedBlog });
+      .status(400)
+      .json({ message: "You have already liked this post!" });
   }
 
   try {
     await Blog.findOneAndUpdate(
       { _id: req.params.id },
-      { $inc: { likes: 1 }, $push: { likedBy: userId } }
+      { $inc: { likes: 1 }, $push: { likedBy: clientIp } }
     );
+
     const updatedBlog = await Blog.findOne({ _id: req.params.id });
-    res.cookie("userId", userId, { maxAge: 1000 * 60 * 60 * 24 * 7 });
-    return res.status(201).json({ message: "Post liked!", blog: updatedBlog });
+
+    return res.status(201).json({ message: "Likes added!", blog: updatedBlog });
   } catch (error) {
     res.status(500).json({ message: "Something went wrong" });
   }
