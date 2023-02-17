@@ -285,38 +285,57 @@ async function getArticle() {
   }
 }
 // Get Comment from local storage
-function getCommentFromStorage() {
+async function getCommentFromStorage() {
   let comments;
   let html = "";
-  if (localStorage.getItem("comments") === null) {
-    comments = [];
-  } else {
-    comments = JSON.parse(localStorage.getItem("comments"));
+  const options = {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  };
+  const response = await fetch(
+    "https://portifolio-website.up.railway.app/api/v1/blogs/all/comment",
+    options
+  );
+  if (!response.ok) {
+    throw new Error("Getting blog failed");
   }
+  const data = await response.json();
+  comments = data.comments;
 
-  comments.forEach(function (comment) {
-    let articles;
-    if (localStorage.getItem("articles") === null) {
-      articles = [];
-    } else {
-      articles = JSON.parse(localStorage.getItem("articles"));
-    }
+  comments.forEach(async function (comment) {
+    console.log(comment.name);
+    // let articles;
+    // const response = await fetch(
+    //   "https://portifolio-website.up.railway.app/api/v1/blogs",
+    //   options
+    // );
+    // if (!response.ok) {
+    //   throw new Error("Getting blog failed");
+    // }
+
+    // const data = await response.json();
+
+    // articles = data.blogs;
+
     // const articleToDisplay = article.filter(
     //   (art) => art.articleId === comment.articleId
     // );
-    const articleToDisplay = articles.map((article) =>
-      parseInt(article.id) === comment.articleId ? article : null
-    );
-    const article = articleToDisplay.find((a) => a !== null);
-    // console.log(article);
-    if (!article) return alert("Article not found");
+    // const articleToDisplay = articles.map((article) =>
+    //   article._id === comment.articleId ? article : null
+    // );
+    // const article = articleToDisplay.find((a) => a !== null);
+    // // console.log(article);
+    // if (!article) return console.log("Article not found");
 
     html += `
-            <tr data-id="${comment.commentId}">
-                  <td>${comment.comment}</td>
-                   <td>${article.title}</td>
-                  <td>${comment.author}</td>
-                  <td>${comment.date}</td>
+            <tr data-id="${comment._id}">
+                  <td>${comment.content}</td>
+                   <td>articleTitle</td>
+                  <td>${comment.name}</td>
+                  <td>20feb2023</td>
                   <td>
                     <button class="t-op-nextlvl approve-tag">Approve</button>
                     <button onclick="deleteComment(event)"; class="t-op-nextlvl delete-query-tag">Delete</button>
