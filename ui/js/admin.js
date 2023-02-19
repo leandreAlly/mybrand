@@ -27,7 +27,7 @@ const queryContainer = document.querySelector(".query-container");
 // Add event listner to display table
 dashboardBtn.addEventListener("click", () => {
   boxContainer.style.display = "flex";
-  recentContainer.style.display = "block";
+  // recentContainer.style.display = "block";
   commentContainer.style.display = "none";
   queryContainer.style.display = "none";
   articleContainer.style.display = "none";
@@ -40,7 +40,7 @@ dashboardBtn.addEventListener("click", () => {
 });
 articleBtn.addEventListener("click", () => {
   boxContainer.style.display = "none";
-  recentContainer.style.display = "none";
+  // recentContainer.style.display = "none";
   articleContainer.style.display = "block";
   commentContainer.style.display = "none";
   queryContainer.style.display = "none";
@@ -53,7 +53,7 @@ articleBtn.addEventListener("click", () => {
 });
 commentBtn.addEventListener("click", () => {
   boxContainer.style.display = "none";
-  recentContainer.style.display = "none";
+  // recentContainer.style.display = "none";
   articleContainer.style.display = "none";
   commentContainer.style.display = "block";
   queryContainer.style.display = "none";
@@ -66,7 +66,7 @@ commentBtn.addEventListener("click", () => {
 });
 messageBtn.addEventListener("click", () => {
   boxContainer.style.display = "none";
-  recentContainer.style.display = "none";
+  // recentContainer.style.display = "none";
   articleContainer.style.display = "none";
   commentContainer.style.display = "none";
   queryContainer.style.display = "block";
@@ -83,7 +83,6 @@ addArticle.addEventListener("click", () => {
   articleContainer.style.display = "none";
 });
 
-// Check if the user is logged off
 document.addEventListener("DOMContentLoaded", () => {
   // Get the Message from LocalStorage
   getMessageFromStorage();
@@ -93,6 +92,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Get Comments From local storage
   getCommentFromStorage();
+
+  // Generate Admin reports
+  adminReport();
 });
 // Logout event
 document.querySelector(".logout").addEventListener("click", () => {
@@ -203,42 +205,43 @@ async function deleteComment(event) {
 async function getMessageFromStorage() {
   let messages;
   let html = "";
-  const options = {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-  };
   try {
+    const options = {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    };
     const response = await fetch(
       "https://portifolio-website.up.railway.app/api/v1/contact",
       options
     );
     if (!response.ok) {
-      throw new Error("Getting blog failed");
+      throw new Error("Getting message failed");
     }
     const data = await response.json();
     messages = data.queries;
 
+    messages.length > 0;
     messages.forEach(function (message) {
       html += `
-          <tr data-id="${message._id}">
-            <td>${message.message}</td>
-            <td>${message.name}</td>
-            <td>${message.email}</td>
-            <td>
-                <button class="t-op-nextlvl approve-tag">Contact</button>
-                <button  onclick ="deleteMessage(event);" class="t-op-nextlvl delete-tag">Delete</button>
-            </td>
-        </tr>
-      `;
+            <tr data-id="${message._id}">
+              <td>${message.message}</td>
+              <td>${message.name}</td>
+              <td>${message.email}</td>
+              <td>
+                  <button class="t-op-nextlvl approve-tag">Contact</button>
+                  <button  onclick ="deleteMessage(event);" class="t-op-nextlvl delete-tag">Delete</button>
+              </td>
+          </tr>
+        `;
     });
     // Get parent element
     const table = document.querySelector("#query-message");
     table.innerHTML += html;
   } catch (error) {
-    alert("Something went wrong while fetching message");
+    // alert("Something went wrong while fetching message");
     console.log(error);
   }
 }
@@ -424,6 +427,35 @@ async function editArticle(event) {
     return false;
   }
 }
+
+// Admin function report
+async function adminReport() {
+  const blog = document.getElementById("blogs-number");
+  const like = document.getElementById("likes-number");
+  const comment = document.getElementById("comments-number");
+  const query = document.getElementById("queries-number");
+
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const response = await fetch(
+    `https://portifolio-website.up.railway.app/api/v1/report`,
+    options
+  );
+  if (!response.ok) {
+    throw new Error("Getting report failed");
+  }
+
+  const { blogs, comments, likes, queries } = await response.json();
+  blog.textContent = blogs;
+  like.textContent = likes;
+  comment.textContent = comments;
+  query.textContent = queries;
+}
+
 // Logout function
 function logout() {
   localStorage.removeItem("jwtToken");

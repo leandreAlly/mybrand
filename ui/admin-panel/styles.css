@@ -255,6 +255,7 @@ header {
 }
 
 .report-container {
+  display: none;
   min-height: 300px;
   max-width: 1200px;
   margin: 70px auto 0px auto;
