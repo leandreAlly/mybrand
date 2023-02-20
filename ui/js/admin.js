@@ -282,7 +282,7 @@ async function getArticle() {
                   <td>${article.blogTitle}</td>
                   <td>17feb2022</td>
                   <td>${article.likes}</td>
-                  <td>0</td>
+                  <td>${article.comments.length}</td>
                   <td><button onclick="editArticle(event)" class="t-op-nextlvl edit-tag">Edit</button></td>
                   <td><button onclick="deleteArticle(event)" class="t-op-nextlvl delete-tag">Delete</button></td>
             </tr>
@@ -408,6 +408,7 @@ async function editArticle(event) {
         body: formData,
       };
       try {
+        showLoader();
         const response = await fetch(
           `https://portifolio-website.up.railway.app/api/v1/blogs/${dataId}`,
           optionsUpdate
@@ -421,6 +422,8 @@ async function editArticle(event) {
         // alert("Article updated successfully!");
       } catch (error) {
         console.log("error happen", error);
+      } finally {
+        hideLoader();
       }
     }
   } else {
@@ -460,4 +463,12 @@ async function adminReport() {
 function logout() {
   localStorage.removeItem("jwtToken");
   window.location.href = "/ui/login/index.html";
+}
+function showLoader() {
+  document.getElementById("loader-overlay").style.display = "block";
+  document.body.style.overflow = "hidden";
+}
+function hideLoader() {
+  document.getElementById("loader-overlay").style.display = "none";
+  document.body.style.overflow = "auto";
 }

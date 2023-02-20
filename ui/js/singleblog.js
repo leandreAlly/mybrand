@@ -36,6 +36,7 @@ async function displayFullBlog(id) {
   const data = await response.json();
 
   let article = data.Post;
+  const commentsLength = data.Post.comments.length;
 
   const commentResponse = await fetch(
     `https://portifolio-website.up.railway.app/api/v1/blogs/${id}/comments`,
@@ -56,7 +57,7 @@ async function displayFullBlog(id) {
   <article class="article-featured">
   <h2 class="article-title">${article.blogTitle}</h2>
   <img src="${article.blogImage}" alt="" class="article-image" />
-  <p class="article-info">date|30 comments</p>
+  <p class="article-info">date|${commentsLength} comments</p>
 
   <div class="article-body">${article.blogContent}</div>
   <div class="article-button">
