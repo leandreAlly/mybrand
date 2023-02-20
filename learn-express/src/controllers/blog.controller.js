@@ -33,7 +33,9 @@ const postBlog = async (req, res) => {
 
 const getSingleBlog = async (req, res) => {
   try {
-    const post = await Blog.findOne({ _id: req.params.id });
+    const post = await Blog.findOne({ _id: req.params.id }).populate(
+      "comments"
+    );
     res.status(200).json({ Post: post });
   } catch (error) {
     res.status(404).json({ message: "Something went wrong..!" });
