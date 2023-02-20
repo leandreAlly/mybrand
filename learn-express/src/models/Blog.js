@@ -8,7 +8,6 @@ const BlogSchema = new schema({
   blogImage: { type: String },
   likes: { type: Number, default: 0 },
   comments: [{ type: mongoose.Schema.Types.ObjectID, ref: "Comment" }],
-  commentsCount: { type: Number, default: 0 },
   likedBy: [{ type: String }],
 });
 
