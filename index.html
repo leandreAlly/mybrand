@@ -63,7 +63,7 @@
             <div class="topic">Hi, I’m Leandre. Nice to meet you</div>
             <p>
               I’m Motivated fullstack web developer and familiar with a variety
-              of programming languages, including JavaScript, HTML,
+              of programming languages, including JavaScript, NodeJs, HTML,
               CSS,MySQL,PHP, and Git. but I’m always adding new skills to my
               repertoire.I believe a good day is a productive day. So I use my
               work hours to be productive. I try to bring value each and every
@@ -285,5 +285,42 @@
     </footer>
 
     <script src="./ui/js/home.js"></script>
+    <script>
+      var url =
+        "https://wati-integration-service.clare.ai/ShopifyWidget/shopifyWidget.js?22319";
+      var s = document.createElement("script");
+      s.type = "text/javascript";
+      s.async = true;
+      s.src = url;
+      var options = {
+        enabled: true,
+        chatButtonSetting: {
+          backgroundColor: "#4dc247",
+          ctaText: "Chat with Leandre",
+          borderRadius: "25",
+          marginLeft: "0",
+          marginBottom: "50",
+          marginRight: "50",
+          position: "left",
+        },
+        brandSetting: {
+          brandName: "WATI",
+          brandSubTitle: "Typically replies within a day",
+          brandImg: "https://cdn.clare.ai/wati/images/WATI_logo_square_2.png",
+          welcomeText: "Hi there!\nHow can I help you?",
+          messageText: "How can I reach out to you",
+          backgroundColor: "#0a5f54",
+          ctaText: "Start Chat",
+          borderRadius: "25",
+          autoShow: false,
+          phoneNumber: "250788452466",
+        },
+      };
+      s.onload = function () {
+        CreateWhatsappChatWidget(options);
+      };
+      var x = document.getElementsByTagName("script")[0];
+      x.parentNode.insertBefore(s, x);
+    </script>
   </body>
 </html>

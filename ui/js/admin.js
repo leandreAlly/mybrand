@@ -162,7 +162,7 @@ async function deleteArticle(event) {
         throw new Error("blog not deleted");
       }
       tr.remove();
-      alert("blog deleted successfully");
+      // alert("blog deleted successfully");
       console.log("query deleted successfully");
     } catch (error) {
       console.log("Error deleting blog:", error);
@@ -386,15 +386,14 @@ async function editArticle(event) {
     updateBtn.addEventListener("click", updateArticle);
 
     async function updateArticle() {
-      const blogTitle = document.querySelector("#blog-title").value;
+      const blogTitle = document.querySelector("#blog-title");
       const blogContent = editor.html.get();
       const blogImage = document.querySelector("#blog-image");
       const updateBtn = document.querySelector("#publish-btn");
-      const articles = JSON.parse(localStorage.getItem("articles"));
       const formData = new FormData();
       const selectedFile = blogImage.files[0];
 
-      formData.append("blogTitle", blogTitle);
+      formData.append("blogTitle", blogTitle.value);
       formData.append("blogContent", blogContent);
       formData.append("picture", selectedFile);
       const optionsUpdate = {
@@ -405,18 +404,17 @@ async function editArticle(event) {
         body: formData,
       };
       try {
-        showLoader();
         const response = await fetch(
           `https://portifolio-website.up.railway.app/api/v1/blogs/${dataId}`,
           optionsUpdate
         );
+        showLoader();
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
         addArticleForm.style.display = "none";
         articleContainer.style.display = "block";
         updateBtn.value = "Publish";
-        // alert("Article updated successfully!");
       } catch (error) {
         console.log("error happen", error);
       } finally {
@@ -426,6 +424,14 @@ async function editArticle(event) {
   } else {
     return false;
   }
+}
+function showLoader() {
+  document.getElementById("loader-overlay").style.display = "block";
+  document.body.style.overflow = "hidden";
+}
+function hideLoader() {
+  document.getElementById("loader-overlay").style.display = "none";
+  document.body.style.overflow = "auto";
 }
 
 // Admin function report
@@ -460,12 +466,4 @@ async function adminReport() {
 function logout() {
   localStorage.removeItem("jwtToken");
   window.location.href = "/ui/login/index.html";
-}
-function showLoader() {
-  document.getElementById("loader-overlay").style.display = "block";
-  document.body.style.overflow = "hidden";
-}
-function hideLoader() {
-  document.getElementById("loader-overlay").style.display = "none";
-  document.body.style.overflow = "auto";
 }
