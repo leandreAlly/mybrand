@@ -7,6 +7,7 @@
   box-shadow: 3px 3px 10px rgb(188, 188, 188);
   padding: 0px 20px 20px 20px;
 }
+
 .query-header {
   height: 80px;
   width: 100%;
@@ -36,35 +37,43 @@
 
 .query-body {
   max-width: 100%;
-  max-height: 300px;
   overflow-x: auto;
   padding: 20px;
-  /* display: flex; */ /* removed */
 }
 
-.query-body table th,
-.query-body table tr {
-  width: 200px;
-  text-align: left;
-}
-/* Add some styling for the table */
 .query-body table {
   border-collapse: collapse;
   width: 100%;
 }
 
-.query-body td,
-th {
-  text-align: left;
-  padding: 8px;
+.query-body table th,
+.query-body table td {
+  padding: 10px 15px; /* increased padding for better spacing */
+}
+
+.query-body table th {
+  background-color: #f1f1f1; /* add background color to table header */
 }
 
 /* Add some responsive styling */
 @media screen and (max-width: 600px) {
-  .query-body td,
-  th {
+  .query-body table {
+    display: block;
+    width: 100%;
+  }
+  .query-body table th,
+  td {
     display: block;
     width: 100%;
     text-align: left;
+  }
+  .query-body td:before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+  }
+  .query-body td {
+    clear: both;
+    margin-bottom: 10px; /* add some margin between rows for better spacing */
   }
 }

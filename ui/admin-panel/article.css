@@ -1,102 +1,221 @@
+/* Set default font styles
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+} */
+
+/* Set styles for the topic */
 .topic {
   font-size: 13px;
   font-weight: 400;
   letter-spacing: 1px;
 }
 
+/* Set styles for the topic heading */
 .topic-heading {
   font-size: 30px;
   letter-spacing: 3px;
+  margin-bottom: 30px;
 }
 
+/* Set styles for the article container */
 .article-container {
-  min-height: 300px;
   max-width: 1200px;
-  margin: 70px auto 0px auto;
-  background-color: #ffffff;
+  margin: 70px auto 0;
+  padding: 20px;
   border-radius: 30px;
   box-shadow: 3px 3px 10px rgb(188, 188, 188);
-  padding: 0px 20px 20px 20px;
+  background-color: #fff;
 }
+
+/* Set styles for the article header */
 .article-header {
-  height: 80px;
-  width: 100%;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 20px 20px 10px 20px;
+  align-items: center;
+  height: 80px;
   border-bottom: 2px solid rgba(0, 20, 151, 0.59);
 }
 
+/* Set styles for the manage articles heading */
 .manage-Articles {
   font-size: 30px;
   font-weight: 600;
   color: #5500cb;
 }
 
+/* Set styles for the view button */
 .view {
   width: 110px;
   border-radius: 8px;
   background-color: #5500cb;
-  color: white;
+  color: #fff;
   font-size: 15px;
   border: none;
   cursor: pointer;
 }
 
+/* Set styles for the article body */
 .article-body {
   max-width: 1160px;
   overflow-x: auto;
   padding: 20px;
   display: flex;
+  flex-direction: column;
 }
-.article-topic-heading,
-.item1 {
-  width: 1120px;
+
+/* Set styles for the article topic heading */
+.article-topic-heading {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-.t-op {
-  font-size: 18px;
-  letter-spacing: 0px;
+  margin-top: 20px;
 }
 
+/* Set styles for the topic title */
+.t-op {
+  font-size: 18px;
+  letter-spacing: 0;
+}
+
+/* Set styles for the items */
 .items {
-  width: 1120px;
   margin-top: 15px;
 }
 
-.item1 {
+/* Set styles for the item */
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-top: 20px;
 }
-.t-op-nextlvl {
+
+/* Set styles for the item title */
+.item-title {
   font-size: 14px;
-  letter-spacing: 0px;
+  letter-spacing: 0;
   font-weight: 600;
 }
 
+/* Set styles for the edit, approve, and delete tags */
 .edit-tag,
-.approve-tag {
-  width: 80px;
-  text-align: center;
-  background-color: #0d5e36;
-  color: white;
-  border: none;
-  border-radius: 4px;
-}
+.approve-tag,
 .delete-tag,
 .delete-query-tag {
   width: 80px;
   text-align: center;
-  background-color: #d7213a;
-  color: white;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
   border: none;
   border-radius: 4px;
+  cursor: pointer;
 }
 
+.edit-tag {
+  background-color: #007bff;
+}
+
+.approve-tag {
+  background-color: #28a745;
+}
+
+.delete-tag,
+.delete-query-tag {
+  background-color: #dc3545;
+}
+
+/* Set styles for table header and rows */
 .article-body table th,
 .article-body table tr {
-  width: 200px;
   text-align: left;
+}
+
+.article-body table th {
+  text-align: left;
+  background-color: #f2f2f2;
+  padding: 10px;
+}
+.article-body table tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+.article-body table th:nth-child(3),
+.article-body table th:nth-child(4) {
+  width: 70px;
+}
+
+/* Set styles for the article container on smaller screens */
+@media screen and (max-width: 767px) {
+  .article-container {
+    margin-top: 40px;
+    padding: 10px;
+    border-radius: 20px;
+  }
+
+  .article-header {
+    height: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 10px;
+    border-bottom: none;
+  }
+
+  .manage-Articles {
+    font-size: 24px;
+  }
+
+  .view {
+    width: 100px;
+    font-size: 14px;
+  }
+
+  .article-body {
+    max-width: 100%;
+    overflow-x: hidden;
+    padding: 10px;
+  }
+
+  .article-topic-heading {
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 10px;
+  }
+
+  .t-op {
+    font-size: 16px;
+  }
+
+  .item {
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 10px;
+  }
+
+  .item-title {
+    font-size: 12px;
+  }
+
+  .edit-tag,
+  .approve-tag,
+  .delete-tag,
+  .delete-query-tag {
+    width: 60px;
+    font-size: 12px;
+  }
+
+  .article-body table th,
+  .article-body table tr {
+    font-size: 12px;
+  }
+
+  .article-body table th:nth-child(3),
+  .article-body table th:nth-child(4) {
+    width: 50px;
+  }
 }

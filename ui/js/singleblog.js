@@ -155,6 +155,7 @@ async function displayFullBlog(id) {
           throw new Error("Posting comment failed");
         }
         console.log("comment successfully added");
+        location.reload();
       } catch (error) {
         console.log("error happen", error);
       }

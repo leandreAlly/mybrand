@@ -373,9 +373,6 @@ async function editArticle(event) {
     article = data.Post;
     console.log(article);
 
-    // const article = articlesToEdit.find((a) => a !== null);
-    // if (!article) return alert("Article not found");
-
     articleContainer.style.display = "none";
     addArticleForm.style.display = "block";
     const blogTitle = document.querySelector("#blog-title");
