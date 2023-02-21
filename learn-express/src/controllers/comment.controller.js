@@ -15,9 +15,6 @@ const storeComment = async (req, res) => {
     });
 
     await comment.save();
-    blog.comments.push(comment);
-    blog.commentsCount++;
-    await blog.save();
 
     return res.status(201).json({ comment: comment });
   } catch (error) {
